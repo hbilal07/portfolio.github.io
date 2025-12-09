@@ -1,80 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DAA Portfolio | City Design</title>
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DAA Portfolio | Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="logo" href="index.html">CITY DESIGN</a>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="logo">DAA Portfolio</div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Project</a></li>
-            <li><a href="#">Bilal</a></li>
-            <li><a href="#">Sourabh</a></li>
-            <li><a href="#">Zayed</a></li>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+
+      <nav id="nav-menu" class="nav-menu">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="project.html">Project</a></li>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
         </ul>
-    </nav>
+      </nav>
+    </div>
+  </header>
 
-    <!-- HERO SECTION -->
-    <header class="hero-section fade-in">
-        <h1>Design & Analysis of Algorithms</h1>
-        <p>City Design – A Collaborative Analysis & Case Study</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section class="intro-container fade-in">
-        <div class="intro-card">
-            <h2>Course Information</h2>
-            <p><strong>Course:</strong> DAA</p>
-            <p><strong>Course Code:</strong> 24ECSC205</p>
-            <p><strong>Instructor:</strong> Prof. Prakash Hegade</p>
-            <p><strong>University:</strong> KLE Technological University</p>
-            <p><strong>Topic:</strong> City Design</p>
+  <!-- HERO / HOME -->
+  <main>
+    <section id="home" class="hero-landing">
+      <div class="container hero-content">
+        <h1>City Design — A DAA Portfolio</h1>
+        <p class="lead">A curated portfolio applying algorithmic thinking to urban planning & city systems.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="project.html">Explore Project</a>
+          <a class="btn ghost" href="#about">About the Team</a>
         </div>
+      </div>
     </section>
 
-    <!-- TEAM SECTION -->
-    <section class="team-section fade-in">
-        <h2>Project Team</h2>
-        <table class="team-table">
-            <tr>
-                <th>Name</th>
-                <th>USN</th>
-            </tr>
-            <tr>
-                <td>Bilal</td>
-                <td>01FE24BCS298</td>
-            </tr>
-            <tr>
-                <td>Sourabh</td>
-                <td>01FE24BCS289</td>
-            </tr>
-            <tr>
-                <td>Zayed</td>
-                <td>01FE24BCS279</td>
-            </tr>
-        </table>
+    <!-- INTRO (white card) -->
+    <section class="intro card container">
+      <h2>Course Introduction</h2>
+      <div class="intro-grid">
+        <div class="intro-left">
+          <p><strong>Course:</strong> Design & Analysis of Algorithms (DAA)</p>
+          <p><strong>Course Code:</strong> 24ECSC205</p>
+          <p><strong>Instructor:</strong> Prof. Prakash Hegade</p>
+          <p><strong>University:</strong> KLE Technological University</p>
+          <p><strong>Portfolio Topic:</strong> City Design</p>
+        </div>
+
+        <div class="intro-right">
+          <table class="team-table">
+            <thead>
+              <tr><th>Name</th><th>USN</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Amogh Pai</td><td>01fe23bcs217</td></tr>
+              <tr><td>Bhoomika Malagar</td><td>01fe23bcs216</td></tr>
+              <tr><td>Saanvi Shetty</td><td>01fe23bcs227</td></tr>
+              <tr><td>Ramya Rao</td><td>01fe23bcs243</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
-    <!-- COURSE DESCRIPTION -->
-    <section class="description-section fade-in">
-        <h2>About the Course</h2>
-        <p>
-            Design and Analysis of Algorithms forms the foundation of computational thinking. 
-            This subject enables structured problem-solving, exploring efficiency, patterns, 
-            optimization, and strategies that drive modern computing solutions. The course 
-            strengthens analytical skills and links natural and engineered processes to algorithmic logic.
-        </p>
+    <!-- ABOUT -->
+    <section id="about" class="dark-section container">
+      <h2>About Our Team</h2>
+      <p class="about-lead">
+        We are a passionate team of computer-science enthusiasts building sustainable, data-driven solutions for modern urban challenges.
+        This portfolio shows how algorithmic design and case-study thinking can be used to design efficient, scalable city systems.
+      </p>
+
+      <div id="team" class="team-cards">
+        <!-- Card: Amogh -->
+        <article class="team-card">
+          <h3>Amogh Pai</h3>
+          <p class="usn">01fe23bcs217</p>
+          <p class="role">Skills</p>
+          <ul>
+            <li>C, C++, Python</li>
+            <li>Data Structures & Algorithms</li>
+            <li>Web Development (HTML, CSS)</li>
+          </ul>
+          <a class="link small" href="#">LinkedIn Profile</a>
+        </article>
+
+        <article class="team-card">
+          <h3>Bhoomika Malagar</h3>
+          <p class="usn">01fe23bcs216</p>
+          <p class="role">Skills</p>
+          <ul>
+            <li>Algorithms & Problem Solving</li>
+            <li>System Design</li>
+            <li>Project Planning</li>
+          </ul>
+          <a class="link small" href="#">LinkedIn Profile</a>
+        </article>
+
+        <article class="team-card">
+          <h3>Saanvi Shetty</h3>
+          <p class="usn">01fe23bcs227</p>
+          <p class="role">Skills</p>
+          <ul>
+            <li>Data Analysis</li>
+            <li>Visualization</li>
+            <li>Domain Research</li>
+          </ul>
+          <a class="link small" href="#">LinkedIn Profile</a>
+        </article>
+
+        <article class="team-card">
+          <h3>Ramya Rao</h3>
+          <p class="usn">01fe23bcs243</p>
+          <p class="role">Skills</p>
+          <ul>
+            <li>JavaScript, Frontend</li>
+            <li>UI/UX</li>
+            <li>Documentation & Testing</li>
+          </ul>
+          <a class="link small" href="#">LinkedIn Profile</a>
+        </article>
+      </div>
     </section>
 
-    <script src="script.js"></script>
+    <!-- CONTACT/FOOTER -->
+    <footer id="contact" class="site-footer">
+      <div class="container">
+        <p>Portfolio by Team City Design — DAA Portfolio 2025</p>
+        <p class="muted">Replace placeholder images in <code>/images/</code> and update image filenames in <code>project.html</code>.</p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
