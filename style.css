@@ -82,67 +82,7 @@ body{
   font-size:24px;
   color:var(--accent);
 }
-/* Zabrosa City Section */
-.zabrosa-wrapper {
-  position: relative;
-  margin-top: 40px;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.6);
-  background: linear-gradient(180deg, #1a1f2b, #0f0f17);
-}
 
-.zabrosa-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 14px;
-  opacity: 0.95;
-}
-
-/* Overlay for interactive nodes */
-.zabrosa-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-}
-
-/* Glowing data nodes */
-.data-node {
-  position: absolute;
-  background: rgba(125,249,255,0.15);
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-size: 15px;
-  text-align: center;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 0 12px rgba(125,249,255,0.4);
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.data-node span {
-  display: block;
-  font-size: 13px;
-  color: #9aa4b2;
-  margin-top: 4px;
-}
-
-.data-node:hover {
-  transform: scale(1.1);
-  background: rgba(125,249,255,0.25);
-  box-shadow: 0 0 18px rgba(125,249,255,0.6);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .data-node {
-    font-size: 13px;
-    padding: 8px 10px;
-  }
-}
 
 /* HERO */
 .hero-landing{
