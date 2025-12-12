@@ -25,28 +25,30 @@ const memberData = {
     }
 };
 
-// Enhanced particle system
-function createParticles() {
-    const particlesContainer = document.querySelector('.particles');
-    for (let i = 0; i < 30; i++) {
+function createAnimatedParticles() {
+    const container = document.querySelector('.particles-container');
+    for (let i = 0; i < 50; i++) {
         const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.width = (Math.random() * 4 + 1) + 'px';
-        particle.style.height = particle.style.width;
-        particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
-        particle.style.animationDelay = Math.random() * 10 + 's';
-        particlesContainer.appendChild(particle);
+        particle.style.cssText = `
+            position: absolute;
+            width: ${Math.random() * 3 + 1}px;
+            height: ${Math.random() * 3 + 1}px;
+            background: radial-gradient(circle, #8686AC 0%, transparent 70%);
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: particleFloat ${15 + Math.random() * 10}s linear infinite;
+            animation-delay: ${Math.random() * 10}s;
+        `;
+        container.appendChild(particle);
     }
 }
 
-// Smooth transitions with GSAP-like easing
 function openMember(id) {
     const data = memberData[id];
     const dashboard = document.getElementById('dashboard');
     const memberView = document.getElementById('member-view');
     
-    // Pre-fill content for smoother transition
     document.getElementById('detail-name').innerText = data.name;
     document.getElementById('detail-creds').innerHTML = data.creds;
     document.getElementById('detail-initials').innerText = id;
@@ -62,24 +64,21 @@ function openMember(id) {
                     <p>${p.desc}</p>
                 </div>
             `;
-        }, index * 100);
+        }, index * 150);
     });
 
-    // Cinematic transition
-    dashboard.style.transition = 'opacity 0.6s cubic-bezier(0.23, 1, 0.320, 1)';
+    dashboard.style.transition = 'opacity 0.8s cubic-bezier(0.23, 1, 0.320, 1)';
     dashboard.style.opacity = '0';
     
     setTimeout(() => {
         dashboard.style.display = 'none';
         memberView.style.display = 'block';
         memberView.style.opacity = '0';
-        memberView.style.transition = 'opacity 0.6s cubic-bezier(0.23, 1, 0.320, 1)';
-        
         setTimeout(() => {
             memberView.style.opacity = '1';
             window.scrollTo({top: 0, behavior: 'smooth'});
         }, 50);
-    }, 600);
+    }, 800);
 }
 
 function closeMember() {
@@ -92,28 +91,26 @@ function closeMember() {
         memberView.style.display = 'none';
         dashboard.style.display = 'block';
         dashboard.style.opacity = '0';
-        
         setTimeout(() => {
             dashboard.style.opacity = '1';
         }, 50);
-    }, 300);
+    }, 400);
 }
 
-// Mouse parallax effect
+// Mouse parallax for cards
 document.addEventListener('mousemove', (e) => {
     const cards = document.querySelectorAll('.card-glass');
     const mouseX = e.clientX / window.innerWidth;
     const mouseY = e.clientY / window.innerHeight;
     
     cards.forEach((card, index) => {
-        const speed = (index + 1) * 0.03;
-        const xMove = (mouseX - 0.5) * speed * 10;
-        const yMove = (mouseY - 0.5) * speed * 10;
-        card.style.transform = `translate(${xMove}px, ${yMove}px) translateY(-10px) scale(1.02)`; 
+        const speed = (index + 1) * 0.02;
+        const xMove = (mouseX - 0.5) * speed * 20;
+        const yMove = (mouseY - 0.5) * speed * 20;
+        card.style.transform = `translate(${xMove}px, ${yMove}px) translateY(-8px) scale(1.01)`; 
     });
 });
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    createParticles();
+    createAnimatedParticles();
 });
