@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project VanaSparsha | Smart City Infrastructure</title>
+    <title>Project VanaSparsha | KLE Tech</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Orbitron:wght@400;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,71 +13,64 @@
 
     <div class="grid-bg"></div>
 
-    <div id="loader">
-        <div id="log-container"></div>
-    </div>
-
     <div class="container" id="dashboard">
         <header>
-            <h1>Project VanaSparsha</h1>
-            <h2>Smart City Infrastructure</h2>
-            <div class="subtitle">Algorithmic Optimization & Urban Planning</div>
+            <h1 class="main-title">Project VanaSparsha</h1>
+            <div class="title-spacer"></div>
+            <div class="team-intro">
+                <h3>The Development Team</h3>
+                <p>A collaborative initiative focused on optimizing smart city infrastructure through advanced algorithmic analysis. Our team integrates data structures with urban planning to solve real-world logistical challenges.</p>
+            </div>
         </header>
 
         <section class="team-grid">
-            <div class="card" onclick="openMember('LB')">
-                <div class="avatar-circle" style="color: #00f3ff; border-color: #00f3ff;">LB</div>
-                <div class="card-role">Project Lead</div>
-                <div class="card-name">Lahari Bankar</div>
+            <div class="card" onclick="openMember('SK')">
+                <div class="avatar-circle sk-glow">SK</div>
+                <div class="card-name">Sourabh Kakarambi</div>
+                <div class="card-info">
+                    Roll No: 426<br>
+                    USN: 01fe24bcs289<br>
+                    Div: D
+                </div>
+                <div class="view-btn">ACCESS PROFILE</div>
             </div>
 
-            <div class="card" onclick="openMember('PA')">
-                <div class="avatar-circle" style="color: #ff0055; border-color: #ff0055;">PA</div>
-                <div class="card-role">Algo Architect</div>
-                <div class="card-name">Pavitra Adur</div>
+            <div class="card" onclick="openMember('BA')">
+                <div class="avatar-circle ba-glow">BA</div>
+                <div class="card-name">Bilal Asangi</div>
+                <div class="card-info">
+                    Roll No: 416<br>
+                    USN: 01fe24bcs279<br>
+                    Div: D
+                </div>
+                <div class="view-btn">ACCESS PROFILE</div>
             </div>
 
-            <div class="card" onclick="openMember('SP')">
-                <div class="avatar-circle" style="color: #0aff00; border-color: #0aff00;">SP</div>
-                <div class="card-role">Database Dev</div>
-                <div class="card-name">Sharanagouda P</div>
-            </div>
-
-            <div class="card" onclick="openMember('SG')">
-                <div class="avatar-circle" style="color: #bc13fe; border-color: #bc13fe;">SG</div>
-                <div class="card-role">Interface Dev</div>
-                <div class="card-name">SandeepaGouda</div>
-            </div>
-        </section>
-
-        <section class="stats-section">
-            <div class="section-header">
-                <h3>DAA Course Progress</h3>
-                <span class="neon-text">// SYLLABUS_INDEX</span>
-            </div>
-            <div class="progress-container">
-                <div class="progress-label"><span>Dynamic Programming</span><span>80%</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 80%"></div></div>
+            <div class="card" onclick="openMember('ZS')">
+                <div class="avatar-circle zs-glow">ZS</div>
+                <div class="card-name">Zayed Soudagar</div>
+                <div class="card-info">
+                    Roll No: 435<br>
+                    USN: 01fe24bcs298<br>
+                    Div: D
+                </div>
+                <div class="view-btn">ACCESS PROFILE</div>
             </div>
         </section>
     </div>
 
     <div class="container" id="member-view" style="display: none;">
-        <button class="nav-back" onclick="closeMember()"> < BACK TO GRID </button>
+        <button class="nav-back" onclick="closeMember()"> < RETURN TO SYSTEM </button>
         
         <div class="detail-layout">
             <aside class="profile-panel">
-                <div class="avatar-circle large" id="detail-avatar">LB</div>
-                <h2 id="detail-name">Member Name</h2>
-                <p id="detail-role">Role Title</p>
-                <div class="status-box">
-                    STATUS: ACTIVE<br>
-                    ACCESS: GRANTED
-                </div>
+                <div class="avatar-circle large" id="detail-avatar"></div>
+                <h2 id="detail-name"></h2>
+                <div class="id-badge" id="detail-creds"></div>
             </aside>
 
             <main>
-                <h3 class="section-title">CORE_SYSTEMS</h3>
+                <h3 class="section-title">ALGORITHMIC_CONTRIBUTIONS</h3>
                 <div class="system-grid" id="projects-container">
                     </div>
             </main>
