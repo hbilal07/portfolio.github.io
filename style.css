@@ -119,6 +119,31 @@ body{
   box-shadow:0 8px 30px rgba(0,0,0,0.45);
   border:1px solid rgba(255,255,255,0.08);
 }
+/* COURSE DETAILS SECTION */
+.course-details {
+  margin-top: 40px;
+  padding: 32px;
+  background: var(--card-bg);
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.cd-title {
+  margin-top: 25px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.cd-text {
+  color: var(--muted);
+  margin-top: 10px;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
 
 /* INTRO grid */
 .intro-grid{
