@@ -1,10 +1,11 @@
 :root {
-    --bg: #050608;
-    --card-bg: #0a0b10;
-    --border: #1f2937;
-    --text: #e0e6ed;
-    --dim: #8b9bb4;
+    --bg: #030406;
+    --card-bg: #0a0c12;
     --neon-blue: #00f3ff;
+    --neon-purple: #9d00ff;
+    --neon-green: #0eff00;
+    --text: #ffffff;
+    --dim: #94a3b8;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,93 +17,141 @@ body {
     overflow-x: hidden;
 }
 
-/* Background Grid */
 .grid-bg {
     position: fixed;
     inset: 0;
-    background: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background: linear-gradient(rgba(0, 243, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
     z-index: -1;
 }
 
-/* Loader */
-#loader {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 10%;
-    color: #0aff00;
+header {
+    text-align: center;
+    padding: 60px 20px;
+    animation: slideDown 1s ease;
 }
 
-.log-line { margin: 5px 0; opacity: 0; animation: fadeIn 0.2s forwards; }
+/* NEW FONT FOR TITLE */
+.main-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    color: var(--text);
+    text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+}
 
-/* Dashboard UI */
-.container {
-    max-width: 1100px;
+.title-spacer {
+    height: 40px; /* Space between title and info */
+}
+
+.team-intro {
+    max-width: 700px;
     margin: 0 auto;
-    padding: 40px 20px;
+    border-top: 1px solid #222;
+    padding-top: 25px;
 }
 
-header { text-align: center; margin-bottom: 50px; }
-h1 { font-family: 'Orbitron'; font-size: 2.5rem; text-shadow: 0 0 10px var(--neon-blue); }
+.team-intro h3 {
+    font-family: 'Orbitron';
+    color: var(--neon-blue);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
 
+.team-intro p {
+    color: var(--dim);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* CARDS */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
 }
 
 .card {
     background: var(--card-bg);
-    border: 1px solid var(--border);
-    padding: 25px;
+    border: 1px solid #1e293b;
+    padding: 40px 20px;
     text-align: center;
+    position: relative;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
     border-color: var(--neon-blue);
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .avatar-circle {
-    width: 60px; height: 60px;
+    width: 80px; height: 80px;
     border: 2px solid;
     border-radius: 50%;
-    margin: 0 auto 15px;
+    margin: 0 auto 20px;
     display: flex; align-items: center; justify-content: center;
-    font-weight: bold; font-size: 1.2rem;
+    font-family: 'Orbitron'; font-weight: bold; font-size: 1.5rem;
 }
 
-/* Detail View */
+.sk-glow { color: var(--neon-blue); border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
+.ba-glow { color: var(--neon-green); border-color: var(--neon-green); box-shadow: 0 0 15px rgba(14, 255, 0, 0.3); }
+.zs-glow { color: var(--neon-purple); border-color: var(--neon-purple); box-shadow: 0 0 15px rgba(157, 0, 255, 0.3); }
+
+.card-name { font-family: 'Orbitron'; font-size: 1.2rem; margin-bottom: 15px; }
+
+.card-info {
+    color: var(--dim);
+    font-size: 0.85rem;
+    line-height: 1.8;
+    border-top: 1px solid #222;
+    padding-top: 15px;
+}
+
+.view-btn {
+    margin-top: 20px;
+    font-size: 0.7rem;
+    color: var(--neon-blue);
+    letter-spacing: 2px;
+    opacity: 0.6;
+}
+
+/* DETAIL VIEW */
 .nav-back {
-    background: none; border: 1px solid; padding: 8px 15px;
-    color: inherit; cursor: pointer; margin-bottom: 30px;
-    font-family: inherit;
+    background: none; border: 1px solid var(--neon-blue);
+    color: var(--neon-blue); padding: 10px 20px;
+    cursor: pointer; margin-bottom: 40px;
+    font-family: 'Orbitron';
 }
 
-.detail-layout { display: grid; grid-template-columns: 250px 1fr; gap: 40px; }
+.detail-layout { display: grid; grid-template-columns: 300px 1fr; gap: 50px; }
+
+.id-badge {
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    border-left: 4px solid var(--neon-blue);
+}
 
 .system-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .system-card {
-    border: 1px solid var(--border);
-    padding: 20px;
-    background: rgba(255,255,255,0.02);
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    padding: 25px;
+    animation: fadeInUp 0.5s ease forwards;
 }
 
-.bar-bg { width: 100%; height: 6px; background: #222; margin-top: 10px; }
-.bar-fill { height: 100%; background: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); }
-
-@keyframes fadeIn { to { opacity: 1; } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
