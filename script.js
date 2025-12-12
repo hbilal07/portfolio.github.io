@@ -1,44 +1,97 @@
-/* Simple shared script:
-   - Responsive nav toggle
-   - Smooth scroll for same-page anchors
-   - Small helper to close menus when clicking outside
-*/
+const memberData = {
+    'LB': {
+        name: "Lahari Bankar",
+        role: "PROJECT LEAD",
+        color: "#00f3ff",
+        projects: [
+            { title: "Tourism Map", desc: "Shortest path city routing." },
+            { title: "Temple Grid", desc: "Crowd management logic." }
+        ]
+    },
+    'PA': {
+        name: "Pavitra Adur",
+        role: "ALGO ARCHITECT",
+        color: "#ff0055",
+        projects: [
+            { title: "Hospital Ops", desc: "Emergency response optimization." },
+            { title: "Smart Schools", desc: "Resource allocation algorithms." }
+        ]
+    },
+    'SP': {
+        name: "Sharanagouda P",
+        role: "DATABASE DEV",
+        color: "#0aff00",
+        projects: [
+            { title: "Water Supply", desc: "Flow analysis & leak detection." },
+            { title: "Waste Mgmt", desc: "Collection route optimization." }
+        ]
+    },
+    'SG': {
+        name: "SandeepaGouda",
+        role: "INTERFACE DEV",
+        color: "#bc13fe",
+        projects: [
+            { title: "Power Grid", desc: "Load balancing algorithms." },
+            { title: "Traffic AI", desc: "Signal timing optimization." }
+        ]
+    }
+};
 
-(function () {
-  // Toggle any nav menu with button
-  function bindNav(toggleId, menuId) {
-    const btn = document.getElementById(toggleId);
-    const menu = document.getElementById(menuId);
-    if (!btn || !menu) return;
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('open');
-      // small inline mobile behaviour: toggle display
-      if (menu.style.display === 'block') menu.style.display = '';
-      else menu.style.display = 'block';
+// 1. Loading Screen Logic
+window.addEventListener('DOMContentLoaded', () => {
+    const logs = ["BOOTING...", "LOADING ASSETS...", "DECRYPTING GRID...", "ACCESS GRANTED."];
+    const container = document.getElementById('log-container');
+    
+    logs.forEach((text, i) => {
+        setTimeout(() => {
+            const div = document.createElement('div');
+            div.className = 'log-line';
+            div.innerText = `> ${text}`;
+            container.appendChild(div);
+            if (i === logs.length - 1) {
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
+            }
+        }, i * 400);
+    });
+});
+
+// 2. Navigation Logic (Opens the System Grid for any member)
+function openMember(id) {
+    const data = memberData[id];
+    const dashboard = document.getElementById('dashboard');
+    const memberView = document.getElementById('member-view');
+    
+    // Update Profile Info
+    document.getElementById('detail-name').innerText = data.name;
+    document.getElementById('detail-role').innerText = data.role;
+    document.getElementById('detail-role').style.color = data.color;
+    
+    const avatar = document.getElementById('detail-avatar');
+    avatar.innerText = id;
+    avatar.style.borderColor = data.color;
+    avatar.style.color = data.color;
+
+    // Update Back Button Color
+    document.querySelector('.nav-back').style.color = data.color;
+    document.querySelector('.nav-back').style.borderColor = data.color;
+
+    // Inject Projects
+    const container = document.getElementById('projects-container');
+    container.innerHTML = '';
+    data.projects.forEach(p => {
+        container.innerHTML += `
+            <div class="system-card" style="border-left: 3px solid ${data.color}">
+                <h4 style="color: ${data.color}">${p.title}</h4>
+                <p style="font-size: 0.8rem; margin-top:5px; color:#888;">${p.desc}</p>
+            </div>
+        `;
     });
 
-    // close on outside click
-    document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && !btn.contains(e.target)) {
-        menu.style.display = '';
-      }
-    });
-  }
+    dashboard.style.display = 'none';
+    memberView.style.display = 'block';
+}
 
-  // bind both navs (index and project page)
-  bindNav('nav-toggle', 'nav-menu');
-  bindNav('nav-toggle-2', 'nav-menu-2');
-
-  // smooth scroll for same-page anchors
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  // Make nav links to other pages behave normally (no interception)
-})();
+function closeMember() {
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('member-view').style.display = 'none';
+}
