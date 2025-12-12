@@ -1,157 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DAA Portfolio | Home</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project VanaSparsha | Smart City Infrastructure</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a class="logo" href="index.html">CITY DESIGN</a>
 
-      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-        ☰
-      </button>
+    <div class="grid-bg"></div>
 
-      <nav id="nav-menu" class="nav-menu">
-        <ul>
-          <li><a href="index.html#home">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="project.html">Project</a></li>
-          <li><a href="index.html#team">Team</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-      </nav>
+    <div id="loader">
+        <div id="log-container"></div>
     </div>
-  </header>
 
-  <!-- HERO / HOME -->
-  <main>
-   <section id="home" class="hero-landing">
-      <div class="container hero-content">
-        <h1>City Design — A DAA Portfolio</h1>
-        <p class="lead">A curated portfolio applying algorithmic thinking to urban planning & city systems.</p>
-        <div class="hero-cta">
-          <a class="btn primary" href="project.html">Explore Project</a>
-          <a class="btn ghost" href="#about">About the Team</a>
+    <div class="container" id="dashboard">
+        <header>
+            <h1>Project VanaSparsha</h1>
+            <h2>Smart City Infrastructure</h2>
+            <div class="subtitle">Algorithmic Optimization & Urban Planning</div>
+        </header>
+
+        <section class="team-grid">
+            <div class="card" onclick="openMember('LB')">
+                <div class="avatar-circle" style="color: #00f3ff; border-color: #00f3ff;">LB</div>
+                <div class="card-role">Project Lead</div>
+                <div class="card-name">Lahari Bankar</div>
+            </div>
+
+            <div class="card" onclick="openMember('PA')">
+                <div class="avatar-circle" style="color: #ff0055; border-color: #ff0055;">PA</div>
+                <div class="card-role">Algo Architect</div>
+                <div class="card-name">Pavitra Adur</div>
+            </div>
+
+            <div class="card" onclick="openMember('SP')">
+                <div class="avatar-circle" style="color: #0aff00; border-color: #0aff00;">SP</div>
+                <div class="card-role">Database Dev</div>
+                <div class="card-name">Sharanagouda P</div>
+            </div>
+
+            <div class="card" onclick="openMember('SG')">
+                <div class="avatar-circle" style="color: #bc13fe; border-color: #bc13fe;">SG</div>
+                <div class="card-role">Interface Dev</div>
+                <div class="card-name">SandeepaGouda</div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="section-header">
+                <h3>DAA Course Progress</h3>
+                <span class="neon-text">// SYLLABUS_INDEX</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-label"><span>Dynamic Programming</span><span>80%</span></div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 80%"></div></div>
+            </div>
+        </section>
+    </div>
+
+    <div class="container" id="member-view" style="display: none;">
+        <button class="nav-back" onclick="closeMember()"> < BACK TO GRID </button>
+        
+        <div class="detail-layout">
+            <aside class="profile-panel">
+                <div class="avatar-circle large" id="detail-avatar">LB</div>
+                <h2 id="detail-name">Member Name</h2>
+                <p id="detail-role">Role Title</p>
+                <div class="status-box">
+                    STATUS: ACTIVE<br>
+                    ACCESS: GRANTED
+                </div>
+            </aside>
+
+            <main>
+                <h3 class="section-title">CORE_SYSTEMS</h3>
+                <div class="system-grid" id="projects-container">
+                    </div>
+            </main>
         </div>
-      </div>
-    </section>
-    <!-- INTRO (white card) -->
-    <section class="intro card container">
-      <h2>Course Introduction</h2>
-      <div class="intro-grid">
-        <div class="intro-left">
-          <p><strong>Course:</strong> Design & Analysis of Algorithms (DAA)</p>
-          <p><strong>Course Code:</strong> 24ECSC205</p>
-          <p><strong>Instructor:</strong> Prof. Prakash Hegade</p>
-          <p><strong>University:</strong> KLE Technological University</p>
-          <p><strong>Portfolio Topic:</strong> City Design</p>
-        </div>
+    </div>
 
-        <div class="intro-right">
-          <table class="team-table">
-            <thead>
-              <tr><th>Name</th><th>USN</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Bilal</td><td>01fe24bcs298</td></tr>
-              <tr><td>Sourabh</td><td>01fe24bcs289</td></tr>
-              <tr><td>Zayed</td><td>01fe24bcs279</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="dark-section container">
-      <h2>About Our Team</h2>
-      <p class="about-lead">
-        We are a passionate team of computer-science enthusiasts building sustainable, data-driven solutions for modern urban challenges.
-        This portfolio shows how algorithmic design and case-study thinking can be used to design efficient, scalable city systems.
-      </p>
-
-      <div id="team" class="team-cards">
-        <!-- Card: Amogh -->
-        <article class="team-card">
-          <h3>Bilal</h3>
-          <p class="usn">01fe24bcs298</p>
-          <p class="role">Skills</p>
-          <ul>
-            <li>C, C++, Python</li>
-            <li>Data Structures & Algorithms</li>
-            <li>Web Development (HTML, CSS)</li>
-          </ul>
-          <a class="link small" href="#">LinkedIn Profile</a>
-        </article>
-
-        <article class="team-card">
-          <h3>Sourabh</h3>
-          <p class="usn">01fe24bcs289</p>
-          <p class="role">Skills</p>
-          <ul>
-            <li>Algorithms & Problem Solving</li>
-            <li>Python, C, C++, </li>
-            <li>HTML, CSS</li>
-          </ul>
-          <a class="link small" href="#">LinkedIn Profile</a>
-        </article>
-
-        <article class="team-card">
-          <h3>Zayed</h3>
-          <p class="usn">01fe24bcs279</p>
-          <p class="role">Skills</p>
-          <ul>
-            <li>C, C++</li>
-            <li>Data Strucures And Algorithms</li>
-            <li>Domain Research</li>
-          </ul>
-          <a class="link small" href="#">LinkedIn Profile</a>
-        </article>
-<!-- COURSE DETAILS SECTION -->
-
-    <!-- CONTACT/FOOTER -->
-    <footer id="contact" class="site-footer">
-      <div class="container">
-        <p>Portfolio by Team City Design — DAA Portfolio 2025</p>
-        <p class="muted">Replace placeholder images in <code>/images/</code> and update image filenames in <code>project.html</code>.</p>
-      </div>
-    </footer>
-  </main>
-        <section id="course-details" class="course-details container card">
-  <h2 class="cd-title">What is the course about?</h2>
-  <p class="cd-text">
-    ➖ Design and Analysis of Algorithms goes far beyond a branch of computer science — it forms the
-    foundation of computational thinking. It plays a crucial role across science, engineering, business,
-    and modern technology. The course helps us study natural patterns and processes that inspire efficient
-    computational models. It strengthens analytical thinking, enabling us to approach complex problems
-    with structured and optimised strategies.
-  </p>
-
-  <h2 class="cd-title">What kind of data structures and algorithms have you studied?</h2>
-  <p class="cd-text">
-    ➖ Exploring data structures feels like travelling through a fascinating system of ideas. Arrays and strings
-    show continuity, linked lists mimic interconnected pages, stacks and queues mirror real-world behaviour
-    like biscuit piles and waiting lines. Trees, tries, graphs, and skip lists expand our understanding of 
-    hierarchical, probabilistic, and efficient searching techniques. Each structure offers its own logic,
-    purpose, and elegance — forming the backbone of problem solving.
-  </p>
-
-  <h2 class="cd-title">How do you connect the course with real-time applications?</h2>
-  <p class="cd-text">
-    ➖ Algorithms silently guide our everyday digital experiences — like the unseen air around us. Dijkstra’s
-    Algorithm powers GPS navigation, sorting algorithms manage e-commerce data, and graph-based models fuel
-    social media recommendations. They transform large scale problems into elegant, optimised solutions.
-    These algorithms are the invisible intelligence behind convenience, speed, security, and personalisation
-    in modern technology.
-  </p>
-</section>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
