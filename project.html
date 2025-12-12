@@ -1,149 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DAA Portfolio | Project</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VanaSparsha | Smart City Infrastructure</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a class="logo" href="index.html">CITY DESIGN</a>
+    <div class="particles"></div>
+    
+    <div class="bg-overlay"></div>
 
-      <button id="nav-toggle-2" class="nav-toggle" aria-label="Toggle navigation">
-        ☰
-      </button>
+    <div class="container" id="dashboard">
+        <header>
+            <h1 class="main-title">VANASPARSHA</h1>
+            <p class="tagline">Smart City Infrastructure & Algorithmic Design</p>
+            
+            <div class="team-intro">
+                <h3>Our Vision</h3>
+                <p>Advanced data structures optimizing urban ecosystems. Precision engineering for tomorrow's intelligent cities.</p>
+            </div>
+        </header>
 
-      <nav id="nav-menu-2" class="nav-menu">
-        <ul>
-          <li><a href="index.html#home">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="project.html">Project</a></li>
-          <li><a href="index.html#team">Team</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-      </nav>
+        <section class="team-grid">
+            <div class="card" onclick="openMember('SK')">
+                <div class="card-glass">
+                    <div class="initials">SK</div>
+                    <h2 class="member-name">Sourabh Kakarambi</h2>
+                    <div class="member-creds">
+                        <span>Roll No: 426</span>
+                        <span>USN: 01fe24bcs289</span>
+                        <span>Division: D</span>
+                    </div>
+                    <button class="btn-explore">EXPLORE CONTRIBUTIONS</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="openMember('BA')">
+                <div class="card-glass">
+                    <div class="initials">BA</div>
+                    <h2 class="member-name">Bilal Asangi</h2>
+                    <div class="member-creds">
+                        <span>Roll No: 416</span>
+                        <span>USN: 01fe24bcs279</span>
+                        <span>Division: D</span>
+                    </div>
+                    <button class="btn-explore">EXPLORE CONTRIBUTIONS</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="openMember('ZS')">
+                <div class="card-glass">
+                    <div class="initials">ZS</div>
+                    <h2 class="member-name">Zayed Soudagar</h2>
+                    <div class="member-creds">
+                        <span>Roll No: 435</span>
+                        <span>USN: 01fe24bcs298</span>
+                        <span>Division: D</span>
+                    </div>
+                    <button class="btn-explore">EXPLORE CONTRIBUTIONS</button>
+                </div>
+            </div>
+        </section>
     </div>
-  </header>
 
-  <main>
-    <section class="project-hero">
-      <div class="container">
-        <h1>City Design — Project Overview</h1>
-        <p class="lead">A sustainable smart-city plan built from the ground up with DAA-based reasoning and case study analysis.</p>
-        <p class="muted small">Below are the major phases: topography & mapping, idea-generation & selection, and implementation strategy.</p>
-      </div>
-    </section>
+    <div class="container" id="member-view" style="display: none;">
+        <button class="nav-back" onclick="closeMember()">← BACK TO DASHBOARD</button>
+        
+        <div class="detail-layout">
+            <aside class="profile-card-glass">
+                <div class="initials large" id="detail-initials"></div>
+                <h2 id="detail-name"></h2>
+                <div class="detail-creds" id="detail-creds"></div>
+            </aside>
 
-    <!-- Project intro card -->
-    <section class="project-intro container card">
-      <h2>Project Summary</h2>
-      <p>
-        Our flagship project creates a city model that emphasizes resource efficiency, mobility integration, and community wellbeing.
-        Using structured design methods and algorithmic thinking we generated practical ideas and prioritized them using objective metrics.
-      </p>
-
-      <div class="centered">
-        <a class="btn primary" href="#">View GitHub</a>
-      </div>
-    </section>
-
-    <!-- PHASE: City Map -->
-    <section class="project-phase container">
-      <h3>Phase 1: City Map & Topography</h3>
-
-      <!-- Placeholder image: Replace with your actual city map -->
-      <div class="image-wrapper">
-        <img src="https://via.placeholder.com/700x700.png?text=City+Map+Placeholder" alt="City Map placeholder">
-      </div>
-
-      <p class="caption">
-        Spanning an area of ~1500 sq km. (Replace this with your actual project description and map details.)
-      </p>
-    </section>
-
-    <!-- PHASE: Idea generation -->
-    <section class="project-phase container">
-      <h3>Phase 2: Business Idea Generation</h3>
-
-      <p class="muted small">We brainstormed candidate ideas and grouped them by domain. Each idea was scored using feasibility and impact metrics.</p>
-
-      <div class="ideas-grid">
-        <!-- small idea cards -->
-        <div class="idea-card">
-          <h4>Bilal — Ideas</h4>
-          <ul>
-            <li>Affordable Clean Energy Solutions</li>
-            <li>Microfinance / Lending Services</li>
-            <li>E-commerce & Marketplaces</li>
-            <li>Telecom Services</li>
-          </ul>
+            <main class="content-area">
+                <h3 class="section-heading">SYSTEM ARCHITECTURE</h3>
+                <div class="project-grid" id="projects-container"></div>
+            </main>
         </div>
+    </div>
 
-        <div class="idea-card">
-          <h4>Sourabh — Ideas</h4>
-          <ul>
-            <li>High-Tech Business Parks</li>
-            <li>Autonomous Delivery Services</li>
-            <li>Shared Mobility</li>
-            <li>Mixed-use Real Estate</li>
-          </ul>
-        </div>
-
-        <div class="idea-card">
-          <h4>Zayed — Ideas</h4>
-          <ul>
-            <li>Smart Recycling</li>
-            <li>Tourism & Cultural Districts</li>
-            <li>Healthcare Hubs</li>
-          </ul>
-        </div>
-
-
-    <!-- PHASE: Implementation / Cards -->
-    <section class="project-phase container">
-      <h3>Phase 3: Implementation & Roadmap</h3>
-      <p class="muted small">We prioritized ideas using weighted scoring (impact × feasibility) and created a 3-phase roadmap for deployment.</p>
-
-      <div class="implementation-grid">
-        <div class="impl-card">
-          <h4>Short Term (0-6 months)</h4>
-          <ul>
-            <li>Data collection & surveys</li>
-            <li>Pilot mobility services</li>
-            <li>Community engagement</li>
-          </ul>
-        </div>
-
-        <div class="impl-card">
-          <h4>Mid Term (6-18 months)</h4>
-          <ul>
-            <li>Deploy clean-energy pilots</li>
-            <li>Scale shared mobility</li>
-            <li>Start microfinance pilots</li>
-          </ul>
-        </div>
-
-        <div class="impl-card">
-          <h4>Long Term (2+ years)</h4>
-          <ul>
-            <li>City-wide rollout</li>
-            <li>Integration with regional transport</li>
-            <li>Continuous optimization using analytics</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <div class="container">
-        <p>Project page — replace placeholders with real images and descriptions.</p>
-      </div>
-    </footer>
-  </main>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
