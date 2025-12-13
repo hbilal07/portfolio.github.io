@@ -9,7 +9,7 @@ const memberData = {
     },
     'BA': {
         name: "Bilal Asangi",
-        creds: "Roll No: 416<br>USN: 01fe24bcs279<br>Division: D",
+        creds: "Roll No: 435<br>USN: 01fe24bcs298<br>Division: D",
         projects: [
             { title: "Water Distribution", desc: "Optimizing flow pressure and resource allocation in municipal pipelines using advanced network flow algorithms." },
             { title: "Grid Sustainability", desc: "Real-time monitoring and predictive analytics for sustainable resource consumption patterns in smart infrastructure." }
@@ -17,7 +17,7 @@ const memberData = {
     },
     'ZS': {
         name: "Zayed Soudagar",
-        creds: "Roll No: 435<br>USN: 01fe24bcs298<br>Division: D",
+        creds: "Roll No: 416<br>USN: 01fe24bcs279<br>Division: D",
         projects: [
             { title: "Emergency Response", desc: "Dynamic route optimization for emergency services using real-time shortest-path algorithms and predictive modeling." },
             { title: "Network Security", desc: "Comprehensive security architecture for smart city IoT infrastructure with multi-layered threat detection systems." }
