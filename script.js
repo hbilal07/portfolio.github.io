@@ -126,7 +126,7 @@ void bfs(int start, vector<vector<int>>& graph) {
             },
 
             {
-                title: "7. Smart Energy Distribution",
+                title: "4. Smart Energy Distribution",
                 desc: `
 <b>Algorithm:</b> Dynamic Programming<br>
 <b>Data Structures:</b> Arrays<br><br>
@@ -155,7 +155,7 @@ int main() {
             },
 
             {
-                title: "12. Public Safety Monitoring",
+                title: "5. Public Safety Monitoring",
                 desc: `
 <b>Algorithm:</b> DFS<br>
 <b>Data Structures:</b> Graph<br><br>
