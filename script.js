@@ -3,24 +3,92 @@ const memberData = {
         name: "Sourabh Kakarambi",
         creds: "Roll No: 426<br>USN: 01fe24bcs289<br>Division: D",
         projects: [
-            { title: "Traffic Synchronization", desc: "Developing adaptive signal control algorithms to minimize urban congestion and optimize traffic flow patterns." },
-            { title: "Graph-Based Planning", desc: "Utilizing graph theory and spatial algorithms to design efficient utility distribution networks across residential sectors." }
+            {
+                title: "Traffic Synchronization",
+                desc: "Adaptive signal control using graph-based scheduling to minimize congestion at intersections."
+            },
+            {
+                title: "Urban Network Planning",
+                desc: "Graph theory and spatial algorithms to optimize infrastructure layout across city zones."
+            }
         ]
     },
+
     'BA': {
         name: "Bilal Asangi",
         creds: "Roll No: 435<br>USN: 01fe24bcs298<br>Division: D",
         projects: [
-            { title: "Water Distribution", desc: "Optimizing flow pressure and resource allocation in municipal pipelines using advanced network flow algorithms." },
-            { title: "Grid Sustainability", desc: "Real-time monitoring and predictive analytics for sustainable resource consumption patterns in smart infrastructure." }
+
+            {
+                title: "1. Smart Traffic Management System",
+                desc: `
+                Optimizes city-wide traffic flow by dynamically computing shortest paths.
+                <br><br>
+                <b>Algorithm:</b> Dijkstra’s Algorithm<br>
+                <b>Data Structures:</b> Graph, Priority Queue<br>
+                <b>DAA Relevance:</b> Efficient shortest-path computation reduces congestion and travel time.
+                `
+            },
+
+            {
+                title: "2. Waste Collection Optimization",
+                desc: `
+                Designs optimal garbage collection routes to minimize fuel cost and time.
+                <br><br>
+                <b>Algorithm:</b> Greedy Algorithm<br>
+                <b>Data Structures:</b> Min-Heap, Graph<br>
+                <b>DAA Relevance:</b> Greedy choice ensures near-optimal routing with low complexity.
+                `
+            },
+
+            {
+                title: "3. Emergency Response Routing",
+                desc: `
+                Ensures fastest ambulance and fire-service routes during emergencies.
+                <br><br>
+                <b>Algorithm:</b> BFS / Dijkstra’s Algorithm<br>
+                <b>Data Structures:</b> Queue, Graph<br>
+                <b>DAA Relevance:</b> Time-critical routing using optimal traversal strategies.
+                `
+            },
+
+            {
+                title: "7. Smart Energy Distribution System",
+                desc: `
+                Balances energy load across city grids to avoid overload and power loss.
+                <br><br>
+                <b>Algorithm:</b> Dynamic Programming<br>
+                <b>Data Structures:</b> Arrays, Graphs<br>
+                <b>DAA Relevance:</b> Optimal substructure enables efficient energy allocation.
+                `
+            },
+
+            {
+                title: "12. Public Safety Monitoring & Alerts",
+                desc: `
+                Detects and alerts authorities about incidents using connected surveillance nodes.
+                <br><br>
+                <b>Algorithm:</b> BFS / DFS<br>
+                <b>Data Structures:</b> Graph, Adjacency List<br>
+                <b>DAA Relevance:</b> Fast traversal ensures quick incident detection and response.
+                `
+            }
+
         ]
     },
+
     'ZS': {
         name: "Zayed Soudagar",
         creds: "Roll No: 416<br>USN: 01fe24bcs279<br>Division: D",
         projects: [
-            { title: "Emergency Response", desc: "Dynamic route optimization for emergency services using real-time shortest-path algorithms and predictive modeling." },
-            { title: "Network Security", desc: "Comprehensive security architecture for smart city IoT infrastructure with multi-layered threat detection systems." }
+            {
+                title: "Emergency Coordination",
+                desc: "Optimized emergency service allocation using shortest-path and priority scheduling algorithms."
+            },
+            {
+                title: "IoT Network Security",
+                desc: "Multi-layer security architecture using graph traversal and anomaly detection."
+            }
         ]
     }
 };
