@@ -1,4 +1,4 @@
-const memberData = {
+const memberData = {   
     'SK': {
         name: "Sourabh Kakarambi",
         creds: "Roll No: 426<br>USN: 01fe24bcs289<br>Division: D",
