@@ -287,6 +287,7 @@ int main() {
 
 function openMember(id) {
     const data = memberData[id];
+
     document.getElementById('detail-name').innerText = data.name;
     document.getElementById('detail-creds').innerHTML = data.creds;
     document.getElementById('detail-initials').innerText = id;
@@ -298,7 +299,9 @@ function openMember(id) {
         container.innerHTML += `
             <div class="project-card">
                 <h4>${p.title}</h4>
-                <p>${p.desc}</p>
+                <div class="project-desc">
+                    ${p.desc}
+                </div>
             </div>
         `;
     });
@@ -306,11 +309,6 @@ function openMember(id) {
     document.getElementById('dashboard').style.display = 'none';
     document.getElementById('member-view').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function closeMember() {
-    document.getElementById('member-view').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
 }
 
 
