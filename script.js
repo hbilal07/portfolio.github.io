@@ -14,7 +14,7 @@ const memberData = {
         ]
     },
 
-   const memberData = {
+   
 
     /* ===================== DATA ===================== */
 const memberData = {
@@ -284,48 +284,6 @@ int main() {
         ]
     }
 };
-
-/* ===================== FUNCTIONS ===================== */
-function openMember(id) {
-
-    if (!memberData[id]) return;
-
-    const data = memberData[id];
-
-    const nameEl = document.getElementById('detail-name');
-    const credsEl = document.getElementById('detail-creds');
-    const initialsEl = document.getElementById('detail-initials');
-    const container = document.getElementById('projects-container');
-
-    if (!nameEl || !credsEl || !initialsEl || !container) return;
-
-    nameEl.innerText = data.name;
-    credsEl.innerHTML = data.creds;
-    initialsEl.innerText = id;
-
-    container.innerHTML = '';
-
-    data.projects.forEach(p => {
-        container.innerHTML += `
-            <div class="project-card">
-                <h4>${p.title}</h4>
-                <div class="project-desc">
-                    ${p.desc}
-                </div>
-            </div>
-        `;
-    });
-
-    document.getElementById('dashboard').style.display = 'none';
-    document.getElementById('member-view').style.display = 'block';
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-/* ===================== SAFE DOM LOAD ===================== */
-document.addEventListener("DOMContentLoaded", function () {
-    // JS is now safe to run
-});
 
 
 
