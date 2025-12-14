@@ -285,6 +285,21 @@ int main() {
 
 /* ===== EXISTING FUNCTIONS (UNCHANGED) ===== */
 
+function createAnimatedParticles() {
+    const container = document.querySelector('.particles-container');
+    for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        p.style.cssText = `
+            position:absolute;width:2px;height:2px;
+            background:#8686AC;border-radius:50%;
+            left:${Math.random()*100}%;
+            top:${Math.random()*100}%;
+            animation: floatLayers 20s linear infinite;
+        `;
+        container.appendChild(p);
+    }
+}
+
 function openMember(id) {
     const data = memberData[id];
     document.getElementById('detail-name').innerText = data.name;
@@ -312,6 +327,8 @@ function closeMember() {
     document.getElementById('member-view').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
 }
+
+document.addEventListener('DOMContentLoaded', createAnimatedParticles);
 
 
     'ZS': {
