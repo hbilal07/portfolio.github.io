@@ -1,27 +1,74 @@
-<!-- LANDING CONTENT -->
-<section id="landing">
-    <h1 class="main-title">ZABROSA CITY</h1>
-    <p class="tagline">Smart City Systems using Algorithms</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZABROSA City | Smart City Systems</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <button class="explore-btn" onclick="openCase()">Explore</button>
-</section>
+    <!-- BACKGROUND -->
+    <div class="bg"></div>
 
-<!-- CASE STUDY MODAL (HIDDEN INITIALLY) -->
-<div id="caseModal" class="case-modal">
-    <span class="close-btn" onclick="closeCase()">✕</span>
+    <!-- LANDING SECTION -->
+    <section id="landing">
+        <h1 class="main-title">ZABROSA CITY</h1>
+        <p class="tagline">Smart City Systems using Algorithms</p>
 
-    <div class="case-content">
-        <div class="left">
-            <h3>Problem Statement</h3>
-            <p>...</p>
+        <div class="team">
+            <div class="card">
+                <h3>Bilal Asangi</h3>
+                <p>435 | 01FE24BCS298</p>
+                <span>Energy & Utilities</span>
+            </div>
 
-            <h3>Solution Approach</h3>
-            <p>...</p>
+            <div class="card">
+                <h3>Sourabh Kakarambi</h3>
+                <p>—</p>
+                <span>Smart Infrastructure</span>
+            </div>
         </div>
 
-        <div class="right">
-            <h3>C++ Implementation</h3>
-            <pre><code>// code here</code></pre>
+        <button class="explore-btn" onclick="openCase()">Explore</button>
+    </section>
+
+    <!-- MODAL (HIDDEN INITIALLY) -->
+    <div id="caseModal" class="case-modal">
+        <span class="close-btn" onclick="closeCase()">✕</span>
+
+        <div class="case-content">
+            <div class="left">
+                <h2>Problem Statement</h2>
+                <p>
+                    Optimize smart city energy and infrastructure management
+                    using efficient algorithms to reduce cost and improve
+                    sustainability.
+                </p>
+
+                <h2>Solution Approach</h2>
+                <p>
+                    Graph-based modeling, greedy optimization, priority queues,
+                    and real-time data processing are used to make intelligent
+                    decisions.
+                </p>
+            </div>
+
+            <div class="right">
+                <h2>C++ Implementation</h2>
+                <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout << "ZABROSA City System Running";
+    return 0;
+}
+                </code></pre>
+            </div>
         </div>
     </div>
-</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
