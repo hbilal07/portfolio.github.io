@@ -15,7 +15,7 @@
 <section id="intro" class="intro">
   <h1>ZABROSA CITY</h1>
   <p>Smart City Solutions using Data Structures & Algorithms</p>
-  <button onclick="enterSite()">Enter Project</button>
+  <button id="enterBtn">Enter Project</button>
 </section>
 
 <!-- MAIN -->
@@ -25,55 +25,34 @@
   <h2>ZABROSA City</h2>
 </header>
 
-<!-- TEAM SECTION -->
+<!-- TEAM -->
 <section id="team" class="team">
   <div class="team-grid">
 
-    <div class="team-card blue">
+    <div class="team-card blue" data-id="BA">
       <div class="icon">🚦</div>
       <h3>Bilal Asangi</h3>
-      <p class="meta">Roll No: 435 | USN: 01FE24BCS298</p>
-      <span class="domain blue-text">TRAFFIC & TRANSPORTATION</span>
-      <p class="desc">
-        Optimizing traffic flow and routing using graph algorithms.
-      </p>
-      <button onclick="openMember('BA')" class="portfolio-btn blue-text">
-        View Portfolio →
-      </button>
+      <p class="meta">USN: 01FE24BCS298</p>
+      <span class="domain blue-text">SMART CITY SYSTEMS</span>
+      <p class="desc">Urban optimization using core DSA concepts</p>
+      <button class="portfolio-btn blue-text">View Portfolio →</button>
     </div>
 
-    <div class="team-card yellow">
+    <div class="team-card yellow" data-id="SK">
       <div class="icon">⚡</div>
       <h3>Sourabh Kakarambi</h3>
-      <p class="meta">Roll No: 426 | USN: 01FE24BCS289</p>
-      <span class="domain yellow-text">ENERGY & UTILITIES</span>
-      <p class="desc">
-        Power grid optimization using greedy and DP algorithms.
-      </p>
-      <button onclick="openMember('SK')" class="portfolio-btn yellow-text">
-        View Portfolio →
-      </button>
+      <p class="meta">USN: 01FE24BCS289</p>
+      <span class="domain yellow-text">ENERGY & INFRASTRUCTURE</span>
+      <p class="desc">Efficient city utilities using advanced algorithms</p>
+      <button class="portfolio-btn yellow-text">View Portfolio →</button>
     </div>
-
-   <div class="team-card blue">
-      <div class="icon">🚦</div>
-      <h3>Zayed Soudagar</h3>
-      <p class="meta">Roll No: 416 | USN: 01FE24BCS279</p>
-      <span class="domain blue-text">TRAFFIC & TRANSPORTATION</span>
-      <p class="desc">
-        Optimizing traffic flow and routing using graph algorithms.
-      </p>
-      <button onclick="openMember('ZS')" class="portfolio-btn blue-text">
-        View Portfolio →
-      </button>
-    </div>   
 
   </div>
 </section>
 
-<!-- BUSINESS CASES -->
+<!-- CASES -->
 <section id="cases" class="cases hidden">
-  <button class="back-btn" onclick="goBack()">⬅ Back to Team</button>
+  <button class="back-btn">⬅ Back</button>
   <h2 id="memberTitle"></h2>
   <div id="caseList" class="case-grid"></div>
 </section>
@@ -83,3 +62,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
