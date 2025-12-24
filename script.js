@@ -477,7 +477,7 @@ int main() {
 using namespace std;
 
 int main() {
-    int q[10], front = 0, rear = 0;
+    int q[10}, front = 0, rear = 0;
 
     q[rear++] = 201;
     q[rear++] = 202;
