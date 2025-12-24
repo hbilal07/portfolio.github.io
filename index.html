@@ -1,66 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart City Platform</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZABROSA Smart City</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="navbar">
-  <div class="logo">SmartCity</div>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#features">Features</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<!-- INTRO -->
+<section id="intro" class="intro">
+  <h1>ZABROSA CITY</h1>
+  <p>Smart City Solutions using Data Structures & Algorithms</p>
+  <button onclick="enterSite()">Explore Project</button>
+</section>
+
+<!-- MAIN -->
+<section id="main" class="hidden">
+
+<header class="topbar">
+  <h2>ZABROSA City</h2>
 </header>
 
-<section class="hero">
-  <div class="hero-content">
-    <h1>Building Smarter Cities</h1>
-    <p>Technology-driven solutions for modern urban challenges</p>
-    <button onclick="scrollToSection('features')">Explore</button>
+<!-- TEAM -->
+<section id="team" class="team">
+  <h3>Our Team</h3>
+
+  <div class="team-grid">
+    <div class="member-card" onclick="openMember('BA')">
+      <h4>Bilal Asangi</h4>
+      <span>01FE24BCS298</span>
+    </div>
+
+    <div class="member-card" onclick="openMember('SK')">
+      <h4>Sourabh Kakarambi</h4>
+      <span>01FE24BCS289</span>
+    </div>
+
+    <div class="member-card" onclick="openMember('ZS')">
+      <h4>Zayed Soudagar</h4>
+      <span>01FE24BCS279</span>
+    </div>
   </div>
 </section>
 
-<section id="about" class="section">
-  <h2>About the Platform</h2>
-  <p>
-    This platform integrates intelligent systems for transport, energy,
-    security, and public services to create efficient and sustainable cities.
-  </p>
+<!-- BUSINESS CASES -->
+<section id="cases" class="cases hidden">
+  <button class="back-btn" onclick="goBack()">⬅ Back</button>
+  <h3 id="memberTitle"></h3>
+  <div id="caseList" class="case-list"></div>
 </section>
 
-<section id="features" class="section dark">
-  <h2>Core Features</h2>
-  <div class="cards">
-    <div class="card">Real-time Monitoring</div>
-    <div class="card">Data-Driven Decisions</div>
-    <div class="card">Citizen-Centric Design</div>
-  </div>
 </section>
-
-<section id="services" class="section">
-  <h2>Smart Services</h2>
-  <div class="grid">
-    <div class="grid-item">Traffic Optimization</div>
-    <div class="grid-item">Energy Management</div>
-    <div class="grid-item">Waste Tracking</div>
-    <div class="grid-item">Emergency Response</div>
-  </div>
-</section>
-
-<section id="contact" class="section dark">
-  <h2>Contact Us</h2>
-  <p>Email: smartcity@domain.com</p>
-</section>
-
-<footer>
-  <p>© 2025 Smart City Initiative</p>
-</footer>
 
 <script src="script.js"></script>
 </body>
