@@ -19,10 +19,14 @@ document.querySelector(".back-btn").onclick = () => {
   team.classList.remove("hidden");
 };
 
+/* ===================== DATA ===================== */
+
 const data = {
+
 BA: {
 name: "Bilal Asangi",
 cases: [
+
 {
 title: "Automated Billing Code Matching & Fraud Detection",
 algo: "Hashing",
@@ -50,10 +54,11 @@ int main() {
     }
 }`
 },
+
 {
 title: "Supermarket Dynamic Pricing Engine",
 algo: "Insertion Sort",
-why: "Efficient for frequent small updates.",
+why: "Efficient for small frequent updates.",
 code: `#include <iostream>
 using namespace std;
 
@@ -62,7 +67,8 @@ int main() {
     int n = 4;
 
     for(int i = 1; i < n; i++) {
-        int key = price[i], j = i - 1;
+        int key = price[i];
+        int j = i - 1;
         while(j >= 0 && price[j] > key) {
             price[j + 1] = price[j];
             j--;
@@ -74,10 +80,11 @@ int main() {
         cout << price[i] << " ";
 }`
 },
+
 {
 title: "Urban Event Ticketing & Crowd Flow Optimizer",
 algo: "Queue",
-why: "First-come-first-served crowd management.",
+why: "First-Come-First-Served crowd entry.",
 code: `#include <iostream>
 using namespace std;
 
@@ -91,10 +98,11 @@ int main() {
     cout << "Allowed Entry Ticket ID: " << queue[front++];
 }`
 },
+
 {
 title: "Traffic Signal Optimization",
 algo: "Greedy Algorithm",
-why: "Gives signal to road with highest congestion.",
+why: "Signal given to road with maximum congestion.",
 code: `#include <iostream>
 using namespace std;
 
@@ -111,13 +119,153 @@ int main() {
 
     cout << "Green signal allocated to Road: " << road;
 }`
+},
+
+{
+title: "Smart Toll Collection & Vehicle Lookup",
+algo: "Binary Search Tree",
+why: "Fast vehicle number lookup.",
+code: `#include <iostream>
+using namespace std;
+
+struct Node {
+    int vehicle;
+    Node *left, *right;
+};
+
+Node* insert(Node* root, int v) {
+    if(!root) {
+        root = new Node();
+        root->vehicle = v;
+        root->left = root->right = NULL;
+        return root;
+    }
+    if(v < root->vehicle)
+        root->left = insert(root->left, v);
+    else
+        root->right = insert(root->right, v);
+    return root;
 }
+
+bool search(Node* root, int v) {
+    if(!root) return false;
+    if(root->vehicle == v) return true;
+    if(v < root->vehicle)
+        return search(root->left, v);
+    return search(root->right, v);
+}
+
+int main() {
+    Node* root = NULL;
+    root = insert(root, 4567);
+    root = insert(root, 1234);
+    root = insert(root, 7890);
+
+    if(search(root, 1234))
+        cout << "Vehicle Allowed";
+    else
+        cout << "Vehicle Not Found";
+}`
+},
+
+{
+title: "Smart Public Toilet Usage & Maintenance Tracking",
+algo: "Min Heap",
+why: "Toilet with highest usage cleaned first.",
+code: `#include <iostream>
+using namespace std;
+
+int heap[20], size = 0;
+
+void insert(int usage) {
+    heap[++size] = usage;
+    int i = size;
+    while(i > 1 && heap[i] < heap[i/2]) {
+        swap(heap[i], heap[i/2]);
+        i /= 2;
+    }
+}
+
+int main() {
+    insert(30);
+    insert(10);
+    insert(50);
+
+    cout << "Next Toilet to Clean: " << heap[1];
+}`
+},
+
+{
+title: "Smart Street Lighting Optimization",
+algo: "Greedy Algorithm",
+why: "Lights ON only in high activity zones.",
+code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int activity[] = {5, 20, 10, 30};
+    int max = activity[0], zone = 0;
+
+    for(int i = 1; i < 4; i++) {
+        if(activity[i] > max) {
+            max = activity[i];
+            zone = i;
+        }
+    }
+
+    cout << "Street lights activated in Zone: " << zone;
+}`
+},
+
+{
+title: "Digital Library & Knowledge Resource Management",
+algo: "Trie",
+why: "Fast prefix-based book search.",
+code: `#include <iostream>
+using namespace std;
+
+struct Trie {
+    Trie* child[26];
+    bool end;
+};
+
+Trie* createNode() {
+    Trie* node = new Trie();
+    node->end = false;
+    for(int i = 0; i < 26; i++)
+        node->child[i] = NULL;
+    return node;
+}
+
+void insert(Trie* root, string s) {
+    Trie* cur = root;
+    for(char c : s) {
+        int idx = c - 'a';
+        if(!cur->child[idx])
+            cur->child[idx] = createNode();
+        cur = cur->child[idx];
+    }
+    cur->end = true;
+}
+
+int main() {
+    Trie* root = createNode();
+    insert(root, "algorithms");
+    insert(root, "datastructures");
+
+    cout << "Digital library indexed successfully";
+}`
+}
+
 ]
 },
+
+/* ================= SOURABH ================= */
 
 SK: {
 name: "Sourabh Kakarambi",
 cases: [
+
 {
 title: "Urban Road Maintenance & Asset Management",
 algo: "Segment Tree",
@@ -143,10 +291,40 @@ int main() {
     build(roadDamage, 1, 0, 4);
     cout << seg[1];
 }`
+},
+
+{
+title: "Water Supply & Wastewater Management",
+algo: "BFS",
+why: "Checks pipeline reachability.",
+code: `#include <iostream>
+using namespace std;
+
+void bfs(int g[10][10], int n, int s) {
+    int q[10], f=0, r=0, vis[10]={0};
+    q[r++]=s; vis[s]=1;
+    while(f<r){
+        int u=q[f++];
+        cout<<u<<" ";
+        for(int v=0;v<n;v++)
+            if(g[u][v] && !vis[v]){
+                vis[v]=1;
+                q[r++]=v;
+            }
+    }
 }
+
+int main() {
+    int g[10][10]={{0,1,1,0},{1,0,0,1},{1,0,0,1},{0,1,1,0}};
+    bfs(g,4,0);
+}`
+}
+
 ]
 }
 };
+
+/* ================= UI ================= */
 
 function openMember(id) {
   team.classList.add("hidden");
@@ -159,7 +337,7 @@ function openMember(id) {
     div.className = "case-card";
     div.innerHTML = `
       <h3>${c.title}</h3>
-      <p><strong>Algorithm Used:</strong> ${c.algo}</p>
+      <p><strong>Algorithm:</strong> ${c.algo}</p>
       <p><strong>Why Suitable:</strong> ${c.why}</p>
       <div class="details">
         <pre><code>${c.code}</code></pre>
@@ -169,9 +347,3 @@ function openMember(id) {
     caseList.appendChild(div);
   });
 }
-
-
-
-
-
-
