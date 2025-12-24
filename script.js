@@ -1,77 +1,60 @@
-function enterSite(){
-document.getElementById("intro").classList.add("hidden");
-document.getElementById("main").classList.remove("hidden");
-}
-
-const data = {
+const data={
 BA:{
 name:"Bilal Asangi",
+role:"Head of Energy & Utilities",
+quote:"Sustainable power requires smart distribution using greedy algorithms and trees.",
 cases:[
 {
-title:"Smart Traffic Management",
-desc:"Optimizing routes using Dijkstra's Algorithm",
-code:`#include <iostream>
-using namespace std;
-#define INF 999
-int main(){
-int n=4;
-int cost[4][4]={{0,5,INF,10},{INF,0,3,INF},{INF,INF,0,1},{INF,INF,INF,0}};
-int dist[4];
-for(int i=0;i<n;i++) dist[i]=cost[0][i];
-for(int k=1;k<n;k++)
-for(int i=0;i<n;i++)
-for(int j=0;j<n;j++)
-if(dist[i]+cost[i][j]<dist[j])
-dist[j]=dist[i]+cost[i][j];
-for(int i=0;i<n;i++) cout<<dist[i]<<" ";
-}`
-},
-{
-title:"Emergency Response Routing",
-desc:"Fast traversal using BFS",
-code:`#include<iostream>
-using namespace std;
-int main(){
-int a[5][5]={{0,1,1,0,0},{1,0,0,1,1},{1,0,0,0,1},{0,1,0,0,0},{0,1,1,0,0}};
-int q[10],f=0,r=0,vis[5]={0};
-q[r++]=0; vis[0]=1;
-while(f<r){
-int u=q[f++];
-cout<<u<<" ";
-for(int i=0;i<5;i++)
-if(a[u][i] && !vis[i]){
-q[r++]=i;
-vis[i]=1;
-}}
-}`
+title:"Grid Connectivity",
+problem:"Connecting substations with minimum cable cost.",
+solution:"Minimum Spanning Tree using Prim’s Algorithm.",
+code:"#include<iostream>\nusing namespace std;"
 }
 ]
 }
 };
 
-function openMember(id){
+function openPortfolio(id){
 document.getElementById("team").classList.add("hidden");
-document.getElementById("cases").classList.remove("hidden");
-document.getElementById("memberTitle").innerText = data[id].name + " – Business Cases";
+document.getElementById("portfolio").classList.remove("hidden");
 
-const list = document.getElementById("caseList");
-list.innerHTML = "";
+const m=data[id];
+document.getElementById("banner").innerHTML=`
+<h1>${m.name}</h1>
+<h3>${m.role}</h3>
+<p>${m.quote}</p>
+`;
 
-data[id].cases.forEach(c=>{
-const div = document.createElement("div");
+const grid=document.getElementById("cases");
+grid.innerHTML="";
+
+m.cases.forEach(c=>{
+const div=document.createElement("div");
 div.className="case-card";
-div.innerHTML = `
-<h4>${c.title}</h4>
-<p>${c.desc}</p>
-<div class="code">
-<pre><code>${c.code}</code></pre>
-</div>`;
-div.onclick = ()=> div.classList.toggle("active");
-list.appendChild(div);
+div.innerHTML=`
+<div class="tags"><span>Algorithm</span></div>
+<h3>${c.title}</h3>
+<p>${c.problem}</p>
+`;
+div.onclick=()=>openModal(c);
+grid.appendChild(div);
 });
 }
 
+function openModal(c){
+document.getElementById("modal").classList.remove("hidden");
+document.getElementById("modalTitle").innerText=c.title;
+document.getElementById("modalProblem").innerText=c.problem;
+document.getElementById("modalSolution").innerText=c.solution;
+document.getElementById("modalCode").innerText=c.code;
+}
+
+function closeModal(){
+document.getElementById("modal").classList.add("hidden");
+}
+
 function goBack(){
-document.getElementById("cases").classList.add("hidden");
+document.getElementById("portfolio").classList.add("hidden");
 document.getElementById("team").classList.remove("hidden");
 }
+
