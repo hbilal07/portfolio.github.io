@@ -1,66 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZABROSA Smart City</title>
+<!-- LANDING CONTENT -->
+<section id="landing">
+    <h1 class="main-title">ZABROSA CITY</h1>
+    <p class="tagline">Smart City Systems using Algorithms</p>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<!-- TEAM -->
-<section id="team" class="team-section">
-  <h1>ZABROSA CITY</h1>
-  <p class="subtitle">Smart City Systems using Algorithms</p>
-
-  <div class="team-grid">
-    <div class="team-card yellow">
-      <div class="icon">⚡</div>
-      <h3>Bilal Asangi</h3>
-      <p class="meta">435 | 01FE24BCS298</p>
-      <h4>Energy & Utilities</h4>
-      <button onclick="openPortfolio('BA')">View Portfolio →</button>
-    </div>
-  </div>
+    <button class="explore-btn" onclick="openCase()">Explore</button>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio" class="hidden">
-  <div class="banner" id="banner"></div>
+<!-- CASE STUDY MODAL (HIDDEN INITIALLY) -->
+<div id="caseModal" class="case-modal">
+    <span class="close-btn" onclick="closeCase()">✕</span>
 
-  <h2 class="section-title">Key Problems Solved</h2>
-  <div id="cases" class="case-grid"></div>
+    <div class="case-content">
+        <div class="left">
+            <h3>Problem Statement</h3>
+            <p>...</p>
 
-  <button class="back" onclick="goBack()">← Back</button>
-</section>
+            <h3>Solution Approach</h3>
+            <p>...</p>
+        </div>
 
-<!-- MODAL OVERLAY -->
-<div id="modal" class="modal hidden">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-
-    <div class="modal-grid">
-      <div class="modal-left">
-        <h2 id="modalTitle"></h2>
-
-        <h4>Problem Statement</h4>
-        <p id="modalProblem"></p>
-
-        <h4>Solution Approach</h4>
-        <p id="modalSolution"></p>
-      </div>
-
-      <div class="modal-right">
-        <h4>C++ Implementation</h4>
-        <pre><code id="modalCode"></code></pre>
-      </div>
+        <div class="right">
+            <h3>C++ Implementation</h3>
+            <pre><code>// code here</code></pre>
+        </div>
     </div>
-  </div>
 </div>
-
-<script src="script.js"></script>
-</body>
-</html>
