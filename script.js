@@ -1,15 +1,28 @@
-const reveals = document.querySelectorAll(".reveal");
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({
+    behavior: 'smooth'
+  });
+}
 
-window.addEventListener("scroll", () => {
-  const trigger = window.innerHeight * 0.85;
+// simple fade-in on scroll
+const sections = document.querySelectorAll('.section');
 
-  reveals.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < trigger) {
-      el.classList.add("active");
+window.addEventListener('scroll', () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      sec.style.opacity = 1;
+      sec.style.transform = 'translateY(0)';
     }
   });
 });
+
+sections.forEach(sec => {
+  sec.style.opacity = 0;
+  sec.style.transform = 'translateY(40px)';
+  sec.style.transition = '0.8s ease';
+});
+
 
 
 
