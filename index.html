@@ -11,51 +11,65 @@
 
 <body>
 
-<!-- INTRO -->
-<section id="intro" class="intro">
+<!-- TEAM SECTION -->
+<section id="team" class="team-section">
   <h1>ZABROSA CITY</h1>
-  <p>Smart City Solutions using Data Structures & Algorithms</p>
-  <button onclick="enterSite()">Explore Project</button>
-</section>
-
-<!-- MAIN -->
-<section id="main" class="hidden">
-
-<header class="topbar">
-  <h2>ZABROSA City</h2>
-</header>
-
-<!-- TEAM -->
-<section id="team" class="team">
-  <h3>Our Team</h3>
+  <p class="subtitle">Smart City Systems using Algorithms</p>
 
   <div class="team-grid">
-    <div class="member-card" onclick="openMember('BA')">
-      <h4>Bilal Asangi</h4>
-      <span>01FE24BCS298</span>
+    <div class="team-card blue">
+      <div class="icon">🚦</div>
+      <h3>Sourabh Kakarambi</h3>
+      <p class="meta">426 | 01FE24BCS289</p>
+      <h4>Traffic & Transportation</h4>
+      <button onclick="openPortfolio('SK')">View Portfolio →</button>
     </div>
 
-    <div class="member-card" onclick="openMember('SK')">
-      <h4>Sourabh Kakarambi</h4>
-      <span>01FE24BCS289</span>
+    <div class="team-card yellow">
+      <div class="icon">⚡</div>
+      <h3>Bilal Asangi</h3>
+      <p class="meta">435 | 01FE24BCS298</p>
+      <h4>Energy & Utilities</h4>
+      <button onclick="openPortfolio('BA')">View Portfolio →</button>
     </div>
 
-    <div class="member-card" onclick="openMember('ZS')">
-      <h4>Zayed Soudagar</h4>
-      <span>01FE24BCS279</span>
+    <div class="team-card purple">
+      <div class="icon">🏙️</div>
+      <h3>Zayed Soudagar</h3>
+      <p class="meta">416 | 01FE24BCS279</p>
+      <h4>Urban Planning</h4>
+      <button onclick="openPortfolio('ZS')">View Portfolio →</button>
     </div>
   </div>
 </section>
 
-<!-- BUSINESS CASES -->
-<section id="cases" class="cases hidden">
-  <button class="back-btn" onclick="goBack()">⬅ Back</button>
-  <h3 id="memberTitle"></h3>
-  <div id="caseList" class="case-list"></div>
+<!-- PORTFOLIO -->
+<section id="portfolio" class="hidden">
+  <div class="banner" id="banner"></div>
+
+  <h2 class="section-title">Key Problems Solved</h2>
+  <div id="cases" class="case-grid"></div>
+
+  <button class="back" onclick="goBack()">← Back to Team</button>
 </section>
 
-</section>
+<!-- MODAL -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <div class="modal-left">
+      <h3 id="modalTitle"></h3>
+      <p id="modalProblem"></p>
+      <h4>Solution Approach</h4>
+      <p id="modalSolution"></p>
+    </div>
+    <div class="modal-right">
+      <pre><code id="modalCode"></code></pre>
+    </div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
