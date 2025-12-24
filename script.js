@@ -516,7 +516,209 @@ int main() {
     ]
   }
 };
+  
+  ZS: {
+    name: "Zayed Soudagar",
+    cases: [
+      {
+        title: "Smart Building Elevator Scheduling System",
+        algo: "Priority Queue",
+        why: "Efficiently schedules elevator stops based on floor requests.",
+        code: `#include <iostream>
+#include <queue>
+using namespace std;
 
+int main() {
+    priority_queue<int, vector<int>, greater<int>> requests;
+
+    requests.push(7);
+    requests.push(3);
+    requests.push(10);
+
+    cout << "Next elevator stop: Floor " << requests.top();
+}`
+      },
+      {
+        title: "Urban Noise Pollution Detection & Control System",
+        algo: "Sliding Window",
+        why: "Detects high noise levels using average over a moving window.",
+        code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int noise[] = {55, 70, 85, 90, 60};
+    int n = 5, window = 3;
+
+    for(int i = 0; i <= n - window; i++) {
+        int avg = 0;
+        for(int j = i; j < i + window; j++)
+            avg += noise[j];
+
+        avg /= window;
+        if(avg > 80)
+            cout << "High Noise Alert at Window " << i << endl;
+    }
+}`
+      },
+      {
+        title: "Smart Water Tank Level Monitoring System",
+        algo: "Queue",
+        why: "Monitors water levels sequentially and controls motor accordingly.",
+        code: `#include <iostream>
+#include <queue>
+using namespace std;
+
+int main() {
+    queue<int> waterLevels;
+
+    waterLevels.push(40);
+    waterLevels.push(85);
+    waterLevels.push(95);
+
+    while(!waterLevels.empty()) {
+        int level = waterLevels.front();
+        waterLevels.pop();
+
+        if(level > 90)
+            cout << "Stop Motor (Overflow Risk)\\n";
+        else if(level < 50)
+            cout << "Start Motor (Low Water)\\n";
+    }
+}`
+      },
+      {
+        title: "City-Wide Lost & Found Item Management System",
+        algo: "Hash Table",
+        why: "Fast lookup of lost items using unique claim IDs.",
+        code: `#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+int main() {
+    unordered_map<int, string> lostItems;
+
+    lostItems[101] = "Wallet";
+    lostItems[102] = "Phone";
+
+    int claimID = 101;
+
+    if(lostItems.find(claimID) != lostItems.end())
+        cout << "Item Found: " << lostItems[claimID];
+    else
+        cout << "No Match Found";
+}`
+      },
+      {
+        title: "Smart Queue Management for Government Offices",
+        algo: "Circular Queue",
+        why: "Implements efficient citizen service queueing.",
+        code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int queue[5], front = 0, rear = 0;
+
+    queue[rear++] = 201;
+    queue[rear++] = 202;
+
+    cout << "Serving Citizen ID: " << queue[front++];
+}`
+      },
+      {
+        title: "Urban Food Supply Chain Distribution System",
+        algo: "Greedy Allocation",
+        why: "Allocates food stock to zones based on demand until exhausted.",
+        code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int demand[] = {30, 20, 40};
+    int stock = 70;
+
+    for(int i = 0; i < 3; i++) {
+        if(stock >= demand[i]) {
+            stock -= demand[i];
+            cout << "Zone " << i << " fully supplied\\n";
+        } else {
+            cout << "Zone " << i << " partially supplied\\n";
+            break;
+        }
+    }
+}`
+      },
+      {
+        title: "Smart City Advertisement Billboard Allocation System",
+        algo: "Selection Sort",
+        why: "Allocates billboard to highest bidder using sorting.",
+        code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int bids[] = {500, 1200, 800};
+    int n = 3;
+
+    for(int i = 0; i < n - 1; i++) {
+        int max = i;
+        for(int j = i + 1; j < n; j++)
+            if(bids[j] > bids[max])
+                max = j;
+
+        swap(bids[i], bids[max]);
+    }
+
+    cout << "Highest Bid Allocated: " << bids[0];
+}`
+      },
+      {
+        title: "City Vehicle Emission Testing & Compliance System",
+        algo: "Binary Search",
+        why: "Checks vehicle compliance efficiently using binary search.",
+        code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int vehicles[] = {1001, 1005, 1010, 1020};
+    int key = 1010;
+    int low = 0, high = 3;
+
+    while(low <= high) {
+        int mid = (low + high) / 2;
+        if(vehicles[mid] == key) {
+            cout << "Vehicle Compliant";
+            return 0;
+        }
+        if(vehicles[mid] < key)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    cout << "Vehicle Not Found";
+}`
+      }
+    ]
+  }
+};
+
+// ====== RENDER FUNCTION ======
+function openMember(id) {
+  team.classList.add("hidden");
+  cases.classList.remove("hidden");
+  memberTitle.innerText = data[id].name + " – Business Cases";
+  caseList.innerHTML = "";
+
+  data[id].cases.forEach(c => {
+    const div = document.createElement("div");
+    div.className = "case-card";
+    div.innerHTML = `
+      <h3>${c.title}</h3>
+      <p><strong>Algorithm:</strong> ${c.algo}</p>
+      <p><strong>Why Suitable:</strong> ${c.why}</p>
+      <div class="details"><pre><code>${c.code}</code></pre></div>
+    `;
+    div.onclick = () => div.classList.toggle("active");
+    caseList.appendChild(div);
+  });
+}
 // ====== RENDER FUNCTION ======
 function openMember(id) {
   team.classList.add("hidden");
