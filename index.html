@@ -1,87 +1,807 @@
-<!DOCTYPE html>
+I like the format of this website for now so I am going to submit you the code of the web site that I had designed I want you to analyze that code and then implement it in the code that you had previously generated me with all the information and better user interface and all that so here you go                                                          HTML                                                                                                                                                                          <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZABROSA Smart City</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZABROSA City | Smart City Infrastructure</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <!-- MULTI-LAYER ANIMATED BACKGROUND -->
+    <div class="bg-layer-1"></div>
+    <div class="bg-layer-2"></div>
+    <div class="bg-layer-3"></div>
+    <div class="particles-container"></div>
+    
+    <div class="container" id="dashboard">
+        <header>
+            <h1 class="main-title">ZABROSA City</h1>
+            <p class="tagline">Smart City Infrastructure & Algorithmic Design</p>
+            
+            <div class="team-intro">
+                <h3>Our Vision</h3>
+                <p>Advanced data structures optimizing urban ecosystems. Precision engineering for tomorrow's intelligent cities.</p>
+            </div>
+        </header>
 
-<!-- INTRO -->
-<section id="intro" class="intro">
-  <h1>ZABROSA CITY</h1>
-  <p>Smart City Solutions using Data Structures & Algorithms</p>
-  <button onclick="enterSite()">Enter Project</button>
-</section>
+        <section class="team-grid">
+            <div class="card" onclick="openMember('SK')">
+                <div class="card-glass">
+                    <div class="initials">SK</div>
+                    <h2 class="member-name">Sourabh Kakarambi</h2>
+                    <div class="member-creds">
+                        <span>Roll No: 426</span>
+                        <span>USN: 01FE24BCS289</span>
+                        <span>Division: D</span>
+                    </div>
+                    <button class="btn-explore">EXPLORE CONTRIBUTIONS</button>
+                </div>
+            </div>
 
-<!-- MAIN -->
-<section id="main" class="hidden">
+            <div class="card" onclick="openMember('BA')">
+                <div class="card-glass">
+                    <div class="initials">BA</div>
+                    <h2 class="member-name">Bilal Asangi</h2>
+                    <div class="member-creds">
+                        <span>Roll No: 435</span>
+                        <span>USN: 01FE24BCS298</span>
+                        <span>Division: D</span>
+                    </div>
+                    <button class="btn-explore">EXPLORE CONTRIBUTIONS</button>
+                </div>
+            </div>
 
-<header class="header">
-  <h2>ZABROSA City</h2>
-</header>
-
-<!-- TEAM SECTION -->
-<section id="team" class="team">
-  <div class="team-grid">
-
-    <div class="team-card blue">
-      <div class="icon">🚦</div>
-      <h3>Bilal Asangi</h3>
-      <p class="meta">Roll No: 435 | USN: 01FE24BCS298</p>
-      <span class="domain blue-text">TRAFFIC & TRANSPORTATION</span>
-      <p class="desc">
-        Optimizing traffic flow and routing using graph algorithms.
-      </p>
-      <button onclick="openMember('BA')" class="portfolio-btn blue-text">
-        View Portfolio →
-      </button>
+            <div class="card" onclick="openMember('ZS')">
+                <div class="card-glass">
+                    <div class="initials">ZS</div>
+                    <h2 class="member-name">Zayed Soudagar</h2>
+                    <div class="member-creds">
+                        <span>Roll No: 416</span>
+                        <span>USN: 01FE24BCS279</span>
+                        <span>Division: D</span>
+                    </div>
+                    <button class="btn-explore">EXPLORE CONTRIBUTIONS</button>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div class="team-card yellow">
-      <div class="icon">⚡</div>
-      <h3>Sourabh Kakarambi</h3>
-      <p class="meta">Roll No: 426 | USN: 01FE24BCS289</p>
-      <span class="domain yellow-text">ENERGY & UTILITIES</span>
-      <p class="desc">
-        Power grid optimization using greedy and DP algorithms.
-      </p>
-      <button onclick="openMember('SK')" class="portfolio-btn yellow-text">
-        View Portfolio →
-      </button>
+    <div class="container" id="member-view" style="display: none;">
+        <button class="nav-back" onclick="closeMember()">← BACK TO DASHBOARD</button>
+        
+        <div class="detail-layout">
+            <aside class="profile-card-glass">
+                <div class="initials large" id="detail-initials"></div>
+                <h2 id="detail-name"></h2>
+                <div class="detail-creds" id="detail-creds"></div>
+            </aside>
+
+            <main class="content-area">
+                <h3 class="section-heading">SYSTEM ARCHITECTURE</h3>
+                <div class="project-grid" id="projects-container"></div>
+            </main>
+        </div>
     </div>
 
-   <div class="team-card blue">
-      <div class="icon">🚦</div>
-      <h3>Zayed Soudagar</h3>
-      <p class="meta">Roll No: 416 | USN: 01FE24BCS279</p>
-      <span class="domain blue-text">TRAFFIC & TRANSPORTATION</span>
-      <p class="desc">
-        Optimizing traffic flow and routing using graph algorithms.
-      </p>
-      <button onclick="openMember('ZS')" class="portfolio-btn blue-text">
-        View Portfolio →
-      </button>
-    </div>   
-
-  </div>
-</section>
-
-<!-- BUSINESS CASES -->
-<section id="cases" class="cases hidden">
-  <button class="back-btn" onclick="goBack()">⬅ Back to Team</button>
-  <h2 id="memberTitle"></h2>
-  <div id="caseList" class="case-grid"></div>
-</section>
-
-</section>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
-</html>
+</html>                                                                                                                CSS:root {
+    --primary-bg: #0F0E47;
+    --secondary-bg: #272757;
+    --accent-1: #505081;
+    --accent-2: #8686AC;
+    --glass-1: rgba(255, 255, 255, 0.06);
+    --glass-2: rgba(255, 255, 255, 0.12);
+    --border-glow: rgba(134, 134, 172, 0.4);
+    --text-primary: #f8fafc;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --shadow-1: 0 25px 50px -12px rgba(15, 14, 71, 0.7);
+    --shadow-2: 0 10px 30px -10px rgba(15, 14, 71, 0.5);
+}
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
+body {
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* SPECTACULAR ANIMATED BACKGROUND */
+.bg-layer-1 {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: 
+        radial-gradient(ellipse 30% 30% at 20% 40%, var(--accent-2) 0%, transparent 50%),
+        radial-gradient(ellipse 20% 20% at 80% 80%, var(--accent-1) 0%, transparent 50%);
+    animation: pulseGlow 8s ease-in-out infinite;
+    z-index: -3;
+}
+
+.bg-layer-2 {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: 
+        linear-gradient(45deg, transparent 30%, var(--accent-2) 50%, transparent 70%),
+        linear-gradient(-45deg, transparent 30%, var(--accent-1) 50%, transparent 70%);
+    background-size: 400% 400%, 400% 400%;
+    animation: shimmerShift 12s linear infinite;
+    z-index: -2;
+}
+
+.bg-layer-3 {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(134, 134, 172, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(80, 80, 129, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 40% 40%, rgba(39, 39, 103, 0.2) 0%, transparent 50%);
+    animation: floatLayers 20s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes shimmerShift {
+    0% { background-position: 0% 50%, 0% 50%; }
+    50% { background-position: 100% 50%, 100% 50%; }
+    100% { background-position: 0% 50%, 0% 50%; }
+}
+
+@keyframes floatLayers {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(1deg); }
+    66% { transform: translate(-20px, 20px) rotate(-1deg); }
+}
+
+.particles-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* TYPOGRAPHY */
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-2) 50%, var(--accent-1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 20px rgba(134, 134, 172, 0.5);
+    animation: titleGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from { filter: drop-shadow(0 0 20px rgba(134, 134, 172, 0.5)); }
+    to { filter: drop-shadow(0 0 30px rgba(134, 134, 172, 0.8)); }
+}
+
+.tagline {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--accent-2);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    animation: taglineFloat 6s ease-in-out infinite;
+}
+
+@keyframes taglineFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+header { text-align: center; padding: 100px 20px 60px; }
+
+.team-intro {
+    max-width: 700px;
+    margin: 0 auto 80px;
+    text-align: center;
+}
+
+.team-intro h3 { 
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--accent-2);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.team-intro p { 
+    color: var(--text-secondary);
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+/* ELEGANT GRID */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.card {
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card-glass {
+    background: var(--glass-1);
+    backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid var(--border-glow);
+    border-radius: 24px;
+    padding: 50px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card-glass::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent, var(--accent-2), transparent);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    transform: rotate(45deg);
+}
+
+.card:hover .card-glass {
+    transform: translateY(-16px) scale(1.02);
+    box-shadow: var(--shadow-2), 0 0 40px var(--border-glow);
+    border-color: var(--accent-2);
+}
+
+.card:hover .card-glass::before {
+    opacity: 1;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.initials {
+    width: 90px; height: 90px;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-1));
+    border-radius: 20px;
+    margin: 0 auto 30px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700; 
+    font-size: 1.8rem;
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(134, 134, 172, 0.4);
+    transition: all 0.4s ease;
+}
+
+.card:hover .initials {
+    transform: scale(1.1) rotate(360deg);
+    box-shadow: 0 20px 40px rgba(134, 134, 172, 0.6);
+}
+
+.member-name { 
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1.6rem; 
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+
+.member-creds {
+    display: flex; flex-direction: column; gap: 10px;
+    color: var(--text-secondary); 
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-top: 1px solid var(--border-glow);
+    padding-top: 24px; 
+    margin-bottom: 32px;
+}
+
+.btn-explore {
+    background: transparent;
+    border: 2px solid var(--accent-2);
+    color: var(--accent-2);
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.btn-explore:hover {
+    background: var(--accent-2);
+    color: var(--primary-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(134, 134, 172, 0.4);
+}
+
+/* DETAIL VIEW */
+.nav-back {
+    background: transparent; 
+    border: 1px solid var(--border-glow);
+    color: var(--text-secondary);
+    font-family: 'IBM Plex Sans', sans-serif; 
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    cursor: pointer; 
+    margin: 40px 0 60px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.nav-back:hover {
+    color: var(--accent-2);
+    border-color: var(--accent-2);
+    box-shadow: 0 8px 25px var(--border-glow);
+}
+
+.detail-layout { 
+    display: grid; 
+    grid-template-columns: 380px 1fr; 
+    gap: 60px; 
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.profile-card-glass {
+    background: var(--glass-2);
+    backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid var(--border-glow);
+    border-radius: 28px;
+    padding: 50px;
+    height: fit-content;
+    box-shadow: var(--shadow-1);
+}
+
+.initials.large {
+    width: 120px; height: 120px;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-1));
+}
+
+#detail-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -0.8px;
+}
+
+.detail-creds {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-1));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 40px;
+    letter-spacing: -0.5px;
+}
+
+.project-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 24px; 
+}
+
+.project-card {
+    background: var(--glass-1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(134, 134, 172, 0.2);
+    border-radius: 20px;
+    padding: 32px;
+    border-left: 4px solid var(--accent-2);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-2);
+    border-left-width: 6px;
+}
+
+.project-card h4 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.project-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .detail-layout { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+    .team-grid { grid-template-columns: 1fr; gap: 30px; }
+    .main-title { letter-spacing: -1px; }
+    .card-glass { padding: 40px 30px; }
+}                                                                                                                                           /* ===================== DATA ===================== */
+const memberData = {
+
+    'SK': {
+        name: "Sourabh Kakarambi",
+        creds: "Roll No: 426<br>USN: 01fe24bcs289<br>Division: D",
+        projects: [
+            {
+                title: "Traffic Synchronization",
+                desc: "Adaptive signal control using graph-based scheduling to minimize congestion."
+            },
+            {
+                title: "Urban Network Planning",
+                desc: "Graph-based utility and infrastructure planning."
+            }
+        ]
+    },
+
+    'BA': {
+        name: "Bilal Asangi",
+        creds: "Roll No: 435<br>USN: 01fe24bcs298<br>Division: D",
+        projects: [
+
+/* ===================== DIJKSTRA ===================== */
+{
+title: "1. Smart Traffic Management System",
+desc: `
+<b>Algorithm:</b> Dijkstra’s Algorithm<br>
+<b>Data Structure:</b> Cost Matrix, Arrays<br><br>
+
+<details>
+<summary><b>View Code</b></summary>
+<pre><code>
+#include <iostream>
+using namespace std;
+#define MAXN 100
+#define INF 999
+
+int main() {
+    int n, source;
+    int cost[MAXN][MAXN], dist[MAXN], path[MAXN], visited[MAXN];
+
+    cout << "Enter number of vertices: ";
+    cin >> n;
+
+    cout << "Enter cost matrix (999 for infinity):\\n";
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            cin >> cost[i][j];
+
+    cout << "Enter source vertex: ";
+    cin >> source;
+
+    for(int i=0;i<n;i++){
+        dist[i]=cost[source][i];
+        path[i]=source;
+        visited[i]=0;
+    }
+
+    visited[source]=1;
+
+    for(int count=0;count<n-1;count++){
+        int u=-1, min=INF;
+        for(int i=0;i<n;i++)
+            if(!visited[i] && dist[i]<min){
+                min=dist[i];
+                u=i;
+            }
+
+        if(u==-1) break;
+        visited[u]=1;
+
+        for(int v=0;v<n;v++)
+            if(!visited[v] && cost[u][v]!=INF)
+                if(dist[u]+cost[u][v]<dist[v]){
+                    dist[v]=dist[u]+cost[u][v];
+                    path[v]=u;
+                }
+    }
+
+    cout<<"\\nVertex Distance Path\\n";
+    for(int i=0;i<n;i++)
+        cout<<i<<"\\t"<<dist[i]<<"\\t"<<path[i]<<"\\n";
+
+    return 0;
+}
+</code></pre>
+</details>
+`
+},
+
+/* ===================== BFS ===================== */
+{
+title: "2. Emergency Response Routing",
+desc: `
+<b>Algorithm:</b> Breadth First Search (BFS)<br>
+<b>Data Structure:</b> Adjacency Matrix, Queue<br><br>
+
+<details>
+<summary><b>View Code</b></summary>
+<pre><code>
+#include <iostream>
+using namespace std;
+
+void bfs(int m[10][10], int v, int source) {
+    int queue[20], front=0, rear=0;
+    int visited[10];
+
+    for(int i=0;i<v;i++)
+        visited[i]=0;
+
+    queue[rear]=source;
+    visited[source]=1;
+
+    cout<<"BFS Traversal:\\n";
+
+    while(front<=rear){
+        int u=queue[front++];
+        cout<<u<<"\\t";
+
+        for(int i=0;i<v;i++){
+            if(m[u][i]==1 && visited[i]==0){
+                visited[i]=1;
+                queue[++rear]=i;
+            }
+        }
+    }
+}
+
+int main(){
+    int v=5;
+    int m[10][10]={
+        {0,1,1,0,0},
+        {1,0,0,1,1},
+        {1,0,0,0,1},
+        {0,1,0,0,0},
+        {0,1,1,0,0}
+    };
+
+    int source;
+    cout<<"Enter source: ";
+    cin>>source;
+
+    bfs(m,v,source);
+    return 0;
+}
+</code></pre>
+</details>
+`
+},
+
+/* ===================== DFS ===================== */
+{
+title: "3. Public Safety Monitoring",
+desc: `
+<b>Algorithm:</b> Depth First Search (DFS)<br>
+<b>Data Structure:</b> Adjacency Matrix, Recursion<br><br>
+
+<details>
+<summary><b>View Code</b></summary>
+<pre><code>
+#include <iostream>
+using namespace std;
+
+int v=5;
+int visited[10];
+
+void dfs(int m[10][10], int source){
+    visited[source]=1;
+
+    for(int i=0;i<v;i++){
+        if(m[source][i]==1 && visited[i]==0){
+            cout<<i<<"\\t";
+            dfs(m,i);
+        }
+    }
+}
+
+int main(){
+    int m[10][10]={
+        {0,1,1,0,0},
+        {1,0,0,1,1},
+        {1,0,0,0,1},
+        {0,1,0,0,0},
+        {0,1,1,0,0}
+    };
+
+    for(int i=0;i<v;i++)
+        visited[i]=0;
+
+    int source;
+    cout<<"Enter source: ";
+    cin>>source;
+
+    cout<<"DFS Traversal:\\n";
+    cout<<source<<"\\t";
+    dfs(m,source);
+    return 0;
+}
+</code></pre>
+</details>
+`
+},
+
+/* ===================== GREEDY ===================== */
+{
+title: "4. Waste Collection Optimization",
+desc: `
+<b>Algorithm:</b> Greedy Algorithm<br>
+<b>Data Structure:</b> Arrays<br><br>
+
+<details>
+<summary><b>View Code</b></summary>
+<pre><code>
+#include <iostream>
+using namespace std;
+
+int main(){
+    int bins[5]={20,5,15,30,10};
+    int n=5;
+
+    for(int i=0;i<n-1;i++)
+        for(int j=i+1;j<n;j++)
+            if(bins[i]>bins[j]){
+                int t=bins[i];
+                bins[i]=bins[j];
+                bins[j]=t;
+            }
+
+    cout<<"Optimized Collection Order:\\n";
+    for(int i=0;i<n;i++)
+        cout<<bins[i]<<"\\t";
+
+    return 0;
+}
+</code></pre>
+</details>
+`
+},
+
+/* ===================== DP ===================== */
+{
+title: "5. Smart Energy Distribution",
+desc: `
+<b>Algorithm:</b> Dynamic Programming<br>
+<b>Data Structure:</b> Arrays<br><br>
+
+<details>
+<summary><b>View Code</b></summary>
+<pre><code>
+#include <iostream>
+using namespace std;
+
+int main(){
+    int load[5]={4,2,7,1,3};
+    int dp[5];
+
+    dp[0]=load[0];
+
+    for(int i=1;i<5;i++){
+        if(dp[i-1]+load[i]<load[i])
+            dp[i]=dp[i-1]+load[i];
+        else
+            dp[i]=load[i];
+    }
+
+    cout<<"Optimized Energy Load: "<<dp[4];
+    return 0;
+}
+</code></pre>
+</details>
+`
+}
+]
+},
+
+    'ZS': {
+        name: "Zayed Soudagar",
+        creds: "Roll No: 416<br>USN: 01fe24bcs279<br>Division: D",
+        projects: [
+            {
+                title: "Emergency Coordination",
+                desc: "Emergency service optimization."
+            },
+            {
+                title: "IoT Security",
+                desc: "Secure smart infrastructure."
+            }
+        ]
+    }
+};
+
+/* ===================== FUNCTIONS ===================== */
+function openMember(id){
+    if(!memberData[id]) return;
+
+    const data=memberData[id];
+    document.getElementById('detail-name').innerText=data.name;
+    document.getElementById('detail-creds').innerHTML=data.creds;
+    document.getElementById('detail-initials').innerText=id;
+
+    const container=document.getElementById('projects-container');
+    container.innerHTML='';
+
+    data.projects.forEach(p=>{
+        container.innerHTML+=`
+        <div class="project-card">
+            <h4>${p.title}</h4>
+            <div class="project-desc">${p.desc}</div>
+        </div>`;
+    });
+
+    document.getElementById('dashboard').style.display='none';
+    document.getElementById('member-view').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function closeMember(){
+    document.getElementById('member-view').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+}
+
+/* ===================== PARTICLES ===================== */
+function createAnimatedParticles(){
+    const container=document.querySelector('.particles-container');
+    if(!container) return;
+
+    for(let i=0;i<40;i++){
+        const p=document.createElement('div');
+        p.style.cssText=`
+        position:absolute;
+        width:2px;height:2px;
+        background:#8686AC;
+        border-radius:50%;
+        left:${Math.random()*100}%;
+        top:${Math.random()*100}%;
+        animation: floatLayers 20s linear infinite;
+        `;
+        container.appendChild(p);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', createAnimatedParticles);
