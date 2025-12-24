@@ -1,64 +1,59 @@
-const data={
-BA:{
-name:"Bilal Asangi",
-role:"Head of Energy & Utilities",
-quote:"Sustainable power requires smart distribution using greedy algorithms and spanning trees.",
-cases:[
-{
-title:"System Boot Sequence",
-problem:"Power plant subsystems have dependencies and must be initialized in the correct order.",
-solution:"Model the system as a DAG and apply Topological Sort (Kahn’s Algorithm).",
-code:`vector<string> topologicalSort(...) {
-  unordered_map<string,int> indegree;
-  queue<string> q;
-  // implementation
-}`
+"use strict";
+
+/*
+  ZABROSA CITY – Modal Control Script
+  ----------------------------------
+  Behavior:
+  - Landing page loads normally
+  - Modal opens ONLY on Explore click
+  - Modal closes via:
+      ✕ button
+      Escape key
+      Clicking outside content
+*/
+
+/* DOM REFERENCES */
+const modal = document.getElementById("caseModal");
+const modalContent = document.querySelector(".case-content");
+
+/* SAFETY CHECK */
+if (!modal || !modalContent) {
+    console.error("Modal elements not found in DOM.");
 }
-]
+
+/* OPEN MODAL */
+function openCase() {
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden"; // prevent background scroll
 }
-};
 
-function openPortfolio(id){
-document.getElementById("team").classList.add("hidden");
-document.getElementById("portfolio").classList.remove("hidden");
+/* CLOSE MODAL */
+function closeCase() {
+    modal.classList.remove("active");
+    document.body.style.overflow = ""; // restore scroll
+}
 
-const m=data[id];
-document.getElementById("banner").innerHTML=`
-<h1>${m.name}</h1>
-<h3>${m.role}</h3>
-<p>${m.quote}</p>
-`;
-
-const grid=document.getElementById("cases");
-grid.innerHTML="";
-
-m.cases.forEach(c=>{
-const div=document.createElement("div");
-div.className="case-card";
-div.innerHTML=`
-<h3>${c.title}</h3>
-<p>${c.problem}</p>
-`;
-div.onclick=()=>openModal(c);
-grid.appendChild(div);
+/* CLOSE ON ESC KEY */
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && modal.classList.contains("active")) {
+        closeCase();
+    }
 });
-}
 
-function openModal(c){
-document.getElementById("modal").classList.remove("hidden");
-document.getElementById("modalTitle").innerText=c.title;
-document.getElementById("modalProblem").innerText=c.problem;
-document.getElementById("modalSolution").innerText=c.solution;
-document.getElementById("modalCode").innerText=c.code;
-}
+/* CLOSE ON OUTSIDE CLICK */
+modal.addEventListener("click", function (event) {
+    if (!modalContent.contains(event.target)) {
+        closeCase();
+    }
+});
 
-function closeModal(){
-document.getElementById("modal").classList.add("hidden");
-}
+/*
+  IMPORTANT:
+  ----------
+  ❌ No openCase() is called automatically
+  ❌ No DOMContentLoaded auto-open
+  ❌ No hidden triggers
+*/
 
-function goBack(){
-document.getElementById("portfolio").classList.add("hidden");
-document.getElementById("team").classList.remove("hidden");
-}
 
 
