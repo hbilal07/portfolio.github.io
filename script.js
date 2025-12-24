@@ -2,13 +2,17 @@ const data={
 BA:{
 name:"Bilal Asangi",
 role:"Head of Energy & Utilities",
-quote:"Sustainable power requires smart distribution using greedy algorithms and trees.",
+quote:"Sustainable power requires smart distribution using greedy algorithms and spanning trees.",
 cases:[
 {
-title:"Grid Connectivity",
-problem:"Connecting substations with minimum cable cost.",
-solution:"Minimum Spanning Tree using Prim’s Algorithm.",
-code:"#include<iostream>\nusing namespace std;"
+title:"System Boot Sequence",
+problem:"Power plant subsystems have dependencies and must be initialized in the correct order.",
+solution:"Model the system as a DAG and apply Topological Sort (Kahn’s Algorithm).",
+code:`vector<string> topologicalSort(...) {
+  unordered_map<string,int> indegree;
+  queue<string> q;
+  // implementation
+}`
 }
 ]
 }
@@ -32,7 +36,6 @@ m.cases.forEach(c=>{
 const div=document.createElement("div");
 div.className="case-card";
 div.innerHTML=`
-<div class="tags"><span>Algorithm</span></div>
 <h3>${c.title}</h3>
 <p>${c.problem}</p>
 `;
@@ -57,4 +60,5 @@ function goBack(){
 document.getElementById("portfolio").classList.add("hidden");
 document.getElementById("team").classList.remove("hidden");
 }
+
 
