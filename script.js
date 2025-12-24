@@ -1,15 +1,35 @@
+// ====== ELEMENT REFERENCES ======
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
+const team = document.getElementById("team");
+const cases = document.getElementById("cases");
+const caseList = document.getElementById("caseList");
+const memberTitle = document.getElementById("memberTitle");
+
+// ====== NAVIGATION ======
+document.getElementById("enterBtn").onclick = () => {
+  intro.classList.add("hidden");
+  main.classList.remove("hidden");
+};
+
+document.querySelectorAll(".team-card").forEach(card => {
+  card.onclick = () => openMember(card.dataset.id);
+});
+
+document.querySelector(".back-btn").onclick = () => {
+  cases.classList.add("hidden");
+  team.classList.remove("hidden");
+};
+
+// ====== DATA OBJECT (Bilal + Sourabh) ======
 const data = {
-
-  /* ===================== BILAL ===================== */
-
   BA: {
     name: "Bilal Asangi",
     cases: [
-
       {
         title: "Automated Billing Code Matching & Fraud Detection",
         algo: "Hashing",
-        why: "Fast lookup to detect duplicate or invalid billing codes.",
+        why: "Fast lookup to detect duplicate or invalid billing codes (fraud).",
         code: `#include <iostream>
 using namespace std;
 
@@ -33,11 +53,10 @@ int main() {
     }
 }`
       },
-
       {
         title: "Supermarket Dynamic Pricing Engine",
         algo: "Insertion Sort",
-        why: "Efficient for small frequent updates.",
+        why: "Prices change frequently; insertion sort efficiently handles small updates.",
         code: `#include <iostream>
 using namespace std;
 
@@ -46,8 +65,7 @@ int main() {
     int n = 4;
 
     for(int i = 1; i < n; i++) {
-        int key = price[i];
-        int j = i - 1;
+        int key = price[i], j = i - 1;
         while(j >= 0 && price[j] > key) {
             price[j + 1] = price[j];
             j--;
@@ -55,15 +73,15 @@ int main() {
         price[j + 1] = key;
     }
 
+    cout << "Updated Price List:\\n";
     for(int i = 0; i < n; i++)
         cout << price[i] << " ";
 }`
       },
-
       {
         title: "Urban Event Ticketing & Crowd Flow Optimizer",
         algo: "Queue",
-        why: "First-come-first-served crowd management.",
+        why: "Ticket entry is First-Come-First-Served, queue models crowd flow.",
         code: `#include <iostream>
 using namespace std;
 
@@ -77,11 +95,10 @@ int main() {
     cout << "Allowed Entry Ticket ID: " << queue[front++];
 }`
       },
-
       {
         title: "Traffic Signal Optimization",
         algo: "Greedy Algorithm",
-        why: "Gives priority to the most congested road.",
+        why: "Signal given to road with maximum congestion first.",
         code: `#include <iostream>
 using namespace std;
 
@@ -99,11 +116,10 @@ int main() {
     cout << "Green signal allocated to Road: " << road;
 }`
       },
-
       {
         title: "Smart Toll Collection & Vehicle Lookup",
-        algo: "Binary Search Tree",
-        why: "Fast vehicle number lookup.",
+        algo: "Binary Search Tree (BST)",
+        why: "Fast vehicle number lookup at toll booths.",
         code: `#include <iostream>
 using namespace std;
 
@@ -140,14 +156,16 @@ int main() {
     root = insert(root, 1234);
     root = insert(root, 7890);
 
-    cout << (search(root, 1234) ? "Vehicle Allowed" : "Vehicle Not Found");
+    if(search(root, 1234))
+        cout << "Vehicle Allowed";
+    else
+        cout << "Vehicle Not Found";
 }`
       },
-
       {
         title: "Smart Public Toilet Usage & Maintenance Tracking",
         algo: "Min Heap",
-        why: "Toilet with highest usage cleaned first.",
+        why: "Toilet with highest usage (minimum cleanliness score) cleaned first.",
         code: `#include <iostream>
 using namespace std;
 
@@ -167,14 +185,13 @@ int main() {
     insert(10);
     insert(50);
 
-    cout << "Next Toilet to Clean: " << heap[1];
+    cout << "Next Toilet to Clean (Highest Usage): " << heap[1];
 }`
       },
-
       {
-        title: "Smart Street Lighting Optimization",
+        title: "Smart Street Lighting Optimization System",
         algo: "Greedy Algorithm",
-        why: "Lights ON only in high-activity zones.",
+        why: "Lights ON only in zones with maximum activity → power saving.",
         code: `#include <iostream>
 using namespace std;
 
@@ -192,11 +209,10 @@ int main() {
     cout << "Street lights activated in Zone: " << zone;
 }`
       },
-
       {
         title: "Digital Library & Knowledge Resource Management",
         algo: "Trie",
-        why: "Fast prefix-based book search.",
+        why: "Fast prefix-based search for books/documents.",
         code: `#include <iostream>
 using namespace std;
 
@@ -229,20 +245,295 @@ int main() {
     insert(root, "algorithms");
     insert(root, "datastructures");
 
-    cout << "Library indexed successfully";
+    cout << "Digital library indexed successfully";
 }`
       }
-
     ]
   },
-
-  /* ===================== SOURABH ===================== */
 
   SK: {
     name: "Sourabh Kakarambi",
     cases: [
-      /* PUT YOUR 8 INFRASTRUCTURE CASES HERE – 
-         YOU ALREADY HAVE THEM CORRECT */
+      {
+        title: "Urban Road Maintenance and Asset Management",
+        algo: "Segment Tree",
+        why: "Supports efficient range damage queries and updates for road conditions across zones.",
+        code: `#include <iostream>
+using namespace std;
+
+int seg[100];
+
+void build(int arr[], int node, int start, int end) {
+    if(start == end)
+        seg[node] = arr[start];
+    else {
+        int mid = (start + end) / 2;
+        build(arr, 2*node, start, mid);
+        build(arr, 2*node+1, mid+1, end);
+        seg[node] = seg[2*node] + seg[2*node+1];
+    }
+}
+
+int query(int node, int start, int end, int l, int r) {
+    if(r < start || l > end) return 0;
+    if(l <= start && end <= r) return seg[node];
+    int mid = (start + end) / 2;
+    return query(2*node, start, mid, l, r) +
+           query(2*node+1, mid+1, end, l, r);
+}
+
+int main() {
+    int roadDamage[] = {4, 6, 3, 7, 2};
+    build(roadDamage, 1, 0, 4);
+    cout << query(1, 0, 4, 1, 3);
+}`
+      },
+      {
+        title: "Water Supply and Wastewater Management",
+        algo: "BFS",
+        why: "Checks water reachability across pipeline networks level by level.",
+        code: `#include <iostream>
+using namespace std;
+
+void bfs(int graph[10][10], int n, int source) {
+    int q[10], front = 0, rear = 0;
+    int visited[10] = {0};
+
+    q[rear++] = source;
+    visited[source] = 1;
+
+    while(front < rear) {
+        int u = q[front++];
+        cout << u << " ";
+        for(int v = 0; v < n; v++) {
+            if(graph[u][v] && !visited[v]) {
+                visited[v] = 1;
+                q[rear++] = v;
+            }
+        }
+    }
+}
+
+int main() {
+    int pipes[10][10] = {
+        {0,1,1,0},
+        {1,0,0,1},
+        {1,0,0,1},
+        {0,1,1,0}
+    };
+    bfs(pipes, 4, 0);
+}`
+      },
+      {
+        title: "Smart Energy Grid Management",
+        algo: "Prim’s Algorithm",
+        why: "Minimizes total power cable installation cost using MST.",
+        code: `#include <iostream>
+using namespace std;
+
+#define INF 999
+
+int main() {
+    int n = 4;
+    int cost[4][4] = {
+        {INF,10,6,INF},
+        {10,INF,5,15},
+        {6,5,INF,4},
+        {INF,15,4,INF}
+    };
+
+    int visited[4] = {1,0,0,0};
+    int minCost = 0;
+
+    for(int e = 0; e < n-1; e++) {
+        int min = INF, x = -1, y = -1;
+        for(int i = 0; i < n; i++)
+            if(visited[i])
+                for(int j = 0; j < n; j++)
+                    if(!visited[j] && cost[i][j] < min) {
+                        min = cost[i][j];
+                        x = i; y = j;
+                    }
+        if(y != -1) {
+          visited[y] = 1;
+          minCost += min;
+        }
+    }
+
+    cout << minCost;
+}`
+      },
+      {
+        title: "Solid Waste Collection and Recycling Optimization",
+        algo: "Dijkstra",
+        why: "Finds shortest collection routes to reduce fuel and time.",
+        code: `#include <iostream>
+using namespace std;
+
+#define INF 999
+
+int main() {
+    int n = 5;
+    int cost[5][5] = {
+        {0,4,INF,INF,8},
+        {4,0,2,INF,5},
+        {INF,2,0,6,INF},
+        {INF,INF,6,0,3},
+        {8,5,INF,3,0}
+    };
+
+    int dist[5], visited[5] = {0};
+    for(int i = 0; i < n; i++) dist[i] = INF;
+    dist[0] = 0;
+
+    for(int i = 0; i < n; i++) {
+        int u = -1, min = INF;
+        for(int j = 0; j < n; j++)
+            if(!visited[j] && dist[j] < min) {
+                min = dist[j];
+                u = j;
+            }
+        if(u == -1) break;
+        visited[u] = 1;
+        for(int v = 0; v < n; v++)
+            if(cost[u][v] != INF && dist[u] + cost[u][v] < dist[v])
+                dist[v] = dist[u] + cost[u][v];
+    }
+
+    for(int i = 0; i < n; i++)
+        cout << dist[i] << " ";
+}`
+      },
+      {
+        title: "Public Transport Scheduling and Optimization",
+        algo: "Min Heap",
+        why: "Efficiently selects next bus/train with earliest departure.",
+        code: `#include <iostream>
+using namespace std;
+
+int heap[20], size = 0;
+
+void insert(int time) {
+    heap[++size] = time;
+    int i = size;
+    while(i > 1 && heap[i] < heap[i/2]) {
+        swap(heap[i], heap[i/2]);
+        i /= 2;
+    }
+}
+
+int main() {
+    insert(15);
+    insert(5);
+    insert(25);
+    cout << heap[1];
+}`
+      },
+      {
+        title: "Emergency Response and Disaster Management",
+        algo: "DFS",
+        why: "Identifies all affected zones from a disaster source.",
+        code: `#include <iostream>
+using namespace std;
+
+int city[10][10], visited[10];
+
+void dfs(int u, int n) {
+    visited[u] = 1;
+    cout << u << " ";
+    for(int i = 0; i < n; i++)
+        if(city[u][i] && !visited[i])
+            dfs(i, n);
+}
+
+int main() {
+    int n = 5;
+    int temp[5][5] = {
+        {0,1,0,0,1},
+        {1,0,1,0,0},
+        {0,1,0,1,0},
+        {0,0,1,0,1},
+        {1,0,0,1,0}
+    };
+
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            city[i][j] = temp[i][j];
+
+    for(int i=0;i<n;i++) visited[i] = 0;
+    dfs(0, n);
+}`
+      },
+      {
+        title: "Smart Parking – Slot Allocation System",
+        algo: "Queue",
+        why: "Implements first-come-first-served slot allocation.",
+        code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int q[10], front = 0, rear = 0;
+
+    q[rear++] = 201;
+    q[rear++] = 202;
+
+    cout << q[front++];
+}`
+      },
+      {
+        title: "Environmental Monitoring and Climate Resilience",
+        algo: "Fenwick Tree (Binary Indexed Tree)",
+        why: "Efficient pollution level updates and range queries.",
+        code: `#include <iostream>
+using namespace std;
+
+int BIT[10], n = 5;
+
+void update(int i, int val) {
+    while(i <= n) {
+        BIT[i] += val;
+        i += (i & -i);
+    }
+}
+
+int query(int i) {
+    int sum = 0;
+    while(i > 0) {
+        sum += BIT[i];
+        i -= (i & -i);
+    }
+    return sum;
+}
+
+int main() {
+    update(1, 40);
+    update(2, 30);
+    update(3, 20);
+
+    cout << query(3);
+}`
+      }
     ]
   }
 };
+
+// ====== RENDER FUNCTION ======
+function openMember(id) {
+  team.classList.add("hidden");
+  cases.classList.remove("hidden");
+  memberTitle.innerText = data[id].name + " – Business Cases";
+  caseList.innerHTML = "";
+
+  data[id].cases.forEach(c => {
+    const div = document.createElement("div");
+    div.className = "case-card";
+    div.innerHTML = `
+      <h3>${c.title}</h3>
+      <p><strong>Algorithm:</strong> ${c.algo}</p>
+      <p><strong>Why Suitable:</strong> ${c.why}</p>
+      <div class="details"><pre><code>${c.code}</code></pre></div>
+    `;
+    div.onclick = () => div.classList.toggle("active");
+    caseList.appendChild(div);
+  });
+}
