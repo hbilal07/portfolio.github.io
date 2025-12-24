@@ -1,74 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>ZABROSA City | Smart City Systems</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZABROSA Smart City</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- BACKGROUND -->
-    <div class="bg"></div>
+<!-- INTRO -->
+<section id="intro" class="intro">
+  <h1>ZABROSA CITY</h1>
+  <p>Smart City Solutions using Data Structures & Algorithms</p>
+  <button onclick="enterSite()">Enter Project</button>
+</section>
 
-    <!-- LANDING SECTION -->
-    <section id="landing">
-        <h1 class="main-title">ZABROSA CITY</h1>
-        <p class="tagline">Smart City Systems using Algorithms</p>
+<!-- MAIN -->
+<section id="main" class="hidden">
 
-        <div class="team">
-            <div class="card">
-                <h3>Bilal Asangi</h3>
-                <p>435 | 01FE24BCS298</p>
-                <span>Energy & Utilities</span>
-            </div>
+<header class="header">
+  <h2>ZABROSA City</h2>
+</header>
 
-            <div class="card">
-                <h3>Sourabh Kakarambi</h3>
-                <p>—</p>
-                <span>Smart Infrastructure</span>
-            </div>
-        </div>
+<!-- TEAM SECTION -->
+<section id="team" class="team">
+  <div class="team-grid">
 
-        <button class="explore-btn" onclick="openCase()">Explore</button>
-    </section>
-
-    <!-- MODAL (HIDDEN INITIALLY) -->
-    <div id="caseModal" class="case-modal">
-        <span class="close-btn" onclick="closeCase()">✕</span>
-
-        <div class="case-content">
-            <div class="left">
-                <h2>Problem Statement</h2>
-                <p>
-                    Optimize smart city energy and infrastructure management
-                    using efficient algorithms to reduce cost and improve
-                    sustainability.
-                </p>
-
-                <h2>Solution Approach</h2>
-                <p>
-                    Graph-based modeling, greedy optimization, priority queues,
-                    and real-time data processing are used to make intelligent
-                    decisions.
-                </p>
-            </div>
-
-            <div class="right">
-                <h2>C++ Implementation</h2>
-                <pre><code>
-#include &lt;iostream&gt;
-using namespace std;
-
-int main() {
-    cout << "ZABROSA City System Running";
-    return 0;
-}
-                </code></pre>
-            </div>
-        </div>
+    <div class="team-card blue">
+      <div class="icon">🚦</div>
+      <h3>Bilal Asangi</h3>
+      <p class="meta">Roll No: 435 | USN: 01FE24BCS298</p>
+      <span class="domain blue-text">TRAFFIC & TRANSPORTATION</span>
+      <p class="desc">
+        Optimizing traffic flow and routing using graph algorithms.
+      </p>
+      <button onclick="openMember('BA')" class="portfolio-btn blue-text">
+        View Portfolio →
+      </button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="team-card yellow">
+      <div class="icon">⚡</div>
+      <h3>Sourabh Kakarambi</h3>
+      <p class="meta">Roll No: 426 | USN: 01FE24BCS289</p>
+      <span class="domain yellow-text">ENERGY & UTILITIES</span>
+      <p class="desc">
+        Power grid optimization using greedy and DP algorithms.
+      </p>
+      <button onclick="openMember('SK')" class="portfolio-btn yellow-text">
+        View Portfolio →
+      </button>
+    </div>
+
+   <div class="team-card blue">
+      <div class="icon">🚦</div>
+      <h3>Zayed Soudagar</h3>
+      <p class="meta">Roll No: 416 | USN: 01FE24BCS279</p>
+      <span class="domain blue-text">TRAFFIC & TRANSPORTATION</span>
+      <p class="desc">
+        Optimizing traffic flow and routing using graph algorithms.
+      </p>
+      <button onclick="openMember('ZS')" class="portfolio-btn blue-text">
+        View Portfolio →
+      </button>
+    </div>   
+
+  </div>
+</section>
+
+<!-- BUSINESS CASES -->
+<section id="cases" class="cases hidden">
+  <button class="back-btn" onclick="goBack()">⬅ Back to Team</button>
+  <h2 id="memberTitle"></h2>
+  <div id="caseList" class="case-grid"></div>
+</section>
+
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
+
 
