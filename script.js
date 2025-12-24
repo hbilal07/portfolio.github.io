@@ -1,68 +1,86 @@
-function enterSite(){
-document.getElementById("intro").classList.add("hidden");
-document.getElementById("main").classList.remove("hidden");
-}
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
+const team = document.getElementById("team");
+const cases = document.getElementById("cases");
+const caseList = document.getElementById("caseList");
+const memberTitle = document.getElementById("memberTitle");
+
+document.getElementById("enterBtn").onclick = () => {
+  intro.classList.add("hidden");
+  main.classList.remove("hidden");
+};
+
+document.querySelectorAll(".team-card").forEach(card => {
+  card.onclick = () => openMember(card.dataset.id);
+});
+
+document.querySelector(".back-btn").onclick = () => {
+  cases.classList.add("hidden");
+  team.classList.remove("hidden");
+};
 
 const data = {
-BA:{
-name:"Bilal Asangi",
-cases:[
-{
-title:"Smart Traffic Management",
-tags:"Dijkstra | SDG 11",
-problem:"Finding shortest routes to reduce congestion.",
-solution:"Using Dijkstra’s algorithm on weighted graphs.",
-code:`#include<iostream>
+BA: {
+name: "Bilal Asangi",
+cases: [
+{ title:"Automated Billing Code Matching & Fraud Detection", algo:"Hashing", why:"Fast lookup to detect duplicate billing codes.", code:`${/* code trimmed for readability */''}
+#include <iostream>
 using namespace std;
-#define INF 999
+int hashTable[50];
+int hashFunc(int code){ return code%50; }
 int main(){
-int g[4][4]={{0,5,INF,10},{INF,0,3,INF},{INF,INF,0,1},{INF,INF,INF,0}};
-int d[4];
-for(int i=0;i<4;i++) d[i]=g[0][i];
-for(int k=0;k<4;k++)
-for(int i=0;i<4;i++)
-for(int j=0;j<4;j++)
-if(d[i]+g[i][j]<d[j])
-d[j]=d[i]+g[i][j];
-for(int i=0;i<4;i++) cout<<d[i]<<" ";
-}`
-}
+int bills[]={1201,1350,1201,1480};
+for(int i=0;i<4;i++){
+int idx=hashFunc(bills[i]);
+if(hashTable[idx]==bills[i]) cout<<bills[i]<<" detected\\n";
+else hashTable[idx]=bills[i];
+}}`
+},
+{ title:"Supermarket Dynamic Pricing Engine", algo:"Insertion Sort", why:"Efficient for small frequent updates.", code:`/* insertion sort code */`},
+{ title:"Urban Event Ticketing & Crowd Flow", algo:"Queue", why:"FCFS crowd entry.", code:`/* queue code */`},
+{ title:"Traffic Signal Optimization", algo:"Greedy", why:"Max congestion first.", code:`/* greedy code */`},
+{ title:"Smart Toll Collection", algo:"BST", why:"Fast vehicle lookup.", code:`/* bst code */`},
+{ title:"Public Toilet Maintenance", algo:"Min Heap", why:"Highest usage cleaned first.", code:`/* heap code */`},
+{ title:"Street Lighting Optimization", algo:"Greedy", why:"Power saving.", code:`/* greedy code */`},
+{ title:"Digital Library System", algo:"Trie", why:"Fast prefix search.", code:`/* trie code */`}
+]
+},
+
+SK: {
+name: "Sourabh Kakarambi",
+cases: [
+{ title:"Urban Road Maintenance", algo:"Segment Tree", why:"Fast range queries.", code:`/* segment tree code */`},
+{ title:"Water Supply Management", algo:"BFS", why:"Level-wise reachability.", code:`/* bfs code */`},
+{ title:"Smart Energy Grid", algo:"Prim’s Algorithm", why:"Minimum cost MST.", code:`/* prims code */`},
+{ title:"Waste Collection", algo:"Dijkstra", why:"Shortest routes.", code:`/* dijkstra code */`},
+{ title:"Public Transport Scheduling", algo:"Min Heap", why:"Earliest departure.", code:`/* heap code */`},
+{ title:"Emergency Response", algo:"DFS", why:"Identify affected zones.", code:`/* dfs code */`},
+{ title:"Smart Parking", algo:"Queue", why:"FCFS slots.", code:`/* queue code */`},
+{ title:"Environmental Monitoring", algo:"Fenwick Tree", why:"Efficient updates.", code:`/* BIT code */`}
 ]
 }
 };
 
 function openMember(id){
-document.getElementById("team").classList.add("hidden");
-document.getElementById("cases").classList.remove("hidden");
-document.getElementById("memberTitle").innerText =
-data[id].name + " – Business Cases";
+team.classList.add("hidden");
+cases.classList.remove("hidden");
+memberTitle.innerText = data[id].name + " – Business Cases";
+caseList.innerHTML = "";
 
-const grid = document.getElementById("caseList");
-grid.innerHTML="";
-
-data[id].cases.forEach(c=>{
-const div=document.createElement("div");
-div.className="case-card";
-div.innerHTML=`
-<div class="tags">${c.tags}</div>
-<div class="case-title">${c.title}</div>
-<div class="case-desc">${c.problem}</div>
-<div class="details">
-<h4>Solution</h4>
-<p>${c.solution}</p>
-<h4>Code</h4>
-<pre><code>${c.code}</code></pre>
-</div>
+data[id].cases.forEach(c => {
+const div = document.createElement("div");
+div.className = "case-card";
+div.innerHTML = `
+<h3>${c.title}</h3>
+<p><strong>Algorithm:</strong> ${c.algo}</p>
+<p><strong>Why Suitable:</strong> ${c.why}</p>
+<div class="details"><pre><code>${c.code}</code></pre></div>
 `;
-div.onclick=()=>div.classList.toggle("active");
-grid.appendChild(div);
+div.onclick = () => div.classList.toggle("active");
+caseList.appendChild(div);
 });
 }
 
-function goBack(){
-document.getElementById("cases").classList.add("hidden");
-document.getElementById("team").classList.remove("hidden");
-}
 
 
 
