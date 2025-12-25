@@ -1,1 +1,82 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: gold;
 
+    /* Background Image */
+    background-image: url('https://i.ytimg.com/vi/BKJYQMUVhmM/maxresdefault.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* Fade-in animation */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+    text-align: center;
+}
+
+/* Top-left City name */
+.city {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 14px;
+    color: gold;
+    opacity: 0.9;
+}
+
+/* Name with background strip */
+.name {
+    font-size: 50px;
+    font-weight: 700;
+    text-decoration: underline;
+    color: gold;
+    display: inline-block;
+    margin-bottom: 20px;
+
+    /* Semi-transparent backdrop to make name visible */
+    background: rgba(0, 0, 0, 0.6);
+    padding: 25px 40px;
+    border-radius: 10px;
+    animation: fadeIn 2.3s ease-in-out;
+}
+
+/* White Info Box */
+.info-box {
+    width: 500px;
+    background: white;
+    color: black;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 20px auto;
+    animation: fadeIn 2.8s ease-in-out;
+}
+
+/* Skills List */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 300;
+    animation: fadeIn 3.2s ease-in-out;
+}
+
+ul li {
+    margin: 8px 0;
+}
