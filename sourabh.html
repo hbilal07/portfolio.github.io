@@ -716,462 +716,117 @@ int main() {
 }
 ,
             6: {
-                title: "Bus Traffic Management System",
-                problem: "Public transport must be efficient to reduce private vehicle usage. Agarta's bus network needs real-time management for 500+ buses across BRT, feeder, and last-mile services, with dynamic scheduling based on passenger demand.",
-                approach: "We use **Graph algorithms** for route optimization, **Priority Queues** for bus dispatch scheduling, and the **Sliding Window** technique for real-time demand analysis.\n\n" +
-                          "**Documentation:** The system prioritizes the dispatch of an extra bus (Greedy approach) if passenger demand exceeds a certain threshold at any stop.\n" +
-                          "**Efficiency Analysis:** The core logic involves iterating over the fleet and stops, resulting in a complexity of **O(F * S)** for dispatch decisions, where F is the fleet size and S is the number of stops. This is efficient for dynamic routing decisions.",
-                code: `// Bus Traffic Management System
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <unordered_map>
-#include <algorithm>
-#include <cmath>
+                title: "Emergency Response and Disaster Management",
+                problem: "During disasters such as floods or fires, authorities must quickly identify all city zones affected by the event to plan evacuation and rescue operations effectively.",
+                approach: "Depth First Search (DFS) is used to explore all zones connected to the disaster source. DFS ensures that all reachable and affected zones are identified.
+\n\n" +
+                          "**Documentation:** City zones are modeled as nodes and their connectivity as edges. DFS starts from the disaster source, marks visited zones, and recursively explores connected regions, simulating the spread of the disaster.\n" +
+                          "**Efficiency Analysis:** DFS operates in O(V + E) time and requires O(V) space for the visited array and recursion stack.",
+                code: `#include <iostream>
 using namespace std;
 
-enum BusType { BRT, FEEDER, LASTMILE };
+int city[10][10];
+int visited[10];
 
-struct Bus {
-    int id;
-    BusType type;
-    int currentStop;
-    int capacity;
-    int passengers;
-    double eta;  // Estimated time to next stop (simulated)
-};
+// DFS to find all affected zones
+void dfs(int u, int n) {
+    visited[u] = 1;
+    cout << u << " ";
 
-struct BusStop {
-    int id;
-    string name;
-    int waitingPassengers;
-    vector<int> connectedRoutes;
-};
-
-class BusManagementSystem {
-    unordered_map<int, Bus> buses;
-    unordered_map<int, BusStop> stops;
-    // Min heap: Stores {ETA to next stop, Bus ID}
-    priority_queue<pair<double, int>, 
-                    vector<pair<double, int>>, 
-                    greater<>> dispatchQueue;
-    
-public:
-    void addBus(Bus bus) {
-        buses[bus.id] = bus;
-        dispatchQueue.push({0, bus.id});
-    }
-    
-    void addStop(BusStop stop) {
-        stops[stop.id] = stop;
-    }
-    
-    void updatePassengerCount(int stopId, int count) {
-        if (!stops.count(stopId)) return;
-        stops[stopId].waitingPassengers = count;
-        
-        // Trigger dynamic scheduling if demand is high (using a simple threshold)
-        if (count > 50) {
-            cout << "HIGH DEMAND at Stop " << stopId 
-                 << ": " << count << " passengers waiting\n";
-            dispatchExtraBus(stopId);
+    for (int i = 0; i < n; i++) {
+        if (city[u][i] && !visited[i]) {
+            dfs(i, n);
         }
     }
-    
-    void dispatchExtraBus(int stopId) {
-        // Find nearest available bus (low load factor)
-        int nearestBus = -1;
-        double minEta = 1e9;
-        
-        for (auto& [id, bus] : buses) {
-            // Check for buses that are less than 50% full
-            if ((double)bus.passengers / bus.capacity < 0.5) {
-                // Simplified ETA based on stop difference (simulated)
-                double eta = abs(bus.currentStop - stopId) * 2.0; 
-                if (eta < minEta) {
-                    minEta = eta;
-                    nearestBus = id;
-                }
-            }
-        }
-        
-        if (nearestBus != -1) {
-            cout << "Dispatching Bus " << nearestBus 
-                 << " to Stop " << stopId 
-                 << " (ETA: " << minEta << " min)\n\n";
-        }
-    }
-    
-    void updateBusPosition(int busId, int newStop, int newPassengers) {
-        if (!buses.count(busId)) return;
-        buses[busId].currentStop = newStop;
-        buses[busId].passengers = newPassengers;
-        
-        double loadFactor = (double)newPassengers / buses[busId].capacity;
-        
-        cout << "Bus " << busId << " at Stop " << newStop 
-             << " | Load: " << (loadFactor * 100) << "%\n";
-    }
-    
-    void optimizeFrequency() {
-        cout << "\n=== Frequency Optimization ===\n";
-        
-        for (auto& [id, stop] : stops) {
-            int demand = stop.waitingPassengers;
-            int recommendedFrequency;
-            
-            if (demand > 100)
-                recommendedFrequency = 5;  // Every 5 minutes
-            else if (demand > 50)
-                recommendedFrequency = 10;
-            else
-                recommendedFrequency = 15;
-            
-            cout << "Stop " << id << " (" << stop.name << "): "
-                 << "Demand=" << demand 
-                 << ", Frequency=" << recommendedFrequency << " min\n";
-        }
-    }
-    
-    void generateReport() {
-        int totalPassengers = 0;
-        int totalCapacity = 0;
-        
-        for (auto& [id, bus] : buses) {
-            totalPassengers += bus.passengers;
-            totalCapacity += bus.capacity;
-        }
-        
-        cout << "\n=== Fleet Report ===\n";
-        cout << "Active Buses: " << buses.size() << "\n";
-        cout << "Total Passengers: " << totalPassengers << "\n";
-        if (totalCapacity > 0) {
-            cout << "System Utilization: " 
-                 << (totalPassengers * 100.0 / totalCapacity) << "%\n";
-        } else {
-            cout << "System Utilization: 0%\n";
-        }
-    }
-};
+}
 
 int main() {
-    BusManagementSystem bms;
-    
-    // Add bus stops (ID, Name, WaitingPassengers, ConnectedRoutes)
-    bms.addStop({1, "Central Station", 80, {1, 2}});
-    bms.addStop({2, "Tech Park", 120, {2, 3}});
-    bms.addBus({101, BRT, 1, 80, 45, 0});
-    bms.addBus({102, BRT, 2, 80, 60, 0});
-    bms.addBus({201, FEEDER, 3, 40, 20, 0});
-    
-    // Simulate operations
-    bms.updatePassengerCount(2, 120);  // High demand at Tech Park
-    bms.updateBusPosition(101, 2, 65); // Bus 101 arrives at Stop 2
-    bms.updateBusPosition(102, 3, 50); // Bus 102 arrives at Stop 3
-    
-    bms.optimizeFrequency();
-    bms.generateReport();
-    
+    int n = 5;
+
+    // Connectivity of city zones
+    int temp[5][5] = {
+        {0,1,0,0,1},
+        {1,0,1,0,0},
+        {0,1,0,1,0},
+        {0,0,1,0,1},
+        {1,0,0,1,0}
+    };
+
+    // Copy matrix
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            city[i][j] = temp[i][j];
+
+    cout << "Affected zones: ";
+    dfs(0, n);
+
     return 0;
-`,
-                dataset: `BusID,CurrentStop,Capacity,Passengers,BusType
-101,1,80,45,BRT
-102,2,80,60,BRT
-StopID,StopName,WaitingPassengers,AvgInterval_min
-1,Central Station,80,10
-2,Tech Park,120,5`
-            },
+}
+,
             7: {
-                title: "Revenue Transparency System",
-                problem: "Citizens demand transparency in how their taxes are spent. Agarta needs a public dashboard showing real-time revenue collection and expenditure across all departments, with fraud detection capabilities.",
-                approach: "We use **Red-Black Trees** (via `std::map`) for maintaining ordered financial records, **Hash Maps** for instant transaction lookup, and **Heaps** for tracking top-spending departments.\n\n" +
-                          "**Documentation:** The system flags unusually large single transactions (> ₹100 Cr) as potential anomalies for immediate audit.\n" +
-                          "**Efficiency Analysis:** Lookup, insertion, and deletion of financial records (transactions) are performed in **O(log N)** time due to the use of the Red-Black Tree structure.",
-                code: `// City Revenue Transparency System
-#include <iostream>
-#include <map>
-#include <unordered_map>
-#include <queue>
-#include <vector>
-#include <iomanip>
-#include <string>
+                title: "Smart Parking – Slot Allocation System",
+                problem: "Parking systems must allocate slots fairly and efficiently so that vehicles are served in the order in which they arrive, avoiding conflicts and delays.
+",
+                approach: "A Queue data structure is used to implement first-come-first-served parking slot allocation.\n\n" +
+                          "**Documentation:** In the system, arriving vehicles are added to the rear of the queue, and vehicles at the front are allocated parking slots as they become available. This ensures fairness and simplicity in parking management.\n" +
+                          "**Efficiency Analysis:** Both enqueue and dequeue operations take O(1) time, and the space complexity is O(n), where n is the number of waiting vehicles.",
+                code: `#include <iostream>
 using namespace std;
 
-enum Category {
-    PROPERTY_TAX, COMMERCIAL_TAX, UTILITIES, 
-    INFRASTRUCTURE, HEALTH, EDUCATION, TRANSPORT, OTHER
-};
-
-string getCategoryName(Category cat) {
-    switch(cat) {
-        case PROPERTY_TAX: return "Property Tax";
-        case COMMERCIAL_TAX: return "Commercial Tax";
-        case UTILITIES: return "Utilities";
-        case INFRASTRUCTURE: return "Infrastructure";
-        case HEALTH: return "Healthcare";
-        case EDUCATION: return "Education";
-        case TRANSPORT: return "Transport";
-        case OTHER: return "Other";
-        default: return "Unknown";
-    }
-}
-
-struct Transaction {
-    int id;
-    Category category;
-    double amount; // in Crores (Cr)
-    string timestamp;
-    bool isRevenue;  // true=revenue, false=expenditure
-};
-
-class TransparencySystem {
-    // std::map is implemented as a Red-Black Tree in C++
-    map<string, double> dailyRevenue;  
-    map<string, double> dailyExpenditure;
-    unordered_map<int, Transaction> transactions;
-    priority_queue<pair<double, Category>> topSpenders;
-    unordered_map<Category, double> categorySpending;
-    
-    double totalRevenue = 0;
-    double totalExpenditure = 0;
-    
-public:
-    void recordTransaction(Transaction txn) {
-        transactions[txn.id] = txn;
-        
-        if (txn.isRevenue) {
-            dailyRevenue[txn.timestamp] += txn.amount;
-            totalRevenue += txn.amount;
-            cout << "[REVENUE] +" << txn.amount << " Cr from " 
-                 << getCategoryName(txn.category) << "\n";
-        } else {
-            dailyExpenditure[txn.timestamp] += txn.amount;
-            totalExpenditure += txn.amount;
-            
-            categorySpending[txn.category] += txn.amount;
-            
-            cout << "[EXPENSE] -" << txn.amount << " Cr for " 
-                 << getCategoryName(txn.category) << "\n";
-            
-            // Anomaly detection: Flag any single transaction over a limit
-            if (txn.amount > 100.0) {
-                cout << "  ⚠️  ALERT: Large transaction detected! (Over 100 Cr)\n";
-            }
-        }
-    }
-    
-    void showTopSpenders(int n) {
-        cout << "\n=== Top " << n << " Spending Categories ===\n";
-        
-        // Rebuild heap to ensure it reflects current total category spending
-        priority_queue<pair<double, Category>> currentTopSpenders;
-        for(auto& [category, amount] : categorySpending) {
-            currentTopSpenders.push({amount, category});
-        }
-        
-        for (int i = 0; i < n && !currentTopSpenders.empty(); i++) {
-            auto [amount, category] = currentTopSpenders.top();
-            currentTopSpenders.pop();
-            cout << i+1 << ". " << getCategoryName(category) 
-                 << ": ₹" << fixed << setprecision(2) << amount << " Cr\n";
-        }
-    }
-    
-    void generateReport() {
-        cout << "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-        cout << "     FINANCIAL TRANSPARENCY REPORT\n";
-        cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-        
-        cout << fixed << setprecision(2);
-        cout << "Total Revenue:     ₹" << totalRevenue << " Crores\n";
-        cout << "Total Expenditure: ₹" << totalExpenditure << " Crores\n";
-        cout << "Balance:           ₹" << (totalRevenue - totalExpenditure) 
-             << " Crores\n";
-        
-        double utilizationRate = (totalRevenue > 0) ? (totalExpenditure / totalRevenue) * 100 : 0.0;
-        cout << "Utilization Rate:  " << utilizationRate << "%\n";
-        
-        if (utilizationRate > 95 && totalRevenue > 0) {
-            cout << "⚠️  High utilization - budget review recommended\n";
-        }
-        
-        cout << "\n📊 Daily Revenue Breakdown:\n";
-        for (auto& [date, amount] : dailyRevenue) {
-            cout << "  " << date << " : ₹" << amount << " Cr\n";
-        }
-
-        cout << "\n📉 Daily Expenditure Breakdown:\n";
-        for (auto& [date, amount] : dailyExpenditure) {
-            cout << "  " << date << " : ₹" << amount << " Cr\n";
-        }
-
-        cout << "\n────────────────────────────────────────\n";
-        cout << " End of Financial Transparency Report\n";
-        cout << "────────────────────────────────────────\n";
-    }
-};
-
 int main() {
-    TransparencySystem system;
+    int queue[10];
+    int front = 0, rear = 0;
 
-    // Sample Transactions (Amount in Crores)
-    system.recordTransaction({1, PROPERTY_TAX, 75.5, "2025-01-10", true});
-    system.recordTransaction({2, COMMERCIAL_TAX, 120.0, "2025-01-10", true});
-    system.recordTransaction({3, HEALTH, 45.2, "2025-01-10", false});
-    system.recordTransaction({4, INFRASTRUCTURE, 150.8, "2025-01-11", false}); // ALERT
-    system.recordTransaction({5, EDUCATION, 22.9, "2025-01-11", false});
-    system.recordTransaction({6, UTILITIES, 95.0, "2025-01-11", true});
-    system.recordTransaction({7, INFRASTRUCTURE, 30.0, "2025-01-11", false});
+    // Parking slots arrive in order
+    queue[rear++] = 201;
+    queue[rear++] = 202;
 
-    cout << "\n";
-    system.showTopSpenders(3);
-
-    cout << "\n";
-    system.generateReport();
+    // Allocate slot to first arriving vehicle
+    cout << "Allocated parking slot: " << queue[front++];
 
     return 0;
-`,
-                dataset: `TransactionID,Type,Category,Amount_Cr,Timestamp
-1,REVENUE,PROPERTY_TAX,75.5,2025-01-10
-4,EXPENSE,INFRASTRUCTURE,150.8,2025-01-11
-6,REVENUE,UTILITIES,95.0,2025-01-11`
-            },
+}
+,
             8: {
-                title: "House Number Allocation & Smart Addressing System",
-                problem: "Inefficient and inconsistent addressing causes delays in logistics, emergency response, and municipal services. This initiative provides a unified digital address and building identification system for the entire Agartha city to support navigation, emergency services, postal delivery, and smart governance.",
-                approach: "The house number format follows a structured smart-code format: [Direction][Sector-Type]-[Sector-Number]-[Street-Number]-[Building-Number]. Example: NWSR-1-10. \n\n" +
-                          "**Documentation:** The system uses **Hash Maps** for near O(1) retrieval of full address details from the compact smart-code. It is integrated with GIS mapping and routing systems.\n" +
-                          "**Efficiency Analysis:** Address lookup and retrieval using the Hash Map is **O(1)** on average, which is critical for real-time services like emergency dispatch and drone routing. Address generation is **O(L)**, where L is the length of the smart-code string.",
-                code: `// Smart Addressing System - Agartha Smart-Code Format
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <iomanip>
-#include <unordered_map>
-#include <vector>
+                title: "Environmental Monitoring and Climate Resilience",
+                problem: "Environmental monitoring systems must track pollution levels across multiple locations where values are frequently updated. Authorities need fast computation of cumulative pollution levels for analysis and decision-making.",
+                approach: " A Fenwick Tree (Binary Indexed Tree) is used to efficiently support frequent updates and prefix sum queries on pollution data.\n\n" +
+                          "**Documentation:** Each index of the Fenwick Tree represents a monitoring station. The tree stores partial sums, allowing pollution updates and cumulative queries to be processed efficiently, making it suitable for real-time monitoring dashboards.\n" +
+                          "**Efficiency Analysis:** Both update and query operations run in O(log n) time, and the space complexity is O(n), making this approach scalable for large environmental datasets.",
+                code: `#include <iostream>
 using namespace std;
 
-enum Direction { NW, NE, SW, SE };
-enum SectorType { SR, SC, SI, SP };  // Residential, Commercial, Industrial, Public
+int BIT[10];
+int n = 5;
 
-string directionToString(Direction dir) {
-    switch(dir) {
-        case NW: return "NW";
-        case NE: return "NE";
-        case SW: return "SW";
-        case SE: return "SE";
-        default: return "XX";
+// Update pollution level at zone i
+void update(int i, int val) {
+    while (i <= n) {
+        BIT[i] += val;
+        i += (i & -i);
     }
 }
 
-string sectorTypeToString(SectorType type) {
-    switch(type) {
-        case SR: return "SR";  // Sector Residential
-        case SC: return "SC";  // Sector Commercial
-        case SI: return "SI";  // Sector Industrial
-        case SP: return "SP";  // Sector Public
-        default: return "XX";
+// Query cumulative pollution till zone i
+int query(int i) {
+    int sum = 0;
+    while (i > 0) {
+        sum += BIT[i];
+        i -= (i & -i);
     }
+    return sum;
 }
-
-struct SmartAddress {
-    Direction direction;           // NW, NE, SW, SE (City Zone)
-    SectorType sectorType;         // SR, SC, SI, SP
-    int sectorNumber;              // 1-100 (Sector identifier)
-    int streetNumber;              // 1-50 (Street/cross-road number)
-    int buildingNumber;            // 1-9999 (Building or plot number)
-};
-
-class SmartAddressingSystem {
-    unordered_map<string, SmartAddress> addressRegistry;
-    
-public:
-    string generateSmartCode(Direction dir, SectorType type, 
-                            int sectorNum, int streetNum, int buildingNum) {
-        stringstream ss;
-        ss << directionToString(dir) 
-           << sectorTypeToString(type) 
-           << "-" << sectorNum 
-           << "-" << streetNum
-           << "-" << setfill('0') << setw(4) << buildingNum;
-        return ss.str();
-    }
-    
-    void registerAddress(string code, Direction dir, SectorType type,
-                        int sectorNum, int streetNum, int buildingNum) {
-        SmartAddress addr = {dir, type, sectorNum, streetNum, buildingNum};
-        addressRegistry[code] = addr;
-        cout << "✓ Registered: " << code << "\n";
-    }
-    
-    SmartAddress* lookupAddress(string code) {
-        if (addressRegistry.find(code) != addressRegistry.end()) {
-            return &addressRegistry[code];
-        }
-        return nullptr;
-    }
-    
-    void displayAddressDetails(string code) {
-        SmartAddress* addr = lookupAddress(code);
-        if (!addr) {
-            cout << "Address not found: " << code << "\n";
-            return;
-        }
-        
-        cout << "\n=== Address Details for " << code << " ===\n";
-        cout << "Direction Zone: " << directionToString(addr->direction) << "\n";
-        cout << "Sector Type: " << sectorTypeToString(addr->sectorType) << " ";
-        
-        switch(addr->sectorType) {
-            case SR: cout << "(Residential)\n"; break;
-            case SC: cout << "(Commercial)\n"; break;
-            case SI: cout << "(Industrial)\n"; break;
-            case SP: cout << "(Public)\n"; break;
-        }
-        
-        cout << "Sector #: " << addr->sectorNumber << "\n";
-        cout << "Street/Cross-road #: " << addr->streetNumber << "\n";
-        cout << "Building/Plot #: " << addr->buildingNumber << "\n";
-    }
-    
-    void demonstrateEmergencyRouting(string code) {
-        SmartAddress* addr = lookupAddress(code);
-        if (!addr) return;
-        
-        cout << "\n=== Emergency Routing for " << code << " ===\n";
-        cout << "🚑 Nearest Hospital (SP sectors): ";
-        cout << directionToString(addr->direction) << "SP-" 
-             << addr->sectorNumber << "\n";
-        cout << "🔥 Fire Station (SP sectors): ";
-        cout << directionToString(addr->direction) << "SP-" 
-             << (addr->sectorNumber + 1) << "\n";
-        cout << "📦 Drone Delivery Hub: " << code << "\n";
-        cout << "Route calculated and optimized.\n";
-    }
-};
 
 int main() {
-    SmartAddressingSystem system;
-    
-    // Register sample addresses
-    string addr1 = system.generateSmartCode(NW, SR, 5, 2, 145);
-    system.registerAddress(addr1, NW, SR, 5, 2, 145);
-    
-    string addr2 = system.generateSmartCode(SE, SC, 12, 7, 89);
-    system.registerAddress(addr2, SE, SC, 12, 7, 89);
-    
-    string addr3 = system.generateSmartCode(NE, SI, 8, 3, 234);
-    system.registerAddress(addr3, NE, SI, 8, 3, 234);
-    
-    // Display address details
-    system.displayAddressDetails(addr1);
-    system.displayAddressDetails(addr2);
-    
-    // Demonstrate emergency routing
-    system.demonstrateEmergencyRouting(addr1);
-    system.demonstrateEmergencyRouting(addr3);
-    
+    // Update pollution readings
+    update(1, 40);
+    update(2, 30);
+    update(3, 20);
+
+    cout << "Pollution level till zone 3: " << query(3);
     return 0;
+}
+
 `,
                 dataset: `SmartCode,Direction,SectorType,SectorNo,StreetNo,BuildingNo
 NWSR-05-02-0145,NW,SR,5,2,145
