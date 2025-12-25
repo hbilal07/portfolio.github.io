@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zabrosa City Portfolio</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -18,843 +18,127 @@
             }
         }
     </script>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-        h1, h2, h3, .brand-font {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .initiative-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            cursor: pointer;
-        }
-        .initiative-card:hover {
-            transform: translateY(-5px);
-            border-color: #00d4ff;
-        }
-        html.dark .initiative-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-        }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f3f4f6;
-        }
-        html.dark ::-webkit-scrollbar-track {
-            background: #111827;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #00d4ff;
-            border-radius: 4px;
-        }
-        .modal {
-            transition: opacity 0.3s ease-in-out;
-            opacity: 0;
-            pointer-events: none;
-        }
-        .modal.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        /* FIX: Ensures code wraps while retaining indentation */
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            overflow-x: auto;
-        }
-        /* New style for data headers in modal */
-        .data-preview-header {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-            color: #00d4ff;
-        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+        .modal { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .modal.active { opacity: 1; pointer-events: auto; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
 
-    <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <i class="fa-solid fa-city text-cyan-450 text-2xl mr-2"></i>
-                    <span class="brand-font text-xl font-bold text-gray-900 dark:text-white tracking-tight">Agartha City</span>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="javascript:history.back()" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 dark:hover:text-cyan-450 font-medium transition">← Back</a>
-                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 dark:hover:text-cyan-450 font-medium transition">Home</a>
-                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 dark:hover:text-cyan-450 font-medium transition">About</a>
-                    
-                    <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none">
-                        <i id="theme-icon" class="fa-solid fa-sun text-yellow-500 text-xl"></i>
-                    </button>
-                </div>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
 
-                <div class="flex items-center md:hidden space-x-4">
-                    <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-                        <i id="mobile-theme-icon" class="fa-solid fa-sun text-yellow-500 text-xl"></i>
-                    </button>
-                    <button onclick="toggleMobileMenu()" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450">
-                        <i class="fa-solid fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 space-y-2 shadow-lg">
-            <a href="javascript:history.back()" class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded">← Back</a>
-            <a href="index.html" class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded">Home</a>
-            <a href="about.html" class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded">About</a>
-        </div>
-    </nav>
+<!-- ================= MODAL ================= -->
+<div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/70" onclick="closeModal()"></div>
+    <div class="bg-white dark:bg-gray-800 rounded-xl w-full max-w-6xl max-h-[90vh] overflow-hidden relative z-10">
 
-    <main class="flex-grow relative fade-in">
-        <div class="relative bg-white dark:bg-gray-900 overflow-hidden border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
-            <div class="absolute inset-0 opacity-10">
-                <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M0 100 C 20 0 50 0 100 100 Z" fill="#00d4ff"></path>
-                </svg>
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-br from-cyan-100/40 via-white to-white dark:from-cyan-900/20 dark:via-gray-900 dark:to-gray-900"></div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">Integrated Sustainable City Strategies</h1>
-                <div class="w-24 h-1 bg-cyan-450 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-10">
-                    Hi, I am <span class="text-cyan-450 font-semibold">Sourabh</span>. This document outlines the full scope of business cases developed for <span class="font-semibold">Agartha</span> — a new, self-sufficient, and sustainable city with a population of 4 million, located between Pune and Nashik near the banks of the Pravara River.
-                </p>
-            </div>
+        <div class="flex justify-between items-center p-6 border-b">
+            <h3 id="modalTitle" class="text-2xl font-bold"></h3>
+            <button onclick="closeModal()"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 py-16">
-            <div class="bg-cyan-50 dark:bg-gray-800 rounded-xl p-8 border-l-4 border-cyan-450 shadow-lg mb-12">
-                <h3 class="text-2xl font-bold text-cyan-450 mb-6 flex items-center">
-                    <i class="fa-solid fa-lightbulb mr-3"></i>
-                    8 Key Business Cases
-                </h3>
-                <ol class="space-y-3 text-gray-700 dark:text-gray-300 ml-6 list-decimal">
-                        <li>Urban Road Maintenance and Asset Management</li>
-                        <li>Water Supply and Wastewater Management</li>
-                        <li>Smart Energy Grid Management</li>
-                        <li>Solid Waste Collection and Recycling Optimization</li>
-                        <li>Public Transport Scheduling and Optimization</li>
-                        <li>Emergency Response and Disaster Management</li>
-                        <li>Smart Parking – Slot Allocation System</li>
-                        <li>Environmental Monitoring and Climate Resilience</li>
-                </ol>
-                <p class="text-gray-600 dark:text-gray-400 mt-6 italic">Click on any initiative below to view the detailed approach, efficiency analysis, code, and sample dataset.</p>
-            </div>
+        <div class="p-6 overflow-y-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-cyan-450 font-bold mb-2">Problem Statement</h4>
+                    <p id="modalProblem" class="mb-6"></p>
 
-            <h2 class="text-3xl font-bold text-cyan-450 mb-8 text-center">Detailed Initiatives</h2>
-            <div class="grid grid-cols-1 gap-8">
-                
-                <div onclick="openModal(1)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <div class="h-2 bg-gradient-to-r from-cyan-450 to-blue-500"></div>
-                    <div class="p-8">
-                        <div class="flex items-start justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">1.Urban Road Maintenance and Asset Management</h3>
-                            <i class="fa-solid fa-road text-cyan-450 text-3xl"></i>
-                        </div>
-                        <span class="inline-block bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 9.1 & SDG 11.2</span>
-                        
-                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                           Supports efficient range damage queries and updates for road conditions across zones.
-                        </p>
-                        
-                        <div class="mt-4 text-cyan-450 font-semibold text-sm flex items-center">
-                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
+                    <h4 class="text-cyan-450 font-bold mb-2">Solution / Documentation</h4>
+                    <p id="modalApproach"></p>
                 </div>
-
-                <div onclick="openModal(2)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <div class="h-2 bg-gradient-to-r from-blue-450 to-cyan-500"></div>
-                    <div class="p-8">
-                        <div class="flex items-start justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">2.Water Supply and Wastewater Management </h3>
-                            <i class="fa-solid fa-water text-blue-500 text-3xl"></i>
-                        </div>
-                        <span class="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 6.3 & SDG 11.6</span>
-                        
-                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                            Checks water reachability across pipeline networks level by level.
-                        </p>
-                        
-                        <div class="mt-4 text-blue-500 font-semibold text-sm flex items-center">
-                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="openModal(3)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <div class="h-2 bg-gradient-to-r from-purple-450 to-pink-500"></div>
-                    <div class="p-8">
-                        <div class="flex items-start justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">3.Smart Energy Grid Management </h3>
-                            <i class="fa-solid fa-users text-purple-500 text-3xl"></i>
-                        </div>
-                        <span class="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 11.3 & SDG 11.a</span>
-                        
-                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                           Minimizes total power cable installation cost using MST.
-                        </p>
-                        
-                        <div class="mt-4 text-purple-500 font-semibold text-sm flex items-center">
-                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="openModal(4)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <div class="h-2 bg-gradient-to-r from-green-450 to-emerald-500"></div>
-                    <div class="p-8">
-                        <div class="flex items-start justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">4.Solid Waste Collection and Recycling Optimization</h3>
-                            <i class="fa-solid fa-drone text-green-500 text-3xl"></i>
-                        </div>
-                        <span class="inline-block bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 9.1 & SDG 11.2</span>
-                        
-                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                            Finds shortest collection routes to reduce fuel and time.
-                        </p>
-                        
-                        <div class="mt-4 text-green-500 font-semibold text-sm flex items-center">
-                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="openModal(5)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <div class="h-2 bg-gradient-to-r from-orange-450 to-red-500"></div>
-                    <div class="p-8">
-                        <div class="flex items-start justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">5.Public Transport Scheduling and Optimization</h3>
-                            <i class="fa-solid fa-home text-orange-500 text-3xl"></i>
-                        </div>
-                        <span class="inline-block bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 11.1 & SDG 9.1</span>
-                        
-                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                            Efficiently selects next bus/train with earliest departure.
-                        </p>
-                        
-                        <div class="mt-4 text-orange-500 font-semibold text-sm flex items-center">
-                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="openModal(6)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <div class="h-2 bg-gradient-to-r from-yellow-450 to-amber-500"></div>
-                    <div class="p-8">
-                        <div class="flex items-start justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">6.Emergency Response and Disaster Management</h3>
-                            <i class="fa-solid fa-bus text-yellow-500 text-3xl"></i>
-                        </div>
-                        <span class="inline-block bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 11.2 & SDG 13.2</span>
-                        
-                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                           Identifies all affected zones from a disaster source.
-                        </p>
-                        
-                        <div class="mt-4 text-yellow-500 font-semibold text-sm flex items-center">
-                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="openModal(7)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <div class="h-2 bg-gradient-to-r from-indigo-450 to-purple-500"></div>
-                    <div class="p-8">
-                        <div class="flex items-start justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">7.Smart Parking – Slot Allocation System</h3>
-                            <i class="fa-solid fa-coins text-indigo-500 text-3xl"></i>
-                        </div>
-                        <span class="inline-block bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 16.6 & SDG 11.a</span>
-                        
-                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                            Implements first-come-first-served slot allocation.
-                        </p>
-                        
-                        <div class="mt-4 text-indigo-500 font-semibold text-sm flex items-center">
-                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div onclick="openModal(8)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <div class="h-2 bg-gradient-to-r from-teal-450 to-cyan-500"></div>
-                    <div class="p-8">
-                        <div class="flex items-start justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">8.Environmental Monitoring and Climate Resilience</h3>
-                            <i class="fa-solid fa-map-marked-alt text-teal-500 text-3xl"></i>
-                        </div>
-                        <span class="inline-block bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 9.1 & SDG 11.3</span>
-                        
-                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                           Efficient pollution level updates and range queries.
-                        </p>
-                        
-                        <div class="mt-4 text-teal-500 font-semibold text-sm flex items-center">
-                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
-
-    <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10 transition-colors">
-            
-            <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-                <h3 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-white font-mono"></h3>
-                <button onclick="closeModal()" class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
-                    <i class="fa-solid fa-xmark text-2xl"></i>
-                </button>
-            </div>
-            
-            <div class="p-6 overflow-y-auto bg-gray-50 dark:bg-gray-900/50">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div>
-                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Problem Statement</h4>
-                        <p id="modalProblem" class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"></p>
-                        
-                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Solution Approach / Documentation</h4>
-                        <p id="modalApproach" class="text-gray-700 dark:text-gray-300 leading-relaxed"></p>
-
-                        <h4 class="data-preview-header uppercase text-xs tracking-wider">Sample Dataset Preview (.CSV)</h4>
-                        <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
-                            <pre><code id="modalDataPreview" class="language-csv hljs"></code></pre>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Implementation Code (C++)</h4>
-                        <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
-                            <pre><code id="modalCode" class="language-cpp hljs"></code></pre>
-                        </div>
-                    </div>
+                <div>
+                    <h4 class="text-cyan-450 font-bold mb-2">Implementation Code</h4>
+                    <pre><code id="modalCode" class="language-cpp"></code></pre>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
+<!-- ================= BUTTON (TEST) ================= -->
+<div class="p-10 text-center">
+    <button onclick="openModal(1)"
+        class="bg-cyan-450 text-white px-6 py-3 rounded-lg font-semibold">
+        Click for Analysis & Code
+    </button>
+</div>
 
-    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white py-8 mt-auto transition-colors">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <span class="brand-font text-lg font-bold">Agartha Sustainable City</span>
-                <p class="text-gray-500 dark:text-gray-400 text-sm">Building a sustainable future, one initiative at a time.</p>
-            </div>
-            <div class="flex space-x-6">
-                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450 dark:hover:text-cyan-450 transition"><i class="fa-brands fa-github text-xl"></i></a>
-                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450 dark:hover:text-cyan-450 transition"><i class="fa-brands fa-linkedin text-xl"></i></a>
-                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450 dark:hover:text-cyan-450 transition"><i class="fa-brands fa-twitter text-xl"></i></a>
-            </div>
-        </div>
-        <div class="text-center mt-8 text-gray-500 dark:text-gray-600 text-xs">
-            © 2025 Zabrosa City Project by Sourabh Kakarambi. All Rights Reserved.
-        </div>
-    </footer>
+<!-- ================= SCRIPT ================= -->
+<script>
+function openModal(id) {
+    const data = caseData[id];
+    if (!data) return;
 
-    <script>
-        // --- Theme Toggle Logic ---
-        function toggleTheme() {
-            const html = document.documentElement;
-            const icon = document.getElementById('theme-icon');
-            const mobileIcon = document.getElementById('mobile-theme-icon');
-            
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-                icon.classList.remove('fa-sun', 'text-yellow-500');
-                icon.classList.add('fa-moon', 'text-gray-600');
-                
-                mobileIcon.classList.remove('fa-sun', 'text-yellow-500');
-                mobileIcon.classList.add('fa-moon', 'text-gray-600');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                icon.classList.remove('fa-moon', 'text-gray-600');
-                icon.classList.add('fa-sun', 'text-yellow-500');
-                
-                mobileIcon.classList.remove('fa-moon', 'text-gray-600');
-                mobileIcon.classList.add('fa-sun', 'text-yellow-500');
-            }
-        }
+    document.getElementById("modalTitle").innerText = data.title;
+    document.getElementById("modalProblem").innerText = data.problem;
 
-        // --- Initialize Theme ---
-        if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-            document.documentElement.classList.remove('dark');
-            const icon = document.getElementById('theme-icon');
-            const mobileIcon = document.getElementById('mobile-theme-icon');
-            if (icon) {
-                icon.classList.remove('fa-sun', 'text-yellow-500');
-                icon.classList.add('fa-moon', 'text-gray-600');
-            }
-            if (mobileIcon) {
-                mobileIcon.classList.remove('fa-sun', 'text-yellow-500');
-                mobileIcon.classList.add('fa-moon', 'text-gray-600');
-            }
-        }
+    document.getElementById("modalApproach").innerHTML =
+        data.approach
+            .replace(/\n/g, "<br>")
+            .replace(/\*\*(.*?)\*\*/g, "<strong class='text-cyan-450'>$1</strong>")
+            .replace(/O\((.*?)\)/g, "<strong class='text-cyan-450'>O($1)</strong>");
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
+    document.getElementById("modalCode").textContent = data.code;
+    document.getElementById("caseModal").classList.add("active");
 
-        // --- Modal Logic ---
+    hljs.highlightAll();
+}
 
-        function openModal(caseId) {
-            const caseInfo = caseData[caseId];
-            if (!caseInfo) return;
+function closeModal() {
+    document.getElementById("caseModal").classList.remove("active");
+}
 
-            document.getElementById('modalTitle').innerText = caseInfo.title;
-            document.getElementById('modalProblem').innerText = caseInfo.problem;
-            
-            // Format the approach text (Efficiency Analysis and bolding)
-            let approachHtml = caseInfo.approach
-                .replace(/\n/g, '<br>')
-                .replace(/(\*\*(.*?)\*\*)/g, '<span class="text-cyan-450 font-bold">$2</span>')
-                .replace(/O\((.*?)\)/g, '<span class="text-cyan-450 font-bold">O($1)</span>');
-
-            document.getElementById('modalApproach').innerHTML = approachHtml;
-            
-            document.getElementById('modalCode').textContent = caseInfo.code; 
-            document.getElementById('modalDataPreview').textContent = caseInfo.dataset; // Insert Dataset Content
-
-            // Highlight the newly inserted code and dataset preview
-            hljs.highlightAll();
-
-            document.getElementById('caseModal').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('caseModal').classList.remove('active');
-        }
-
-
-        // Case Data Database (RESTORED C++ Code + Efficiency Analysis + INLINE DATASET)
-        const caseData = {
-            1: {
-                title: "Urban Road Maintenance and Asset Management",
-                problem: "Urban road networks are divided into multiple zones, each having varying levels of damage due to traffic load and environmental conditions. City authorities need to frequently update the damage values after inspections and efficiently calculate the total damage over a range of zones to prioritize maintenance work. A simple linear approach becomes inefficient as the number of zones increases.",
-                approach: "This problem is solved using a Segment Tree, which is a tree-based data structure designed for efficient range queries and updates. The segment tree stores cumulative damage values for ranges of road segments, allowing quick computation of total damage in any given interval.\n\n" +
-                          "**Documentation:**In the system, each leaf node of the segment tree represents a single road segment, while internal nodes represent the sum of damage values of their child segments. When a road segment’s condition changes, only the relevant nodes in the tree are updated. Range queries traverse only the necessary branches, making the system suitable for real-time monitoring dashboards used by municipal authorities.\n" +
-                          "**Efficiency Analysis:** The segment tree is built in O(n) time. Both update and query operations run in O(log n) time. The space complexity is O(n), making this approach scalable for large urban road networks.",
-                code: `#include <iostream>
+const caseData = {
+    1: {
+        title: "Urban Road Maintenance and Asset Management",
+        problem:
+            "Urban road networks are divided into multiple zones, each having varying levels of damage due to traffic load and environmental conditions. Authorities need efficient range queries and updates.",
+        approach:
+            "This problem is solved using a Segment Tree.\n\n" +
+            "**Documentation:** Each node stores cumulative damage of road segments.\n\n" +
+            "**Efficiency Analysis:** Build O(n), Query and Update O(log n).",
+        code: `#include <iostream>
 using namespace std;
 
-// Segment tree array to store range sums (road damage)
 int seg[100];
 
-// Build the segment tree from road damage data
 void build(int arr[], int node, int start, int end) {
-    // If only one road segment
-    if (start == end) {
+    if (start == end)
         seg[node] = arr[start];
-    } else {
+    else {
         int mid = (start + end) / 2;
-
-        // Build left and right subtrees
         build(arr, 2 * node, start, mid);
         build(arr, 2 * node + 1, mid + 1, end);
-
-        // Store sum of damage in this range
         seg[node] = seg[2 * node] + seg[2 * node + 1];
     }
 }
 
-// Query total road damage between zones l and r
 int query(int node, int start, int end, int l, int r) {
-    // No overlap
-    if (r < start || l > end)
-        return 0;
-
-    // Complete overlap
-    if (l <= start && end <= r)
-        return seg[node];
-
-    // Partial overlap
+    if (r < start || l > end) return 0;
+    if (l <= start && end <= r) return seg[node];
     int mid = (start + end) / 2;
     return query(2 * node, start, mid, l, r) +
            query(2 * node + 1, mid + 1, end, l, r);
 }
 
 int main() {
-    // Road damage index for each zone
-    int roadDamage[] = {4, 6, 3, 7, 2};
-    int n = 5;
-
-    // Build segment tree
-    build(roadDamage, 1, 0, n - 1);
-
-    // Query damage between zone 1 and zone 3
-    cout << "Total road damage (zone 1 to 3): ";
-    cout << query(1, 0, n - 1, 1, 3);
-
+    int arr[] = {4,6,3,7,2};
+    build(arr, 1, 0, 4);
+    cout << query(1, 0, 4, 1, 3);
     return 0;
-},
-
-                    
-             
-            2: {
-                title: "Water Supply and Wastewater Management",
-                problem: "Water distribution systems consist of interconnected pipelines supplying water to different regions of a city. The key challenge is to verify whether water can reach all regions from the source and to identify disconnected or faulty pipeline segments that may disrupt supply.",
-                approach: "Breadth First Search (BFS) is used to traverse the pipeline network starting from the main water source. BFS explores all directly connected junctions before moving to the next level, effectively simulating water flow through the network..\n\n" +
-                          "**Documentation:** In this system, pipeline junctions or tanks are represented as nodes and pipelines as edges in a graph. BFS uses a queue to visit nodes level by level and marks visited nodes. Any node that remains unvisited after traversal indicates a possible blockage or disconnection in the water supply network.
-\n" +
-                          "**Efficiency Analysis:** The BFS algorithm runs in O(V + E) time, where V represents the number of junctions and E represents the number of pipelines. The space complexity is O(V) due to the queue and visited array.",
-                code: `#include <iostream>
-using namespace std;
-
-// BFS to check water flow through pipeline network
-void bfs(int graph[10][10], int n, int source) {
-    int queue[10], front = 0, rear = 0;
-    int visited[10] = {0};
-
-    // Start from main water tank
-    queue[rear++] = source;
-    visited[source] = 1;
-
-    cout << "Water reaches zones: ";
-
-    while (front < rear) {
-        int u = queue[front++];
-        cout << u << " ";
-
-        // Visit all connected pipelines
-        for (int v = 0; v < n; v++) {
-            if (graph[u][v] && !visited[v]) {
-                visited[v] = 1;
-                queue[rear++] = v;
-            }
-        }
+}`
     }
-}
+};
+</script>
 
-int main() {
-    // Pipeline connectivity matrix
-    int pipes[10][10] = {
-        {0,1,1,0},
-        {1,0,0,1},
-        {1,0,0,1},
-        {0,1,1,0}
-    };
-
-    // BFS from main water source (zone 0)
-    bfs(pipes, 4, 0);
-
-    return 0;
-}
-,
-            3: {
-                title: "Smart Energy Grid Management",
-                problem: "Energy providers must connect multiple power substations using electrical cables such that the entire grid remains connected with the minimum possible installation cost. Poor planning can result in unnecessary expenditure.",
-                approach: "Prim’s Algorithm is used to generate a Minimum Spanning Tree (MST). The algorithm starts from a selected substation and repeatedly adds the lowest-cost edge that connects a visited node to an unvisited one, ensuring minimum total cost without cycles.\n\n" +
-                          "**Documentation:** In the system model, substations are treated as graph vertices and cable installation costs as weighted edges. Prim’s Algorithm incrementally builds the power grid by selecting the most economical connections, resulting in a fully connected and cost-optimized energy network.\n" +
-                          "**Efficiency Analysis:** Using an adjacency matrix, Prim’s Algorithm has a time complexity of O(V²) and a space complexity of O(V). This is suitable for moderate-sized power grids.",
-                code: `#include <iostream>
-using namespace std;
-
-#define INF 999
-
-int main() {
-    int n = 4;
-
-    // Cost matrix for laying power cables
-    int cost[4][4] = {
-        {INF,10,6,INF},
-        {10,INF,5,15},
-        {6,5,INF,4},
-        {INF,15,4,INF}
-    };
-
-    // Track visited power stations
-    int visited[4] = {1, 0, 0, 0};
-    int minCost = 0;
-
-    // Build Minimum Spanning Tree
-    for (int edges = 0; edges < n - 1; edges++) {
-        int min = INF, x = 0, y = 0;
-
-        // Find minimum cost edge
-        for (int i = 0; i < n; i++) {
-            if (visited[i]) {
-                for (int j = 0; j < n; j++) {
-                    if (!visited[j] && cost[i][j] < min) {
-                        min = cost[i][j];
-                        x = i;
-                        y = j;
-                    }
-                }
-            }
-        }
-
-        // Include new node in MST
-        visited[y] = 1;
-        minCost += min;
-    }
-
-    cout << "Minimum energy grid cost: " << minCost;
-    return 0;
-}
-,
-            4: {
-                title: "Solid Waste Collection and Recycling Optimization",
-                problem: "Municipal waste collection vehicles must cover multiple collection points daily while minimizing fuel consumption and travel time. Inefficient routing increases operational costs and delays waste processing.",
-                approach: "Dijkstra’s Algorithm is used to determine the shortest paths from a central waste collection depot to all other collection points. This ensures optimal routing for waste collection vehicles.\n\n" +
-                          "**Documentation:** In the system, collection points are represented as nodes and roads as weighted edges based on distance or travel cost. The algorithm maintains a distance array that continuously updates the shortest known distance to each node, enabling optimal route selection.\n" +
-                          "**Efficiency Analysis:** The time complexity of this implementation of Dijkstra’s Algorithm is O(V²), and the space complexity is O(V). This is effective for city-scale route optimization.",
-                code: `#include <iostream>
-using namespace std;
-
-#define INF 999
-
-int main() {
-    int n = 5;
-
-    // Distance matrix between waste collection points
-    int cost[5][5] = {
-        {0,4,INF,INF,8},
-        {4,0,2,INF,5},
-        {INF,2,0,6,INF},
-        {INF,INF,6,0,3},
-        {8,5,INF,3,0}
-    };
-
-    int dist[5], visited[5] = {0};
-
-    // Initialize distances
-    for (int i = 0; i < n; i++)
-        dist[i] = INF;
-
-    // Start from main dumping yard (node 0)
-    dist[0] = 0;
-
-    // Dijkstra's algorithm
-    for (int count = 0; count < n - 1; count++) {
-        int u = -1, min = INF;
-
-        // Find nearest unvisited node
-        for (int i = 0; i < n; i++) {
-            if (!visited[i] && dist[i] < min) {
-                min = dist[i];
-                u = i;
-            }
-        }
-
-        visited[u] = 1;
-
-        // Update distances
-        for (int v = 0; v < n; v++) {
-            if (!visited[v] && dist[u] + cost[u][v] < dist[v]) {
-                dist[v] = dist[u] + cost[u][v];
-            }
-        }
-    }
-
-    // Display shortest collection distances
-    for (int i = 0; i < n; i++)
-        cout << "Zone " << i << ": " << dist[i] << endl;
-
-    return 0;
-}
-,
-            5: {
-                title: "Public Transport Scheduling and Optimization",
-                problem: "Public transport authorities must determine which bus or train should depart next based on the earliest scheduled time. As the number of services increases, managing schedules manually becomes inefficient.",
-                approach: "A Min Heap is used to store departure times so that the earliest departure is always available at the top of the heap. This allows quick selection of the next service.\n\n" +
-                          "**Documentation:** In this system, each heap node represents a scheduled departure time. New schedules are inserted into the heap dynamically, and the root element always provides the next transport service to be dispatched.\n" +
-                          "**Efficiency Analysis:** Insertion into the min heap takes O(log n) time, while retrieving the earliest departure time takes O(1) time. The space complexity is O(n)",
-                code: `#include <iostream>
-using namespace std;
-
-int heap[20];
-int size = 0;
-
-// Insert departure time into min heap
-void insert(int time) {
-    heap[++size] = time;
-    int i = size;
-
-    // Heapify upwards
-    while (i > 1 && heap[i] < heap[i / 2]) {
-        swap(heap[i], heap[i / 2]);
-        i /= 2;
-    }
-}
-
-int main() {
-    // Insert bus/train departure times
-    insert(15);
-    insert(5);
-    insert(25);
-
-    // Minimum time has highest priority
-    cout << "Next departure time: " << heap[1];
-    return 0;
-}
-,
-            6: {
-                title: "Emergency Response and Disaster Management",
-                problem: "During disasters such as floods or fires, authorities must quickly identify all city zones affected by the event to plan evacuation and rescue operations effectively.",
-                approach: "Depth First Search (DFS) is used to explore all zones connected to the disaster source. DFS ensures that all reachable and affected zones are identified.
-\n\n" +
-                          "**Documentation:** City zones are modeled as nodes and their connectivity as edges. DFS starts from the disaster source, marks visited zones, and recursively explores connected regions, simulating the spread of the disaster.\n" +
-                          "**Efficiency Analysis:** DFS operates in O(V + E) time and requires O(V) space for the visited array and recursion stack.",
-                code: `#include <iostream>
-using namespace std;
-
-int city[10][10];
-int visited[10];
-
-// DFS to find all affected zones
-void dfs(int u, int n) {
-    visited[u] = 1;
-    cout << u << " ";
-
-    for (int i = 0; i < n; i++) {
-        if (city[u][i] && !visited[i]) {
-            dfs(i, n);
-        }
-    }
-}
-
-int main() {
-    int n = 5;
-
-    // Connectivity of city zones
-    int temp[5][5] = {
-        {0,1,0,0,1},
-        {1,0,1,0,0},
-        {0,1,0,1,0},
-        {0,0,1,0,1},
-        {1,0,0,1,0}
-    };
-
-    // Copy matrix
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            city[i][j] = temp[i][j];
-
-    cout << "Affected zones: ";
-    dfs(0, n);
-
-    return 0;
-}
-,
-            7: {
-                title: "Smart Parking – Slot Allocation System",
-                problem: "Parking systems must allocate slots fairly and efficiently so that vehicles are served in the order in which they arrive, avoiding conflicts and delays.
-",
-                approach: "A Queue data structure is used to implement first-come-first-served parking slot allocation.\n\n" +
-                          "**Documentation:** In the system, arriving vehicles are added to the rear of the queue, and vehicles at the front are allocated parking slots as they become available. This ensures fairness and simplicity in parking management.\n" +
-                          "**Efficiency Analysis:** Both enqueue and dequeue operations take O(1) time, and the space complexity is O(n), where n is the number of waiting vehicles.",
-                code: `#include <iostream>
-using namespace std;
-
-int main() {
-    int queue[10];
-    int front = 0, rear = 0;
-
-    // Parking slots arrive in order
-    queue[rear++] = 201;
-    queue[rear++] = 202;
-
-    // Allocate slot to first arriving vehicle
-    cout << "Allocated parking slot: " << queue[front++];
-
-    return 0;
-}
-,
-            8: {
-                title: "Environmental Monitoring and Climate Resilience",
-                problem: "Environmental monitoring systems must track pollution levels across multiple locations where values are frequently updated. Authorities need fast computation of cumulative pollution levels for analysis and decision-making.",
-                approach: " A Fenwick Tree (Binary Indexed Tree) is used to efficiently support frequent updates and prefix sum queries on pollution data.\n\n" +
-                          "**Documentation:** Each index of the Fenwick Tree represents a monitoring station. The tree stores partial sums, allowing pollution updates and cumulative queries to be processed efficiently, making it suitable for real-time monitoring dashboards.\n" +
-                          "**Efficiency Analysis:** Both update and query operations run in O(log n) time, and the space complexity is O(n), making this approach scalable for large environmental datasets.",
-                code: `#include <iostream>
-using namespace std;
-
-int BIT[10];
-int n = 5;
-
-// Update pollution level at zone i
-void update(int i, int val) {
-    while (i <= n) {
-        BIT[i] += val;
-        i += (i & -i);
-    }
-}
-
-// Query cumulative pollution till zone i
-int query(int i) {
-    int sum = 0;
-    while (i > 0) {
-        sum += BIT[i];
-        i -= (i & -i);
-    }
-    return sum;
-}
-
-int main() {
-    // Update pollution readings
-    update(1, 40);
-    update(2, 30);
-    update(3, 20);
-
-    cout << "Pollution level till zone 3: " << query(3);
-    return 0;
-}
-
-`,
-                dataset: `SmartCode,Direction,SectorType,SectorNo,StreetNo,BuildingNo
-NWSR-05-02-0145,NW,SR,5,2,145
-SESC-12-07-0089,SE,SC,12,7,89
-NESI-08-03-0234,NE,SI,8,3,234`
-            }
-        };
-
-        // Initialize syntax highlighting on load
-        document.addEventListener('DOMContentLoaded', (event) => {
-            // Check for the initial dark mode preference and apply the correct icon
-             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                // If the user prefers dark mode, the theme-icon should be 'sun'
-                document.getElementById('theme-icon').classList.remove('fa-moon', 'text-gray-600');
-                document.getElementById('theme-icon').classList.add('fa-sun', 'text-yellow-500');
-                document.getElementById('mobile-theme-icon').classList.remove('fa-moon', 'text-gray-600');
-                document.getElementById('mobile-theme-icon').classList.add('fa-sun', 'text-yellow-500');
-            } else {
-                // If the user prefers light mode, the theme-icon should be 'moon'
-                document.getElementById('theme-icon').classList.remove('fa-sun', 'text-yellow-500');
-                document.getElementById('theme-icon').classList.add('fa-moon', 'text-gray-600');
-                document.getElementById('mobile-theme-icon').classList.remove('fa-sun', 'text-yellow-500');
-                document.getElementById('mobile-theme-icon').classList.add('fa-moon', 'text-gray-600');
-            }
-
-            // Highlight any existing code blocks (though none exist initially, good practice)
-            hljs.highlightAll();
-        });
-    </script>
 </body>
 </html>
+
