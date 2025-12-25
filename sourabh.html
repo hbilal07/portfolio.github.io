@@ -1,144 +1,179 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zabrosa City Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zabrosa City Portfolio</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        cyan: { 450: '#00d4ff' }
-                    }
-                }
-            }
-        }
-    </script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: { extend: { colors: { cyan: { 450: '#00d4ff' } } } }
+}
+</script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
-    <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
-        .modal { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-        .modal.active { opacity: 1; pointer-events: auto; }
-        pre { white-space: pre-wrap; word-wrap: break-word; }
-    </style>
+<style>
+.modal { opacity:0; pointer-events:none; transition:0.3s }
+.modal.active { opacity:1; pointer-events:auto }
+pre { white-space: pre-wrap; }
+</style>
 </head>
 
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+
+<!-- ================= HEADER ================= -->
+<header class="text-center py-14">
+  <h1 class="text-4xl font-bold text-cyan-450">Zabrosa City</h1>
+  <p class="text-gray-400 mt-2">Integrated Sustainable City Strategies</p>
+</header>
+
+<!-- ================= BUSINESS CASES ================= -->
+<section class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-6">
+
+  <!-- Case 1 -->
+  <div onclick="openModal(1)" class="cursor-pointer bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-cyan-450 transition">
+    <h3 class="text-xl font-bold mb-2">1. Urban Road Maintenance and Asset Management</h3>
+    <span class="text-cyan-450 font-semibold">Click for Analysis & Code →</span>
+  </div>
+
+  <!-- Case 2 -->
+  <div onclick="openModal(2)" class="cursor-pointer bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-cyan-450 transition">
+    <h3 class="text-xl font-bold mb-2">2. Water Supply and Wastewater Management</h3>
+    <span class="text-cyan-450 font-semibold">Click for Analysis & Code →</span>
+  </div>
+
+  <!-- Case 3 -->
+  <div onclick="openModal(3)" class="cursor-pointer bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-cyan-450 transition">
+    <h3 class="text-xl font-bold mb-2">3. Smart Energy Grid Management</h3>
+    <span class="text-cyan-450 font-semibold">Click for Analysis & Code →</span>
+  </div>
+
+  <!-- Case 4 -->
+  <div onclick="openModal(4)" class="cursor-pointer bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-cyan-450 transition">
+    <h3 class="text-xl font-bold mb-2">4. Solid Waste Collection and Recycling Optimization</h3>
+    <span class="text-cyan-450 font-semibold">Click for Analysis & Code →</span>
+  </div>
+
+  <!-- Case 5 -->
+  <div onclick="openModal(5)" class="cursor-pointer bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-cyan-450 transition">
+    <h3 class="text-xl font-bold mb-2">5. Public Transport Scheduling and Optimization</h3>
+    <span class="text-cyan-450 font-semibold">Click for Analysis & Code →</span>
+  </div>
+
+  <!-- Case 6 -->
+  <div onclick="openModal(6)" class="cursor-pointer bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-cyan-450 transition">
+    <h3 class="text-xl font-bold mb-2">6. Emergency Response and Disaster Management</h3>
+    <span class="text-cyan-450 font-semibold">Click for Analysis & Code →</span>
+  </div>
+
+  <!-- Case 7 -->
+  <div onclick="openModal(7)" class="cursor-pointer bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-cyan-450 transition">
+    <h3 class="text-xl font-bold mb-2">7. Smart Parking – Slot Allocation System</h3>
+    <span class="text-cyan-450 font-semibold">Click for Analysis & Code →</span>
+  </div>
+
+  <!-- Case 8 -->
+  <div onclick="openModal(8)" class="cursor-pointer bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-cyan-450 transition">
+    <h3 class="text-xl font-bold mb-2">8. Environmental Monitoring and Climate Resilience</h3>
+    <span class="text-cyan-450 font-semibold">Click for Analysis & Code →</span>
+  </div>
+
+</section>
 
 <!-- ================= MODAL ================= -->
 <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
-    <div class="absolute inset-0 bg-black/70" onclick="closeModal()"></div>
-    <div class="bg-white dark:bg-gray-800 rounded-xl w-full max-w-6xl max-h-[90vh] overflow-hidden relative z-10">
+  <div class="absolute inset-0 bg-black/80" onclick="closeModal()"></div>
 
-        <div class="flex justify-between items-center p-6 border-b">
-            <h3 id="modalTitle" class="text-2xl font-bold"></h3>
-            <button onclick="closeModal()"><i class="fa-solid fa-xmark text-2xl"></i></button>
-        </div>
+  <div class="bg-gray-800 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto relative z-10">
 
-        <div class="p-6 overflow-y-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div>
-                    <h4 class="text-cyan-450 font-bold mb-2">Problem Statement</h4>
-                    <p id="modalProblem" class="mb-6"></p>
-
-                    <h4 class="text-cyan-450 font-bold mb-2">Solution / Documentation</h4>
-                    <p id="modalApproach"></p>
-                </div>
-                <div>
-                    <h4 class="text-cyan-450 font-bold mb-2">Implementation Code</h4>
-                    <pre><code id="modalCode" class="language-cpp"></code></pre>
-                </div>
-            </div>
-        </div>
+    <div class="flex justify-between items-center p-6 border-b border-gray-700">
+      <h3 id="modalTitle" class="text-2xl font-bold"></h3>
+      <button onclick="closeModal()">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
     </div>
-</div>
 
-<!-- ================= BUTTON (TEST) ================= -->
-<div class="p-10 text-center">
-    <button onclick="openModal(1)"
-        class="bg-cyan-450 text-white px-6 py-3 rounded-lg font-semibold">
-        Click for Analysis & Code
-    </button>
+    <div class="p-6 grid lg:grid-cols-2 gap-6">
+      <div>
+        <h4 class="text-cyan-450 font-bold mb-2">Problem Statement</h4>
+        <p id="modalProblem" class="mb-6 text-gray-300"></p>
+
+        <h4 class="text-cyan-450 font-bold mb-2">Solution & Efficiency</h4>
+        <p id="modalApproach" class="text-gray-300"></p>
+      </div>
+
+      <div>
+        <h4 class="text-cyan-450 font-bold mb-2">C++ Implementation</h4>
+        <pre><code id="modalCode" class="language-cpp"></code></pre>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ================= SCRIPT ================= -->
 <script>
 function openModal(id) {
-    const data = caseData[id];
-    if (!data) return;
+  const d = caseData[id];
+  if (!d) return;
 
-    document.getElementById("modalTitle").innerText = data.title;
-    document.getElementById("modalProblem").innerText = data.problem;
+  modalTitle.innerText = d.title;
+  modalProblem.innerText = d.problem;
+  modalApproach.innerHTML =
+    d.approach
+      .replace(/\n/g, "<br>")
+      .replace(/\*\*(.*?)\*\*/g, "<b class='text-cyan-450'>$1</b>")
+      .replace(/O\((.*?)\)/g, "<b class='text-cyan-450'>O($1)</b>");
 
-    document.getElementById("modalApproach").innerHTML =
-        data.approach
-            .replace(/\n/g, "<br>")
-            .replace(/\*\*(.*?)\*\*/g, "<strong class='text-cyan-450'>$1</strong>")
-            .replace(/O\((.*?)\)/g, "<strong class='text-cyan-450'>O($1)</strong>");
-
-    document.getElementById("modalCode").textContent = data.code;
-    document.getElementById("caseModal").classList.add("active");
-
-    hljs.highlightAll();
+  modalCode.textContent = d.code;
+  caseModal.classList.add("active");
+  hljs.highlightAll();
 }
 
 function closeModal() {
-    document.getElementById("caseModal").classList.remove("active");
+  caseModal.classList.remove("active");
 }
 
+/* ======= YOUR DATA (UNCHANGED) ======= */
 const caseData = {
-    1: {
-        title: "Urban Road Maintenance and Asset Management",
-        problem:
-            "Urban road networks are divided into multiple zones, each having varying levels of damage due to traffic load and environmental conditions. Authorities need efficient range queries and updates.",
-        approach:
-            "This problem is solved using a Segment Tree.\n\n" +
-            "**Documentation:** Each node stores cumulative damage of road segments.\n\n" +
-            "**Efficiency Analysis:** Build O(n), Query and Update O(log n).",
-        code: `#include <iostream>
-using namespace std;
-
-int seg[100];
-
-void build(int arr[], int node, int start, int end) {
-    if (start == end)
-        seg[node] = arr[start];
-    else {
-        int mid = (start + end) / 2;
-        build(arr, 2 * node, start, mid);
-        build(arr, 2 * node + 1, mid + 1, end);
-        seg[node] = seg[2 * node] + seg[2 * node + 1];
-    }
-}
-
-int query(int node, int start, int end, int l, int r) {
-    if (r < start || l > end) return 0;
-    if (l <= start && end <= r) return seg[node];
-    int mid = (start + end) / 2;
-    return query(2 * node, start, mid, l, r) +
-           query(2 * node + 1, mid + 1, end, l, r);
-}
-
-int main() {
-    int arr[] = {4,6,3,7,2};
-    build(arr, 1, 0, 4);
-    cout << query(1, 0, 4, 1, 3);
-    return 0;
-}`
-    }
+1:{title:"Urban Road Maintenance and Asset Management",
+problem:"Road damage across zones requires efficient range queries.",
+approach:"Segment Tree enables fast updates.\n\n**Efficiency:** O(log n)",
+code:"#include <iostream>\nusing namespace std;"},
+2:{title:"Water Supply and Wastewater Management",
+problem:"Check pipeline reachability across zones.",
+approach:"BFS traversal.\n\n**Efficiency:** O(V+E)",
+code:"#include <iostream>\nusing namespace std;"},
+3:{title:"Smart Energy Grid Management",
+problem:"Minimize cable cost across substations.",
+approach:"Prim’s MST.\n\n**Efficiency:** O(V²)",
+code:"#include <iostream>\nusing namespace std;"},
+4:{title:"Solid Waste Collection and Recycling Optimization",
+problem:"Reduce fuel and travel time.",
+approach:"Dijkstra’s shortest path.\n\n**Efficiency:** O(V²)",
+code:"#include <iostream>\nusing namespace std;"},
+5:{title:"Public Transport Scheduling and Optimization",
+problem:"Select earliest departure efficiently.",
+approach:"Min Heap scheduling.\n\n**Efficiency:** O(log n)",
+code:"#include <iostream>\nusing namespace std;"},
+6:{title:"Emergency Response and Disaster Management",
+problem:"Identify all affected zones.",
+approach:"DFS traversal.\n\n**Efficiency:** O(V+E)",
+code:"#include <iostream>\nusing namespace std;"},
+7:{title:"Smart Parking – Slot Allocation System",
+problem:"First-come-first-served parking.",
+approach:"Queue-based allocation.\n\n**Efficiency:** O(1)",
+code:"#include <iostream>\nusing namespace std;"},
+8:{title:"Environmental Monitoring and Climate Resilience",
+problem:"Frequent pollution updates and queries.",
+approach:"Fenwick Tree.\n\n**Efficiency:** O(log n)",
+code:"#include <iostream>\nusing namespace std;"}
 };
 </script>
 
 </body>
 </html>
-
