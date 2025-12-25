@@ -1,1 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us & Project - Zabrosa City</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyan: { 450: '#00d4ff' } // Custom Accent Color (Agartha Blue)
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'space-grotesk': ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .text-cyan-450 {
+            color: #00d4ff;
+        }
+        
+        /* General Card Styling */
+        .team-member-card, .member-ideas-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+        .team-member-card:hover, .member-ideas-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+        }
+        html.dark .team-member-card:hover, html.dark .member-ideas-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* List Styling for Business Ideas */
+        .ideas-grid ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+            padding-left: 0;
+            color: #94a3b8; /* text-gray-400 */
+        }
+        .ideas-grid li {
+            padding-left: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #cbd5e1; /* text-gray-300 */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+    
+    <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center">
+                <i class="fa-solid fa-city text-cyan-450 text-2xl mr-2"></i>
+                <span class="brand-font text-xl font-bold text-gray-900 dark:text-white tracking-tight">Zabrosa City</span>
+            </div>
+            <div class="flex items-center space-x-6">
+             <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Home</a>
+                <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">About</a>
+                <a href="sourabh.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Sourabh</a>
+                <a href="bilal.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">bilal</a>
+                
+                  <a href="zayed.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Zayed</a>
+                
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none">
+                    <i id="theme-icon" class="fa-solid fa-moon text-gray-600 dark:text-yellow-500 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="about-header text-center py-16 px-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+            About Our Team & Project <span class="text-cyan-450">💡</span>
+        </h1>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-12 flex-grow space-y-12">
+        
+        <section class="about-project">
+            <div class="mission-statement bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                <h2 class="text-3xl font-bold text-cyan-450 mb-4 flex items-center">
+                    <i class="fa-solid fa-city mr-3"></i> The Zabrosa Initiative
+                </h2>
+                <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                    We are a passionate team of computer science enthusiasts working together on a groundbreaking project: Zabrosa City in the Making. Our goal is to apply advanced Design and Algorithm Analysis (DAA) techniques to develop sustainable, data-driven solutions for modern urban challenges, such as optimized resource allocation, traffic flow, and infrastructure planning.
+                </p>
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Our goal is to integrate technology and innovation to create systems that are scalable, efficient, and user-friendly, demonstrating the practical application of theoretical computer science in real-world infrastructure.
+                </p>
+            </div>
+        </section>
+
+        <section class="project-details-section">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-l-4 border-cyan-450 pl-4">Project Insights & Analysis 📊</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="project-asset space-y-6 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-2xl font-bold text-cyan-450 mb-4 flex items-center">
+                        <i class="fa-solid fa-map-marked-alt mr-2"></i> Conceptual Map of Zabrosa City
+                    </h3>
+                    <img src="ph1.jpg" alt="Conceptual City Map: A grid-based system optimized using graph algorithms for infrastructure planning." class="w-full h-auto border border-gray-200 dark:border-gray-700 rounded-lg">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        This hand-drawn map forms the foundation of our project. It utilizes a grid-based system for city planning, which is essential for applying **Graph Algorithms** (like Shortest Path or Minimum Spanning Tree) to optimize infrastructure like road networks, resource pipelines, and emergency routes.
+                    </p>
+                </div>
+                
+                <div class="project-analysis space-y-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Core Design Metrics</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="data-block">
+                                <h4 class="text-lg font-semibold text-cyan-450 mb-1">Land Usage Breakdown</h4>
+                                <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-5">
+                                    <li>Residential: 38%</li>
+                                    <li>Commercial: 27%</li>
+                                    <li>Industrial/Innovation: 13%</li>
+                                    <li>Green/Recreational: 22%</li>
+                                </ul>
+                            </div>
+                            <div class="data-block">
+                                <h4 class="text-lg font-semibold text-cyan-450 mb-1">Algorithmic Focus</h4>
+                                <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-5">
+                                    <li>Traffic: Dijkstra's / A* Search</li>
+                                    <li>Resources: Greedy / Dynamic Programming</li>
+                                    <li>Planning: Graph Coloring / Matching</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-asset wide-asset bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Detailed Data Modeling</h3>
+                        <img src="ph2.jpg" alt="Data Analysis and Zoning: Handwritten charts detailing proposed resource distribution, population density, and zoning breakdowns for algorithmic analysis." class="w-full h-auto border border-gray-200 dark:border-gray-700 rounded-lg">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">
+                            The charts and notes detail our data modeling efforts, including proposed resource distribution models and population density breakdowns, which directly feed into the algorithmic analysis of the city's efficiency.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        
+        <hr class="my-8 border-gray-300 dark:border-gray-700">
+        
+        <section class="team-section" id="team-roster">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-l-4 border-cyan-450 pl-4">Meet the Team 👥</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="team-member-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Zayed Soudagar</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">SRN: 01fe24bcs279</p>
+                    <hr class="border-gray-200 dark:border-gray-700 mb-3">
+                    <h4 class="text-base font-semibold text-cyan-450 mb-2">📌 Skills</h4>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-4">
+                        <li>C, C++, Python</li>
+                        <li>Data Structures and Algorithms</li>
+                        <li>Web Development (HTML/CSS)</li>
+                    
+                    </ul>
+                    <div class="mt-4 flex flex-col space-y-2">
+                        <a href="Ashu.html" class="text-sm font-medium text-cyan-450 hover:underline"><i class="fa-solid fa-user-circle mr-1"></i> Zayed's Profile</a>
+                        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-cyan-450 transition"><i class="fa-brands fa-linkedin mr-1"></i> LinkedIn Profile</a>
+                    </div>
+                </div>
+
+                <div class="team-member-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Bilal Asangi</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">SRN: 01fe24bcs298</p>
+                    <hr class="border-gray-200 dark:border-gray-700 mb-3">
+                    <h4 class="text-base font-semibold text-cyan-450 mb-2">📌 Skills</h4>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-4">
+                        <li>C, C++, Python</li>
+                        <li>Data Structures and Algorithms</li>
+                        <li>Web Development (HTML/CSS)</li>
+                    
+                    </ul>
+                    <div class="mt-4 flex flex-col space-y-2">
+                        <a href="yashwant.html" class="text-sm font-medium text-cyan-450 hover:underline"><i class="fa-solid fa-user-circle mr-1"></i> Bilal's Profile</a>
+                        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-cyan-450 transition"><i class="fa-brands fa-linkedin mr-1"></i> LinkedIn Profile</a>
+                    </div>
+                </div>
+                
+                <div class="team-member-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Sourabh K</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">SRN: 01fe24bcs289</p>
+                    <hr class="border-gray-200 dark:border-gray-700 mb-3">
+                    <h4 class="text-base font-semibold text-cyan-450 mb-2">📌 Skills</h4>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-4">
+                        <li>C, C++, Python,JavaScript</li>
+                        <li>Data Structures and Algorithms</li>
+                        <li>Web Development (HTML/CSS)</li>
+                    
+                    </ul>
+                    <div class="mt-4 flex flex-col space-y-2">
+                        <a href="sourabh.html" class="text-sm font-medium text-cyan-450 hover:underline"><i class="fa-solid fa-user-circle mr-1"></i> Sourabh's Profile</a>
+                        <a href="https://www.linkedin.com/in/goureesh-n-doddamani-790a08377?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-cyan-450 transition"><i class="fa-brands fa-linkedin mr-1"></i> LinkedIn Profile</a>
+                    </div>
+                </div>
+
+               
+            </div>
+        </section>
+
+        <section class="business-ideas-section">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-l-4 border-cyan-450 pl-4">Innovative Business Ideas 💼</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="member-ideas-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-cyan-450 mb-1">Bilal Asangi</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Business Cases</p>
+                    <ol class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>Automated Billing Code Matching & Fraud Detection</li>
+                        <li>Supermarket Dynamic Pricing Engine</li></li>
+                        <li>Urban Event Ticketing & Crowd Flow Optimizer</li>
+                        <li>Traffic Signal Optimization</li>
+                        <li>Smart Toll Collection & Vehicle Lookup</li>
+                        <li>Smart Public Toilet Usage & Maintenance Tracking</li>
+                        <li>Smart Street Lighting Optimization System</li>
+                        <li>Digital Library & Knowledge Resource Management for the City</li>
+                       
+                    </ol>
+                </div>
+
+                <div class="member-ideas-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-cyan-450 mb-1">Sourabh K</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Business Cases</p>
+                    <ol class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>Urban Road Maintenance and Asset Management</li>
+                        <li>Water Supply and Wastewater Management</li>
+                        <li>Smart Energy Grid Management</li>
+                        <li>Solid Waste Collection and Recycling Optimization</li>
+                        <li>Public Transport Scheduling and Optimization</li>
+                        <li>Emergency Response and Disaster Management</li>
+                        <li>Smart Parking – Slot Allocation System</li>
+                        <li>Environmental Monitoring and Climate Resilience</li>
+                        
+                    </ol>
+                </div>
+
+                <div class="member-ideas-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-cyan-450 mb-1">Zayed Soudagar</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Business Cases</p>
+                    <ol class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>Smart Building Elevator Scheduling System</li>
+                        <li>Urban Noise Pollution Detection & Control System</li>
+                        <li>Smart Water Tank Level Monitoring System</li>
+                        <li>City-Wide Lost & Found Item Management System</li>
+                        <li>Smart Queue Management for Government Offices</li>
+                        <li>Urban Food Supply Chain Distribution System</li>
+                        <li>Smart City Advertisement Billboard Allocation System</li>
+                        <li>City Vehicle Emission Testing & Compliance System</li>
+                       
+                    </ol>
+                </div>
+
+               
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white py-8 mt-auto transition-colors">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="brand-font text-lg font-bold">Zabrosa Sustainable City</span>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Shaping a sustainable tomorrow through the power of algorithms, one step at a time.</p>
+            </div>
+            <div class="text-center mt-4 text-gray-500 dark:text-gray-600 text-xs">
+                © 2025 Zabrosa City Project. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                icon.classList.remove('fa-sun', 'text-yellow-500');
+                icon.classList.add('fa-moon', 'text-gray-600');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                icon.classList.remove('fa-moon', 'text-gray-600');
+                icon.classList.add('fa-sun', 'text-yellow-500');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            // Check for saved preference or system preference
+            if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+                 html.classList.remove('dark');
+                 if (icon) {
+                     icon.classList.remove('fa-sun', 'text-yellow-500');
+                     icon.classList.add('fa-moon', 'text-gray-600');
+                 }
+            } else {
+                 html.classList.add('dark');
+                 if (icon) {
+                     icon.classList.remove('fa-moon', 'text-gray-600');
+                     icon.classList.add('fa-sun', 'text-yellow-500');
+                 }
+            }
+        });
+    </script>
+</body>
+</html>
