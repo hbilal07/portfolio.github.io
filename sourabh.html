@@ -12,9 +12,9 @@
                 extend: { 
                     colors: { 
                         brand: { 
-                            primary: '#E0A19D', // Rose Gold Primary
-                            accent: '#F2C9C2',  // Light Rose/Champagne
-                            dark: '#2D1B1E'     // Deep Rose/Ebony
+                            primary: '#fb7185', // Rose Gold Accent
+                            secondary: '#9d7bb0', // Amethyst Mid-tone
+                            dark: '#2e1a47'      // Deep Amethyst
                         } 
                     } 
                 } 
@@ -31,32 +31,37 @@
         .fade-in { animation: fadeIn 0.8s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
+        /* Updated Gradient Background for Header */
+        .hero-gradient {
+            background: linear-gradient(135deg, #2e1a47 0%, #4c1d95 50%, #7c3aed 100%);
+        }
+
         .initiative-card { 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
             cursor: pointer; 
-            border: 1px solid rgba(224, 161, 157, 0.1); 
-            background: rgba(45, 27, 30, 0.3);
+            border: 1px solid rgba(251, 113, 133, 0.1); 
+            background: rgba(46, 26, 71, 0.4);
         }
         .initiative-card:hover { 
             transform: translateY(-8px); 
-            border-color: #E0A19D; 
-            box-shadow: 0 15px 30px -10px rgba(224, 161, 157, 0.2); 
-            background: rgba(45, 27, 30, 0.6);
+            border-color: #fb7185; 
+            box-shadow: 0 15px 30px -10px rgba(124, 58, 237, 0.3); 
+            background: rgba(46, 26, 71, 0.7);
         }
         
         .modal { transition: opacity 0.3s ease-in-out; opacity: 0; pointer-events: none; }
         .modal.active { opacity: 1; pointer-events: auto; }
         
-        pre { white-space: pre; word-wrap: normal; overflow-x: auto; background: #1a1625; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid rgba(224, 161, 157, 0.1); }
+        pre { white-space: pre; word-wrap: normal; overflow-x: auto; background: #130b1f; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid rgba(251, 113, 133, 0.1); }
         code { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; line-height: 1.5; }
         
-        .highlight-heading { color: #E0A19D; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.4rem; display: block; }
-        .glass-panel { background: rgba(28, 25, 35, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(224, 161, 157, 0.15); }
+        .highlight-heading { color: #fb7185; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.4rem; display: block; }
+        .glass-panel { background: rgba(30, 20, 50, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(251, 113, 133, 0.2); }
     </style>
 </head>
-<body class="bg-[#0f0e13] text-slate-300 flex flex-col min-h-screen">
+<body class="bg-[#0d0716] text-slate-300 flex flex-col min-h-screen">
 
-    <nav class="bg-[#1c1923]/90 backdrop-blur-md sticky top-0 z-40 border-b border-rose-900/20 shadow-sm">
+    <nav class="bg-[#1a0f2e]/95 backdrop-blur-md sticky top-0 z-40 border-b border-brand-primary/20 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
@@ -75,7 +80,7 @@
     <header class="relative pt-16 pb-12 px-4 overflow-hidden">
         <div class="max-w-4xl mx-auto text-center relative z-10 fade-in">
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-                Sustainable City <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Algorithms</span>
+                Sustainable City <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-purple-400 to-violet-500">Algorithms</span>
             </h1>
             <p class="text-lg text-slate-400 mb-10 leading-relaxed">
                 Hi, I am <span class="text-brand-primary font-semibold">Sourabh Kakarambi</span>. Exploring the data structures behind 
@@ -103,17 +108,17 @@
 
     <main id="initiatives" class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
         <div class="flex items-center justify-center space-x-4 mb-12">
-            <div class="h-px w-12 bg-rose-900/30"></div>
+            <div class="h-px w-12 bg-brand-primary/30"></div>
             <h2 class="text-3xl font-bold text-white text-center">Detailed Initiatives</h2>
-            <div class="h-px w-12 bg-rose-900/30"></div>
+            <div class="h-px w-12 bg-brand-primary/30"></div>
         </div>
         <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
     </main>
 
     <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-[#0f0e13]/95 backdrop-blur-md" onclick="closeModal()"></div>
-        <div class="bg-[#1c1923] rounded-2xl border border-rose-900/20 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10">
-            <div class="flex justify-between items-center p-6 border-b border-rose-900/10">
+        <div class="absolute inset-0 bg-[#0d0716]/95 backdrop-blur-md" onclick="closeModal()"></div>
+        <div class="bg-[#1a0f2e] rounded-2xl border border-brand-primary/20 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10">
+            <div class="flex justify-between items-center p-6 border-b border-brand-primary/10">
                 <h3 id="modalTitle" class="text-2xl font-bold text-brand-primary flex items-center"></h3>
                 <button onclick="closeModal()" class="text-slate-500 hover:text-white transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
             </div>
