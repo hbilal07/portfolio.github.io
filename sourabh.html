@@ -12,9 +12,9 @@
                 extend: { 
                     colors: { 
                         brand: { 
-                            primary: '#a855f7', // Amethyst Purple
-                            accent: '#fb7185',  // Rose Gold/Coral
-                            dark: '#1e1b4b'     // Deep Indigo
+                            primary: '#10b981', // Emerald
+                            accent: '#f59e0b',  // Amber/Gold
+                            dark: '#064e3b'     // Deep Emerald
                         } 
                     } 
                 } 
@@ -34,96 +34,87 @@
         .initiative-card { 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
             cursor: pointer; 
-            border: 1px solid rgba(168, 85, 247, 0.2); 
-            background: rgba(30, 27, 75, 0.4);
+            border: 1px solid rgba(16, 185, 129, 0.2); 
+            background: rgba(6, 78, 59, 0.2);
         }
         .initiative-card:hover { 
             transform: translateY(-8px); 
-            border-color: #fb7185; 
-            box-shadow: 0 15px 30px -10px rgba(251, 113, 133, 0.3); 
-            background: rgba(30, 27, 75, 0.8);
+            border-color: #f59e0b; 
+            box-shadow: 0 15px 30px -10px rgba(245, 158, 11, 0.3); 
+            background: rgba(6, 78, 59, 0.5);
         }
         
         .modal { transition: opacity 0.3s ease-in-out; opacity: 0; pointer-events: none; }
         .modal.active { opacity: 1; pointer-events: auto; }
         
-        pre { white-space: pre; word-wrap: normal; overflow-x: auto; background: #0f172a; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid rgba(168, 85, 247, 0.2); }
+        pre { white-space: pre; word-wrap: normal; overflow-x: auto; background: #0f172a; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid rgba(16, 185, 129, 0.2); }
         code { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; line-height: 1.5; }
         
-        .highlight-heading { color: #fb7185; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; }
-        .glass-panel { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(168, 85, 247, 0.2); }
-        
-        .bg-gradient-custom {
-            background: radial-gradient(circle at top right, rgba(168, 85, 247, 0.15), transparent),
-                        radial-gradient(circle at bottom left, rgba(251, 113, 133, 0.1), transparent);
-        }
+        .highlight-heading { color: #f59e0b; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.4rem; display: block; }
+        .glass-panel { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(16, 185, 129, 0.2); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-200 flex flex-col min-h-screen bg-gradient-custom">
+<body class="bg-slate-950 text-slate-200 flex flex-col min-h-screen">
 
-    <nav class="bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 border-b border-purple-900/30 shadow-sm">
+    <nav class="bg-slate-900/90 backdrop-blur-md sticky top-0 z-40 border-b border-emerald-900/30 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <i class="fa-solid fa-city text-brand-accent text-2xl mr-2"></i>
                     <span class="brand-font text-xl font-bold text-white tracking-tight">Zabrosa City</span>
                 </div>
-                <div class="flex items-center space-x-4 md:space-x-8">
-                    <button onclick="window.history.back()" class="text-slate-300 hover:text-brand-accent transition flex items-center font-medium">
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.history.back()" class="text-slate-300 hover:text-brand-accent transition flex items-center">
                         <i class="fa-solid fa-arrow-left mr-2"></i> Back
-                    </button>
-                    <a href="#" class="text-slate-300 hover:text-brand-primary transition hidden md:block">Home</a>
-                    <button class="p-2 rounded-full hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-moon text-brand-primary text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <header class="relative pt-20 pb-16 px-4 overflow-hidden">
+    <header class="relative pt-16 pb-12 px-4 overflow-hidden">
         <div class="max-w-4xl mx-auto text-center relative z-10 fade-in">
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-                Comprehensive Sustainable <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">City Initiatives</span>
+                Sustainable City <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Algorithms</span>
             </h1>
             <p class="text-lg text-slate-400 mb-10 leading-relaxed">
-                Hi, I am <span class="text-brand-accent font-semibold">Sourabh Kakarambi</span>. This document outlines the full scope of business cases developed for 
-                <strong>Zabrosa</strong> — a new, self-sufficient, and sustainable city.
+                Hi, I am <span class="text-brand-accent font-semibold">Sourabh Kakarambi</span>. Exploring the data structures behind 
+                <strong>Zabrosa</strong> — a blueprint for the future of urban efficiency.
             </p>
 
             <div class="glass-panel rounded-2xl p-8 text-left max-w-3xl mx-auto shadow-2xl border-l-4 border-l-brand-accent">
                 <div class="flex items-center mb-6">
-                    <i class="fa-solid fa-wand-magic-sparkles text-brand-primary text-xl mr-3"></i>
-                    <h2 class="text-xl font-bold text-white uppercase tracking-wider">8 Key Business Cases</h2>
+                    <i class="fa-solid fa-terminal text-brand-primary text-xl mr-3"></i>
+                    <h2 class="text-xl font-bold text-white uppercase tracking-wider">Business Cases</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-300">
-                    <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">1.</span> Urban Road Maintenance</div>
-                    <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">2.</span> Water & Wastewater Management</div>
-                    <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">3.</span> Smart Energy Grid</div>
-                    <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">4.</span> Waste & Recycling Optimization</div>
+                    <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">1.</span> Road Maintenance</div>
+                    <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">2.</span> Water Management</div>
+                    <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">3.</span> Energy Grid</div>
+                    <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">4.</span> Waste Optimization</div>
                     <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">5.</span> Transport Scheduling</div>
                     <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">6.</span> Emergency Response</div>
-                    <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">7.</span> Smart Parking Systems</div>
+                    <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">7.</span> Parking Allocation</div>
                     <div class="flex items-start"><span class="text-brand-accent font-mono mr-2">8.</span> Environmental Monitoring</div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main id="initiatives" class="flex-grow max-w-7xl mx-auto px-4 py-16 w-full">
+    <main id="initiatives" class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
         <div class="flex items-center justify-center space-x-4 mb-12">
-            <div class="h-px w-12 bg-purple-900/50"></div>
+            <div class="h-px w-12 bg-emerald-900/50"></div>
             <h2 class="text-3xl font-bold text-white text-center">Detailed Initiatives</h2>
-            <div class="h-px w-12 bg-purple-900/50"></div>
+            <div class="h-px w-12 bg-emerald-900/50"></div>
         </div>
         <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
     </main>
 
     <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md" onclick="closeModal()"></div>
-        <div class="bg-slate-900 rounded-2xl border border-purple-900/30 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10">
+        <div class="bg-slate-900 rounded-2xl border border-emerald-900/30 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10">
             <div class="flex justify-between items-center p-6 border-b border-slate-800">
-                <h3 id="modalTitle" class="text-2xl font-bold text-brand-accent"></h3>
+                <h3 id="modalTitle" class="text-2xl font-bold text-brand-accent flex items-center"></h3>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-white transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
             </div>
             <div class="p-6 overflow-y-auto">
@@ -150,86 +141,94 @@
         const caseData = {
             1: {
                 title: "Urban Road Maintenance and Asset Management",
+                icon: "database",
                 problem: "Urban road networks are divided into multiple zones, each having varying levels of damage due to traffic load and environmental conditions. City authorities need to frequently update the damage values after inspections and efficiently calculate the total damage over a range of zones to prioritize maintenance work.",
                 approach: "This problem is solved using a Segment Tree, which is a tree-based data structure designed for efficient range queries and updates. The segment tree stores cumulative damage values for ranges of road segments.",
                 documentation: "In the system, each leaf node of the segment tree represents a single road segment, while internal nodes represent the sum of damage values of their child segments.",
                 efficiency: "The segment tree is built in O(n) time. Both update and query operations run in O(log n) time. The space complexity is O(n).",
-                code: `#include <iostream>\nusing namespace std;\n\nint seg[4 * 100];\nint n;\n\n// Build Segment Tree\nvoid build(int arr[], int node, int start, int end) {\n    if (start == end) {\n        seg[node] = arr[start];\n    } else {\n        int mid = (start + end) / 2;\n        build(arr, 2 * node, start, mid);\n        build(arr, 2 * node + 1, mid + 1, end);\n        seg[node] = seg[2 * node] + seg[2 * node + 1];\n    }\n}\n\n// Update damage after inspection\nvoid update(int node, int start, int end, int idx, int value) {\n    if (start == end) {\n        seg[node] = value;\n    } else {\n        int mid = (start + end) / 2;\n        if (idx <= mid)\n            update(2 * node, start, mid, idx, value);\n        else\n            update(2 * node + 1, mid + 1, end, idx, value);\n        seg[node] = seg[2 * node] + seg[2 * node + 1];\n    }\n}\n\n// Query damage in a zone range\nint query(int node, int start, int end, int l, int r) {\n    if (r < start || l > end) return 0;\n    if (l <= start && end <= r) return seg[node];\n    int mid = (start + end) / 2;\n    return query(2 * node, start, mid, l, r) +\n           query(2 * node + 1, mid + 1, end, l, r);\n}\n\nint main() {\n    int roadDamage[] = {3, 5, 2, 6, 4};\n    n = 5;\n    build(roadDamage, 1, 0, n - 1);\n    return 0;\n}`
+                code: `#include <iostream>\nusing namespace std;\n\nint seg[4 * 100];\nint n;\n\n// Build Segment Tree\nvoid build(int arr[], int node, int start, int end) {\n    if (start == end) {\n        seg[node] = arr[start];\n    } else {\n        int mid = (start + end) / 2;\n        build(arr, 2 * node, start, mid);\n        build(arr, 2 * node + 1, mid + 1, end);\n        seg[node] = seg[2 * node] + seg[2 * node + 1];\n    }\n}\n\n// Update damage after inspection\nvoid update(int node, int start, int end, int idx, int value) {\n    if (start == end) {\n        seg[node] = value;\n    } else {\n        int mid = (start + end) / 2;\n        if (idx <= mid)\n            update(2 * node, start, mid, idx, value);\n        else\n            update(2 * node + 1, mid + 1, end, idx, value);\n        seg[node] = seg[2 * node] + seg[2 * node + 1];\n    }\n}\n\n// Query damage in a zone range\nint query(int node, int start, int end, int l, int r) {\n    if (r < start || l > end) return 0;\n    if (l <= start && end <= r) return seg[node];\n    int mid = (start + end) / 2;\n    return query(2 * node, start, mid, l, r) +\n           query(2 * node + 1, mid + 1, end, l, r);\n}\n\nint main() {\n    int roadDamage[] = {3, 5, 2, 6, 4};\n    n = 5;\n\n    build(roadDamage, 1, 0, n - 1);\n\n    cout << "Damage in Zone 1 to 3: " << query(1, 0, n - 1, 1, 3) << endl;\n\n    update(1, 0, n - 1, 2, 1);\n\n    cout << "Updated damage: " << query(1, 0, n - 1, 1, 3) << endl;\n\n    return 0;\n}`
             },
             2: {
                 title: "Water Supply and Wastewater Management",
+                icon: "faucet-drip",
                 problem: "Verifying whether water from a source can reach all regions from the source and identifying disconnected pipeline segments.",
                 approach: "Breadth First Search (BFS) is used to traverse the pipeline network starting from the main water source.",
                 documentation: "Junctions are represented as nodes and pipelines as edges. BFS uses a queue to visit nodes level by level.",
                 efficiency: "The BFS algorithm runs in O(V + E) time, where V represents the junctions and E represents the pipelines.",
-                code: `#include <iostream>\n#include <queue>\nusing namespace std;\n\nint main() {\n    int zones = 5;\n    int pipes[5][5] = {\n        {0, 1, 1, 0, 0},\n        {1, 0, 0, 1, 0},\n        {1, 0, 0, 0, 1},\n        {0, 1, 0, 0, 0},\n        {0, 0, 1, 0, 0}\n    };\n    bool visited[5] = {false};\n    queue<int> q;\n    return 0;\n}`
+                code: `#include <iostream>\n#include <queue>\nusing namespace std;\n\nint main() {\n    int zones = 5;\n    int pipes[5][5] = {\n        {0, 1, 1, 0, 0},\n        {1, 0, 0, 1, 0},\n        {1, 0, 0, 0, 1},\n        {0, 1, 0, 0, 0},\n        {0, 0, 1, 0, 0}\n    };\n\n    bool visited[5] = {false};\n    queue<int> q;\n\n    int source = 0; // water plant\n    visited[source] = true;\n    q.push(source);\n\n    cout << "Water reaches zones: ";\n\n    while (!q.empty()) {\n        int u = q.front();\n        q.pop();\n        cout << u << " ";\n\n        for (int v = 0; v < zones; v++) {\n            if (pipes[u][v] && !visited[v]) {\n                visited[v] = true;\n                q.push(v);\n            }\n        }\n    }\n\n    return 0;\n}`
             },
             3: {
                 title: "Smart Energy Grid Management",
+                icon: "charging-station",
                 problem: "Connecting power substations with minimum cabling cost while ensuring the grid remains connected.",
                 approach: "Prim’s Algorithm is used to generate a Minimum Spanning Tree (MST).",
                 documentation: "Substations are vertices and costs are weighted edges. The algorithm selects the most economical connections.",
                 efficiency: "The algorithm has a time complexity of O(V²) using an adjacency matrix.",
-                code: `#include <iostream>\nusing namespace std;\n#define INF 999\n\nint main() {\n    int n = 4;\n    int cost[4][4] = {\n        {INF, 5, 8, INF},\n        {5, INF, 10, 15},\n        {8, 10, INF, 20},\n        {INF, 15, 20, INF}\n    };\n    return 0;\n}`
+                code: `#include <iostream>\nusing namespace std;\n\n#define INF 999\n\nint main() {\n    int n = 4;\n    int cost[4][4] = {\n        {INF, 5, 8, INF},\n        {5, INF, 10, 15},\n        {8, 10, INF, 20},\n        {INF, 15, 20, INF}\n    };\n\n    bool visited[4] = {true, false, false, false};\n    int totalCost = 0;\n\n    for (int edges = 0; edges < n - 1; edges++) {\n        int min = INF, x = -1, y = -1;\n\n        for (int i = 0; i < n; i++)\n            if (visited[i])\n                for (int j = 0; j < n; j++)\n                    if (!visited[j] && cost[i][j] < min) {\n                        min = cost[i][j];\n                        x = i; y = j;\n                    }\n\n        visited[y] = true;\n        totalCost += min;\n        cout << "Power line: " << x << " -> " << y << endl;\n    }\n\n    cout << "Total Grid Cost: " << totalCost << endl;\n    return 0;\n}`
             },
             4: {
                 title: "Solid Waste Collection and Recycling Optimization",
+                icon: "recycle",
                 problem: "Finding the shortest travel path for waste collection vehicles from a central depot to all zones.",
                 approach: "Dijkstra’s Algorithm is used to determine the shortest paths from a central depot.",
                 documentation: "Roads are weighted edges based on distance. The algorithm updates shortest known distances.",
                 efficiency: "The time complexity is O(V²) and the space complexity is O(V).",
-                code: `#include <iostream>\nusing namespace std;\n#define INF 999\n\nint main() {\n    int n = 5;\n    int graph[5][5] = {\n        {0, 4, INF, INF, 8},\n        {4, 0, 2, INF, 5},\n        {INF, 2, 0, 6, INF},\n        {INF, INF, 6, 0, 3},\n        {8, 5, INF, 3, 0}\n    };\n    return 0;\n}`
+                code: `#include <iostream>\nusing namespace std;\n\n#define INF 999\n\nint main() {\n    int n = 5;\n    int graph[5][5] = {\n        {0, 4, INF, INF, 8},\n        {4, 0, 2, INF, 5},\n        {INF, 2, 0, 6, INF},\n        {INF, INF, 6, 0, 3},\n        {8, 5, INF, 3, 0}\n    };\n\n    int dist[5], visited[5] = {0};\n    for (int i = 0; i < n; i++) dist[i] = INF;\n    dist[0] = 0;\n\n    for (int i = 0; i < n; i++) {\n        int u = -1, min = INF;\n        for (int j = 0; j < n; j++)\n            if (!visited[j] && dist[j] < min) {\n                min = dist[j];\n                u = j;\n            }\n        \n        visited[u] = 1;\n        for (int v = 0; v < n; v++)\n            if (dist[u] + graph[u][v] < dist[v])\n                dist[v] = dist[u] + graph[u][v];\n    }\n\n    cout << "Minimum distance from depot:\\n";\n    for (int i = 0; i < n; i++)\n        cout << "Zone " << i << ": " << dist[i] << endl;\n\n    return 0;\n}`
             },
             5: {
                 title: "Public Transport Scheduling and Optimization",
+                icon: "bus-simple",
                 problem: "Determining which transport service should depart next based on the earliest scheduled time.",
                 approach: "A Min Heap is used to store departure times for O(1) retrieval of the next service.",
                 documentation: "Each node represents a departure time. Root always provides the earliest dispatch.",
                 efficiency: "Insertion takes O(log n) time. Retrieval takes O(1) time.",
-                code: `#include <iostream>\nusing namespace std;\n\nint heap[50];\nint sz = 0;\n\nvoid insert(int time) {\n    heap[++sz] = time;\n    // Heap logic here...\n}\n\nint main() {\n    insert(15);\n    insert(5);\n    return 0;\n}`
+                code: `#include <iostream>\nusing namespace std;\n\nint heap[50];\nint sz = 0;\n\nvoid insert(int time) {\n    heap[++sz] = time;\n    int i = sz;\n    while (i > 1 && heap[i] < heap[i / 2]) {\n        swap(heap[i], heap[i / 2]);\n        i /= 2;\n    }\n}\n\nint extractMin() {\n    int minVal = heap[1];\n    heap[1] = heap[sz--];\n\n    int i = 1;\n    while (2 * i <= sz) {\n        int child = 2 * i;\n        if (child + 1 <= sz && heap[child + 1] < heap[child])\n            child++;\n        if (heap[i] <= heap[child]) break;\n        swap(heap[i], heap[child]);\n        i = child;\n    }\n    return minVal;\n}\n\nint main() {\n    insert(15);\n    insert(5);\n    insert(20);\n\n    cout << "Next bus departure: " << extractMin() << " mins" << endl;\n\n    return 0;\n}`
             },
             6: {
                 title: "Emergency Response Management",
+                icon: "shield-halved",
                 problem: "Mapping the propagation of a disaster (like a gas leak) through city zones quickly.",
                 approach: "Depth First Search (DFS) is used to explore connectivity and mark all affected zones.",
                 documentation: "Starts from source and recursively checks all interconnected paths.",
                 efficiency: "The algorithm runs in O(V + E) time, making it highly responsive.",
-                code: `#include <iostream>\nusing namespace std;\n\nint city[6][6];\nbool visited[6];\n\nvoid dfs(int zone) {\n    visited[zone] = true;\n    // Recursive traversal...\n}\n\nint main() {\n    dfs(0);\n    return 0;\n}`
+                code: `#include <iostream>\nusing namespace std;\n\nint city[6][6] = {\n    {0, 1, 0, 0, 1, 0},\n    {1, 0, 1, 0, 0, 0},\n    {0, 1, 0, 1, 0, 0},\n    {0, 0, 1, 0, 1, 0},\n    {1, 0, 0, 1, 0, 1},\n    {0, 0, 0, 0, 1, 0}\n};\n\nbool visited[6];\n\nvoid dfs(int zone) {\n    visited[zone] = true;\n    cout << zone << " ";\n    for (int i = 0; i < 6; i++)\n        if (city[zone][i] && !visited[i])\n            dfs(i);\n}\n\nint main() {\n    cout << "Affected zones: ";\n    dfs(0); // disaster source\n    return 0;\n}`
             },
             7: {
                 title: "Smart Parking – Slot Allocation System",
+                icon: "car-rear",
                 problem: "Allocating slots fairly so vehicles are served in the order in which they arrive.",
                 approach: "A Queue data structure is used to implement first-come-first-served allocation.",
                 documentation: "Arriving vehicles enter the rear, and front vehicles receive available slots.",
                 efficiency: "Operations take O(1) time and space complexity is O(n).",
-                code: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int parkingSlots[10];\n    int front = 0, rear = 0;\n    parkingSlots[rear++] = 101;\n    return 0;\n}`
+                code: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int parkingSlots[10];\n    int front = 0, rear = 0;\n\n    // Available slots added to queue\n    parkingSlots[rear++] = 101;\n    parkingSlots[rear++] = 102;\n    parkingSlots[rear++] = 103;\n\n    cout << "Car allocated slot: " << parkingSlots[front++] << endl;\n    cout << "Next available slot: " << parkingSlots[front] << endl;\n\n    return 0;\n}`
             },
             8: {
                 title: "Environmental Monitoring and Climate Resilience",
+                icon: "seedling",
                 problem: "Tracking pollution levels that are frequently updated, requiring fast cumulative calculations.",
                 approach: "A Fenwick Tree (Binary Indexed Tree) supports frequent updates and prefix sum queries.",
                 documentation: "Each index is a station. BIT stores partial sums for efficient real-time analysis.",
                 efficiency: "Update and query operations run in O(log n) time.",
-                code: `#include <iostream>\nusing namespace std;\n\nint BIT[20];\nvoid update(int idx, int val) {\n    // BIT update logic...\n}\n\nint main() {\n    update(1, 35);\n    return 0;\n}`
+                code: `#include <iostream>\nusing namespace std;\n\nint BIT[20];\nint n = 6;\n\nvoid update(int idx, int val) {\n    while (idx <= n) {\n        BIT[idx] += val;\n        idx += idx & -idx;\n    }\n}\n\nint query(int idx) {\n    int sum = 0;\n    while (idx > 0) {\n        sum += BIT[idx];\n        idx -= idx & -idx;\n    }\n    return sum;\n}\n\nint main() {\n    update(1, 35);\n    update(2, 40);\n    update(3, 30);\n    update(4, 25);\n\n    cout << "Total pollution till zone 4: " << query(4) << endl;\n\n    return 0;\n}`
             }
         };
 
-        const icons = ["database", "faucet-drip", "charging-station", "recycle", "bus-simple", "shield-halved", "car-rear", "seedling"];
         const grid = document.getElementById('card-grid');
 
-        Object.keys(caseData).forEach((id, i) => {
+        Object.keys(caseData).forEach((id) => {
+            const data = caseData[id];
             grid.innerHTML += `
                 <div onclick="openModal(${id})" class="initiative-card p-6 rounded-2xl shadow-lg">
-                    <i class="fa-solid fa-${icons[i]} text-brand-primary text-3xl mb-4"></i>
-                    <h3 class="font-bold text-lg text-white mb-2">${id}. ${caseData[id].title}</h3>
-                    <p class="text-xs text-slate-400">Algorithmic approach to urban efficiency.</p>
+                    <i class="fa-solid fa-${data.icon} text-brand-accent text-3xl mb-4"></i>
+                    <h3 class="font-bold text-lg text-white mb-2">${id}. ${data.title}</h3>
+                    <p class="text-xs text-slate-400">View implementation details and efficiency analysis.</p>
                 </div>
             `;
         });
 
         function openModal(id) {
             const data = caseData[id];
-            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalTitle').innerHTML = `<i class="fa-solid fa-${data.icon} mr-3"></i> ${data.title}`;
             document.getElementById('modalProblem').innerText = data.problem;
             
             document.getElementById('modalDetails').innerHTML = `
