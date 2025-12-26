@@ -18,60 +18,115 @@
     <style>
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
-        .fade-in { animation: fadeIn 0.5s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .initiative-card { transition: all 0.3s ease; cursor: pointer; }
-        .initiative-card:hover { transform: translateY(-5px); border-color: #00d4ff; }
+        .fade-in { animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .initiative-card { transition: all 0.3s ease; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); }
+        .initiative-card:hover { transform: translateY(-5px); border-color: #00d4ff; box-shadow: 0 10px 30px -15px rgba(0, 212, 255, 0.3); }
         .modal { transition: opacity 0.3s ease-in-out; opacity: 0; pointer-events: none; }
         .modal.active { opacity: 1; pointer-events: auto; }
-        pre { white-space: pre; word-wrap: normal; overflow-x: auto; background: #282c34; padding: 1.5rem; border-radius: 0.5rem; }
+        pre { white-space: pre; word-wrap: normal; overflow-x: auto; background: #1e293b; padding: 1.5rem; border-radius: 0.5rem; }
         code { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; line-height: 1.5; }
         .highlight-heading { color: #00d4ff; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+<body class="bg-slate-950 text-slate-200 flex flex-col min-h-screen">
 
-    <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-300">
+    <nav class="bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 border-b border-slate-800 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <i class="fa-solid fa-city text-cyan-450 text-2xl mr-2"></i>
-                    <span class="brand-font text-xl font-bold text-gray-900 dark:text-white tracking-tight">Zabrosa City</span>
+                    <span class="brand-font text-xl font-bold text-white tracking-tight">Zabrosa City</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 transition">Home</a>
-                    <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-                        <i id="theme-icon" class="fa-solid fa-sun text-yellow-500 text-xl"></i>
+                    <a href="#" class="text-slate-300 hover:text-cyan-450 transition">Home</a>
+                    <a href="#initiatives" class="text-slate-300 hover:text-cyan-450 transition">Initiatives</a>
+                    <button class="p-2 rounded-full hover:bg-slate-800 transition">
+                        <i class="fa-solid fa-sun text-yellow-500 text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow relative fade-in">
-        <div class="max-w-7xl mx-auto px-4 py-16">
-            <h1 class="text-4xl font-bold text-center mb-12">Sustainable City Initiatives</h1>
-            <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    <header class="relative pt-20 pb-16 px-4 overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10 fade-in">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+                Comprehensive Sustainable <br><span class="text-cyan-450">City Initiatives</span>
+            </h1>
+            <p class="text-lg text-slate-400 mb-10 leading-relaxed">
+                Hi, I am <span class="text-cyan-450 font-semibold">Sourabh Kakarambi</span>. This document outlines the full scope of business cases developed for 
+                <strong>Zabrosa</strong> — a new, self-sufficient, and sustainable city built on data-driven optimization and green engineering.
+            </p>
+
+            <div class="glass-panel rounded-2xl p-8 text-left max-w-3xl mx-auto shadow-2xl">
+                <div class="flex items-center mb-6">
+                    <i class="fa-solid fa-lightbulb text-cyan-450 text-xl mr-3"></i>
+                    <h2 class="text-xl font-bold text-white uppercase tracking-wider">8 Key Business Cases</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-300">
+                    <div class="flex items-center hover:text-cyan-450 transition cursor-default">
+                        <span class="text-cyan-450 font-mono mr-2">01.</span> Urban Road Maintenance
+                    </div>
+                    <div class="flex items-center hover:text-cyan-450 transition cursor-default">
+                        <span class="text-cyan-450 font-mono mr-2">02.</span> Water & Wastewater Mgmt
+                    </div>
+                    <div class="flex items-center hover:text-cyan-450 transition cursor-default">
+                        <span class="text-cyan-450 font-mono mr-2">03.</span> Smart Energy Grid
+                    </div>
+                    <div class="flex items-center hover:text-cyan-450 transition cursor-default">
+                        <span class="text-cyan-450 font-mono mr-2">04.</span> Waste Collection Optimization
+                    </div>
+                    <div class="flex items-center hover:text-cyan-450 transition cursor-default">
+                        <span class="text-cyan-450 font-mono mr-2">05.</span> Transport Scheduling
+                    </div>
+                    <div class="flex items-center hover:text-cyan-450 transition cursor-default">
+                        <span class="text-cyan-450 font-mono mr-2">06.</span> Emergency Response
+                    </div>
+                    <div class="flex items-center hover:text-cyan-450 transition cursor-default">
+                        <span class="text-cyan-450 font-mono mr-2">07.</span> Smart Parking Slots
+                    </div>
+                    <div class="flex items-center hover:text-cyan-450 transition cursor-default">
+                        <span class="text-cyan-450 font-mono mr-2">08.</span> Pollution Monitoring
+                    </div>
+                </div>
+                <p class="mt-8 text-xs italic text-slate-500 text-center border-t border-slate-700 pt-4">
+                    Click on any initiative below to view the detailed approach, efficiency analysis, and code implementation.
+                </p>
+            </div>
         </div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-slate-950 to-slate-950 -z-0"></div>
+    </header>
+
+    <main id="initiatives" class="flex-grow max-w-7xl mx-auto px-4 py-16 w-full">
+        <div class="flex items-center justify-center space-x-4 mb-12">
+            <div class="h-px w-12 bg-slate-700"></div>
+            <h2 class="text-3xl font-bold text-white text-center">Detailed Initiatives</h2>
+            <div class="h-px w-12 bg-slate-700"></div>
+        </div>
+        <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
     </main>
 
     <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10">
-            <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md" onclick="closeModal()"></div>
+        <div class="bg-slate-900 rounded-2xl border border-slate-700 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10">
+            <div class="flex justify-between items-center p-6 border-b border-slate-800">
                 <h3 id="modalTitle" class="text-2xl font-bold text-cyan-450"></h3>
-                <button onclick="closeModal()" class="text-gray-500 hover:text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
             </div>
             <div class="p-6 overflow-y-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                        <span class="highlight-heading">Problem Statement</span>
-                        <p id="modalProblem" class="text-gray-700 dark:text-gray-300 mb-6"></p>
+                    <div class="space-y-6">
+                        <div>
+                            <span class="highlight-heading">Problem Statement</span>
+                            <p id="modalProblem" class="text-slate-300"></p>
+                        </div>
                         <div id="modalDetails"></div>
                     </div>
                     <div>
                         <span class="highlight-heading">C++ Implementation</span>
-                        <div class="rounded-lg overflow-hidden border border-gray-700">
+                        <div class="rounded-lg overflow-hidden border border-slate-700">
                             <pre><code id="modalCode" class="language-cpp"></code></pre>
                         </div>
                     </div>
@@ -81,14 +136,6 @@
     </div>
 
     <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
-            const icon = document.getElementById('theme-icon');
-            icon.classList.toggle('fa-sun');
-            icon.classList.toggle('fa-moon');
-        }
-
         const caseData = {
             1: {
                 title: "Urban Road Maintenance and Asset Management",
@@ -161,10 +208,10 @@
 
         Object.keys(caseData).forEach((id, i) => {
             grid.innerHTML += `
-                <div onclick="openModal(${id})" class="initiative-card bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-md">
+                <div onclick="openModal(${id})" class="initiative-card bg-slate-900 p-6 rounded-2xl shadow-lg">
                     <i class="fa-solid fa-${icons[i]} text-cyan-450 text-3xl mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">${id}. ${caseData[id].title}</h3>
-                    <p class="text-xs text-gray-500">Click to view efficiency analysis and C++ implementation.</p>
+                    <h3 class="font-bold text-lg text-white mb-2">${id}. ${caseData[id].title}</h3>
+                    <p class="text-xs text-slate-500">Optimized algorithms for urban sustainability.</p>
                 </div>
             `;
         });
@@ -176,11 +223,11 @@
             
             document.getElementById('modalDetails').innerHTML = `
                 <span class="highlight-heading">Solution Approach</span>
-                <p class="text-gray-700 dark:text-gray-300 mb-6">${data.approach}</p>
+                <p class="text-slate-300 mb-6">${data.approach}</p>
                 <span class="highlight-heading">Documentation</span>
-                <p class="text-gray-700 dark:text-gray-300 mb-6">${data.documentation}</p>
+                <p class="text-slate-300 mb-6">${data.documentation}</p>
                 <span class="highlight-heading">Efficiency Analysis</span>
-                <p class="text-gray-700 dark:text-gray-300 mb-6">${data.efficiency}</p>
+                <p class="text-slate-300 mb-6">${data.efficiency}</p>
             `;
 
             const codeEl = document.getElementById('modalCode');
