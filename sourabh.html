@@ -24,12 +24,12 @@
         .initiative-card:hover { transform: translateY(-5px); border-color: #00d4ff; }
         .modal { transition: opacity 0.3s ease-in-out; opacity: 0; pointer-events: none; }
         .modal.active { opacity: 1; pointer-events: auto; }
-        pre { white-space: pre-wrap; word-wrap: break-word; overflow-x: auto; }
+        pre { white-space: pre-wrap; word-wrap: break-word; overflow-x: auto; font-size: 0.85rem; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
 
-    <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-300">
+    <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
@@ -49,9 +49,7 @@
     <main class="flex-grow relative fade-in">
         <div class="max-w-7xl mx-auto px-4 py-16">
             <h1 class="text-4xl font-bold text-center mb-12">Sustainable City Initiatives</h1>
-            
-            <div id="initiative-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                </div>
+            <div id="grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         </div>
     </main>
 
@@ -67,11 +65,11 @@
                     <div>
                         <h4 class="text-cyan-450 font-bold uppercase text-xs mb-2">Problem Statement</h4>
                         <p id="modalProblem" class="text-gray-700 dark:text-gray-300 mb-6"></p>
-                        <h4 class="text-cyan-450 font-bold uppercase text-xs mb-2">Technical Documentation & Efficiency</h4>
+                        <h4 class="text-cyan-450 font-bold uppercase text-xs mb-2">Technical Analysis</h4>
                         <p id="modalApproach" class="text-gray-700 dark:text-gray-300 mb-6"></p>
                     </div>
                     <div>
-                        <h4 class="text-cyan-450 font-bold uppercase text-xs mb-2">C++ Implementation</h4>
+                        <h4 class="text-cyan-450 font-bold uppercase text-xs mb-2">Accurate C++ Implementation</h4>
                         <div class="rounded-lg overflow-hidden border border-gray-700">
                             <pre><code id="modalCode" class="language-cpp"></code></pre>
                         </div>
@@ -93,79 +91,63 @@
         const caseData = {
             1: {
                 title: "Urban Road Maintenance and Asset Management",
-                problem: "Urban road networks are divided into multiple zones, each having varying levels of damage due to traffic load and environmental conditions. City authorities need to frequently update the damage values after inspections and efficiently calculate the total damage over a range of zones to prioritize maintenance work. A simple linear approach becomes inefficient as the number of zones increases.",
-                approach: "This problem is solved using a Segment Tree, which is a tree-based data structure designed for efficient range queries and updates. The segment tree stores cumulative damage values for ranges of road segments, allowing quick computation of total damage in any given interval.\n\n" +
-                          "**Documentation:** In the system, each leaf node of the segment tree represents a single road segment, while internal nodes represent the sum of damage values of their child segments. When a road segment’s condition changes, only the relevant nodes in the tree are updated. Range queries traverse only the necessary branches, making the system suitable for real-time monitoring dashboards used by municipal authorities.\n\n" +
-                          "**Efficiency Analysis:** The segment tree is built in O(n) time. Both update and query operations run in O(log n) time. The space complexity is O(n), making this approach scalable for large urban road networks.",
-                code: `#include <iostream>\nusing namespace std;\n\nint seg[4 * 100];\nint n;\n\nvoid build(int arr[], int node, int start, int end) {\n    if (start == end) {\n        seg[node] = arr[start];\n    } else {\n        int mid = (start + end) / 2;\n        build(arr, 2*node, start, mid);\n        build(arr, 2*node+1, mid+1, end);\n        seg[node] = seg[2*node] + seg[2*node+1];\n    }\n}\n\nvoid update(int node, int start, int end, int idx, int value) {\n    if (start == end) {\n        seg[node] = value;\n    } else {\n        int mid = (start + end) / 2;\n        if (idx <= mid)\n            update(2*node, start, mid, idx, value);\n        else\n            update(2*node+1, mid+1, end, idx, value);\n        seg[node] = seg[2*node] + seg[2*node+1];\n    }\n}\n\nint query(int node, int start, int end, int l, int r) {\n    if (r < start || l > end) return 0;\n    if (l <= start && end <= r) return seg[node];\n    int mid = (start + end) / 2;\n    return query(2*node, start, mid, l, r) + query(2*node+1, mid+1, end, l, r);\n}\n\nint main() {\n    int roadDamage[] = {3, 5, 2, 6, 4};\n    n = 5;\n    build(roadDamage, 1, 0, n-1);\n    cout << "Damage Zone 1-3: " << query(1, 0, n-1, 1, 3) << endl;\n    update(1, 0, n-1, 2, 1);\n    cout << "Updated Damage Zone 1-3: " << query(1, 0, n-1, 1, 3) << endl;\n    return 0;\n}`
+                problem: "Urban road networks have varying damage levels. Authorities need to update damage values and calculate total damage over specific zone ranges efficiently.",
+                approach: "**Algorithm:** Segment Tree\n**Efficiency:** O(log n) for both Update and Query.\n**Documentation:** Stores cumulative damage in a tree structure. Leaf nodes represent single segments; internal nodes represent range sums.",
+                code: `#include <iostream>\nusing namespace std;\n\nint seg[4 * 100], n;\n\nvoid build(int arr[], int node, int start, int end) {\n    if (start == end) { seg[node] = arr[start]; }\n    else {\n        int mid = (start + end) / 2;\n        build(arr, 2*node, start, mid);\n        build(arr, 2*node+1, mid+1, end);\n        seg[node] = seg[2*node] + seg[2*node+1];\n    }\n}\n\nvoid update(int node, int start, int end, int idx, int value) {\n    if (start == end) { seg[node] = value; }\n    else {\n        int mid = (start + end) / 2;\n        if (idx <= mid) update(2*node, start, mid, idx, value);\n        else update(2*node+1, mid+1, end, idx, value);\n        seg[node] = seg[2*node] + seg[2*node+1];\n    }\n}\n\nint query(int node, int start, int end, int l, int r) {\n    if (r < start || l > end) return 0;\n    if (l <= start && end <= r) return seg[node];\n    int mid = (start + end) / 2;\n    return query(2*node, start, mid, l, r) + query(2*node+1, mid+1, end, l, r);\n}\n\nint main() {\n    int roadDamage[] = {3, 5, 2, 6, 4}; n = 5;\n    build(roadDamage, 1, 0, n-1);\n    cout << "Damage in Zone 1 to 3: " << query(1, 0, n-1, 1, 3) << endl;\n    update(1, 0, n-1, 2, 1);\n    cout << "Updated damage in Zone 1 to 3: " << query(1, 0, n-1, 1, 3) << endl;\n    return 0;\n}`
             },
             2: {
                 title: "Water Supply and Wastewater Management",
-                problem: "Water distribution systems consist of interconnected pipelines supplying water to different regions of a city. The key challenge is to verify whether water can reach all regions from the source and to identify disconnected or faulty pipeline segments that may disrupt supply.",
-                approach: "Breadth First Search (BFS) is used to traverse the pipeline network starting from the main water source. BFS explores all directly connected junctions before moving to the next level, effectively simulating water flow through the network.\n\n" +
-                          "**Documentation:** In this system, pipeline junctions or tanks are represented as nodes and pipelines as edges in a graph. BFS uses a queue to visit nodes level by level and marks visited nodes. Any node that remains unvisited after traversal indicates a possible blockage or disconnection in the water supply network.\n\n" +
-                          "**Efficiency Analysis:** The BFS algorithm runs in O(V + E) time, where V represents the number of junctions and E represents the number of pipelines. The space complexity is O(V) due to the queue and visited array.",
-                code: `#include <iostream>\n#include <queue>\nusing namespace std;\n\nint main() {\n    int zones = 5;\n    int pipes[5][5] = {\n        {0,1,1,0,0},\n        {1,0,0,1,0},\n        {1,0,0,0,1},\n        {0,1,0,0,0},\n        {0,0,1,0,0}\n    };\n    bool visited[5] = {false};\n    queue<int> q;\n    int source = 0;\n    visited[source] = true;\n    q.push(source);\n    cout << "Water reaches zones: ";\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        cout << u << " ";\n        for (int v = 0; v < zones; v++) {\n            if (pipes[u][v] && !visited[v]) {\n                visited[v] = true;\n                q.push(v);\n            }\n        }\n    }\n    return 0;\n}`
+                problem: "Verifying if water from a source can reach all districts and identifying disconnected pipeline segments.",
+                approach: "**Algorithm:** Breadth-First Search (BFS)\n**Efficiency:** O(V + E)\n**Documentation:** Traverses the pipeline graph level-by-level using a queue to ensure all reachable junctions are marked.",
+                code: `#include <iostream>\n#include <queue>\nusing namespace std;\n\nint main() {\n    int zones = 5;\n    int pipes[5][5] = {{0,1,1,0,0},{1,0,0,1,0},{1,0,0,0,1},{0,1,0,0,0},{0,0,1,0,0}};\n    bool visited[5] = {false};\n    queue<int> q;\n    int source = 0; visited[source] = true; q.push(source);\n    cout << "Water reaches zones: ";\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        cout << u << " ";\n        for (int v = 0; v < zones; v++) {\n            if (pipes[u][v] && !visited[v]) {\n                visited[v] = true; q.push(v);\n            }\n        }\n    }\n    return 0;\n}`
             },
             3: {
                 title: "Smart Energy Grid Management",
-                problem: "Energy providers must connect multiple power substations using electrical cables such that the entire grid remains connected with the minimum possible installation cost. Poor planning can result in unnecessary expenditure.",
-                approach: "Prim’s Algorithm is used to generate a Minimum Spanning Tree (MST). The algorithm starts from a selected substation and repeatedly adds the lowest-cost edge that connects a visited node to an unvisited one, ensuring minimum total cost without cycles.\n\n" +
-                          "**Documentation:** In the system model, substations are treated as graph vertices and cable installation costs as weighted edges. Prim’s Algorithm incrementally builds the power grid by selecting the most economical connections, resulting in a fully connected and cost-optimized energy network.\n\n" +
-                          "**Efficiency Analysis:** Using an adjacency matrix, Prim’s Algorithm has a time complexity of O(V²) and a space complexity of O(V). This is suitable for moderate-sized power grids.",
-                code: `#include <iostream>\nusing namespace std;\n#define INF 999\n\nint main() {\n    int n = 4;\n    int cost[4][4] = {\n        {INF,5,8,INF},\n        {5,INF,10,15},\n        {8,10,INF,20},\n        {INF,15,20,INF}\n    };\n    bool visited[4] = {true,false,false,false};\n    int totalCost = 0;\n    for (int edges = 0; edges < n-1; edges++) {\n        int min = INF, x = -1, y = -1;\n        for (int i = 0; i < n; i++)\n            if (visited[i])\n                for (int j = 0; j < n; j++)\n                    if (!visited[j] && cost[i][j] < min) {\n                        min = cost[i][j]; x = i; y = j;\n                    }\n        visited[y] = true;\n        totalCost += min;\n        cout << "Power line: " << x << " -> " << y << endl;\n    }\n    cout << "Total Grid Cost: " << totalCost << endl;\n    return 0;\n}`
+                problem: "Connecting power substations with minimum cabling cost while ensuring the entire grid is connected.",
+                approach: "**Algorithm:** Prim's Algorithm (MST)\n**Efficiency:** O(V^2) with adjacency matrix.\n**Documentation:** Greedily adds the cheapest connection from a visited node to an unvisited node.",
+                code: `#include <iostream>\nusing namespace std;\n#define INF 999\n\nint main() {\n    int n = 4;\n    int cost[4][4] = {{INF,5,8,INF},{5,INF,10,15},{8,10,INF,20},{INF,15,20,INF}};\n    bool visited[4] = {true,false,false,false};\n    int totalCost = 0;\n    for (int edges = 0; edges < n-1; edges++) {\n        int min = INF, x = -1, y = -1;\n        for (int i = 0; i < n; i++)\n            if (visited[i])\n                for (int j = 0; j < n; j++)\n                    if (!visited[j] && cost[i][j] < min) { min = cost[i][j]; x = i; y = j; }\n        visited[y] = true; totalCost += min;\n        cout << "Power line: " << x << " -> " << y << endl;\n    }\n    cout << "Total Grid Cost: " << totalCost << endl;\n    return 0;\n}`
             },
             4: {
-                title: "Solid Waste Collection and Recycling Optimization",
-                problem: "Municipal waste collection vehicles must cover multiple collection points daily while minimizing fuel consumption and travel time. Inefficient routing increases operational costs and delays waste processing.",
-                approach: "Dijkstra’s Algorithm is used to determine the shortest paths from a central waste collection depot to all other collection points. This ensures optimal routing for waste collection vehicles.\n\n" +
-                          "**Documentation:** In the system, collection points are represented as nodes and roads as weighted edges based on distance or travel cost. The algorithm maintains a distance array that continuously updates the shortest known distance to each node, enabling optimal route selection.\n\n" +
-                          "**Efficiency Analysis:** The time complexity of this implementation of Dijkstra’s Algorithm is O(V²), and the space complexity is O(V). This is effective for city-scale route optimization.",
-                code: `#include <iostream>\nusing namespace std;\n#define INF 999\n\nint main() {\n    int n = 5;\n    int graph[5][5] = {\n        {0,4,INF,INF,8},\n        {4,0,2,INF,5},\n        {INF,2,0,6,INF},\n        {INF,INF,6,0,3},\n        {8,5,INF,3,0}\n    };\n    int dist[5], visited[5] = {0};\n    for(int i=0;i<n;i++) dist[i]=INF;\n    dist[0]=0;\n    for(int i=0;i<n;i++){\n        int u=-1,min=INF;\n        for(int j=0;j<n;j++)\n            if(!visited[j] && dist[j]<min){ min=dist[j]; u=j; }\n        visited[u]=1;\n        for(int v=0;v<n;v++)\n            if(dist[u]+graph[u][v]<dist[v]) dist[v]=dist[u]+graph[u][v];\n    }\n    cout<<"Shortest distance from depot:\\n";\n    for(int i=0;i<n;i++) cout<<"Zone "<<i<<": "<<dist[i]<<endl;\n    return 0;\n}`
+                title: "Solid Waste Collection Optimization",
+                problem: "Finding the shortest travel path for waste collection vehicles from the central depot to all collection zones.",
+                approach: "**Algorithm:** Dijkstra's Algorithm\n**Efficiency:** O(V^2)\n**Documentation:** Calculates the single-source shortest path by maintaining a set of minimum distances to each node.",
+                code: `#include <iostream>\nusing namespace std;\n#define INF 999\n\nint main() {\n    int n = 5;\n    int graph[5][5] = {{0,4,INF,INF,8},{4,0,2,INF,5},{INF,2,0,6,INF},{INF,INF,6,0,3},{8,5,INF,3,0}};\n    int dist[5], visited[5] = {0};\n    for(int i=0;i<n;i++) dist[i]=INF; dist[0]=0;\n    for(int i=0;i<n;i++){\n        int u=-1,min=INF;\n        for(int j=0;j<n;j++) if(!visited[j] && dist[j]<min){ min=dist[j]; u=j; }\n        visited[u]=1;\n        for(int v=0;v<n;v++) if(dist[u]+graph[u][v]<dist[v]) dist[v]=dist[u]+graph[u][v];\n    }\n    cout<<"Minimum distance from depot:\\n";\n    for(int i=0;i<n;i++) cout<<"Zone "<<i<<": "<<dist[i]<<endl;\n    return 0;\n}`
             },
             5: {
-                title: "Public Transport Scheduling and Optimization",
-                problem: "Public transport authorities must determine which bus or train should depart next based on the earliest scheduled time. As the number of services increases, managing schedules manually becomes inefficient.",
-                approach: "A Min Heap is used to store departure times so that the earliest departure is always available at the top of the heap. This allows quick selection of the next service.\n\n" +
-                          "**Documentation:** In this system, each heap node represents a scheduled departure time. New schedules are inserted into the heap dynamically, and the root element always provides the next transport service to be dispatched.\n\n" +
-                          "**Efficiency Analysis:** Insertion into the min heap takes O(log n) time, while retrieving the earliest departure time takes O(1) time. The space complexity is O(n).",
-                code: `#include <iostream>\nusing namespace std;\nint heap[50], sz = 0;\nvoid insert(int time) {\n    heap[++sz] = time; int i = sz;\n    while (i > 1 && heap[i] < heap[i/2]) { swap(heap[i], heap[i/2]); i /= 2; }\n}\nint extractMin() {\n    int min = heap[1]; heap[1] = heap[sz--]; int i = 1;\n    while (2*i <= sz) {\n        int child = 2*i;\n        if (child+1 <= sz && heap[child+1] < heap[child]) child++;\n        if (heap[i] <= heap[child]) break;\n        swap(heap[i], heap[child]); i = child;\n    }\n    return min;\n}\nint main() {\n    insert(15); insert(5); insert(20);\n    cout << "Next bus departure: " << extractMin() << " mins" << endl;\n    return 0;\n}`
+                title: "Public Transport Scheduling",
+                problem: "Dynamically determining which bus should depart next based on the earliest scheduled time.",
+                approach: "**Algorithm:** Min-Heap\n**Efficiency:** O(log n) for Insertion, O(1) for Retrieval.\n**Documentation:** Ensures the smallest timestamp is always at the root of the heap.",
+                code: `#include <iostream>\nusing namespace std;\nint heap[50], sz = 0;\nvoid insert(int time) {\n    heap[++sz] = time; int i = sz;\n    while (i > 1 && heap[i] < heap[i/2]) { swap(heap[i], heap[i/2]); i /= 2; }\n}\nint extractMin() {\n    int min = heap[1]; heap[1] = heap[sz--]; int i = 1;\n    while (2*i <= sz) {\n        int child = 2*i;\n        if (child+1 <= sz && heap[child+1] < heap[child]) child++;\n        if (heap[i] <= heap[child]) break;\n        swap(heap[i], heap[child]); i = child;\n    }\n    return min;\n}\nint main() {\n    insert(15); insert(5); insert(20);\n    cout << "Next bus departure in minutes: " << extractMin() << endl;\n    return 0;\n}`
             },
             6: {
                 title: "Emergency Response & Disaster Mapping",
-                problem: "In the event of an urban emergency like a gas leak or fire, authorities need to identify all connected city zones that could be affected by the spread. Rapid identification is critical for evacuation planning.",
-                approach: "Depth First Search (DFS) is used to navigate the city's connectivity graph. Starting from the source of the disaster, the algorithm recursively visits every reachable zone to map the total impact area.\n\n" +
-                          "**Documentation:** The city is modeled as a graph where zones are nodes and streets/connections are edges. The DFS algorithm explores as far as possible along each branch before backtracking, ensuring no connected zone is missed during the impact analysis.\n\n" +
-                          "**Efficiency Analysis:** The DFS algorithm runs in O(V + E) time, ensuring quick response even in complex urban grids. Space complexity is O(V) for the recursion stack and visited tracking.",
-                code: `#include <iostream>\nusing namespace std;\nint city[6][6] = {\n    {0,1,0,0,1,0}, {1,0,1,0,0,0}, {0,1,0,1,0,0},\n    {0,0,1,0,1,0}, {1,0,0,1,0,1}, {0,0,0,0,1,0}\n};\nbool visited[6];\nvoid dfs(int zone) {\n    visited[zone] = true;\n    cout << zone << " ";\n    for (int i = 0; i < 6; i++)\n        if (city[zone][i] && !visited[i]) dfs(i);\n}\nint main() {\n    cout << "Affected zones: ";\n    dfs(0); // disaster source\n    return 0;\n}`
+                problem: "Identifying all city zones that could be affected by a spreading disaster (like a gas leak) from a single source.",
+                approach: "**Algorithm:** Depth-First Search (DFS)\n**Efficiency:** O(V + E)\n**Documentation:** Recursively explores all paths from the disaster source to identify connected/impacted zones.",
+                code: `#include <iostream>\nusing namespace std;\nint city[6][6] = {{0,1,0,0,1,0},{1,0,1,0,0,0},{0,1,0,1,0,0},{0,0,1,0,1,0},{1,0,0,1,0,1},{0,0,0,0,1,0}};\nbool visited[6];\nvoid dfs(int zone) {\n    visited[zone] = true; cout << zone << " ";\n    for (int i = 0; i < 6; i++) if (city[zone][i] && !visited[i]) dfs(i);\n}\nint main() { cout << "Affected zones: "; dfs(0); return 0; }`
             },
             7: {
-                title: "Smart Parking – Slot Allocation System",
-                problem: "Parking systems must allocate slots fairly and efficiently so that vehicles are served in the order in which they arrive, avoiding conflicts and delays.",
-                approach: "A Queue data structure is used to implement first-come-first-served (FCFS) parking slot allocation.\n\n" +
-                          "**Documentation:** In the system, arriving vehicles are added to the rear of the queue, and vehicles at the front are allocated parking slots as they become available. This ensures fairness and simplicity in parking management.\n\n" +
-                          "**Efficiency Analysis:** Both enqueue and dequeue operations take O(1) time, and the space complexity is O(n), where n is the number of waiting vehicles.",
+                title: "Smart Parking Allocation",
+                problem: "Allocating parking slots in the order vehicles arrive (First-Come, First-Served).",
+                approach: "**Algorithm:** Queue (Array Implementation)\n**Efficiency:** O(1)\n**Documentation:** Uses Front and Rear pointers to manage a stream of vehicles and slot IDs.",
                 code: `#include <iostream>\nusing namespace std;\nint main() {\n    int parkingSlots[10]; int front = 0, rear = 0;\n    parkingSlots[rear++] = 101; parkingSlots[rear++] = 102; parkingSlots[rear++] = 103;\n    cout << "Car allocated slot: " << parkingSlots[front++] << endl;\n    cout << "Next available slot: " << parkingSlots[front] << endl;\n    return 0;\n}`
             },
             8: {
-                title: "Environmental Monitoring and Climate Resilience",
-                problem: "Environmental monitoring systems must track pollution levels across multiple locations where values are frequently updated. Authorities need fast computation of cumulative pollution levels for analysis and decision-making.",
-                approach: "A Fenwick Tree (Binary Indexed Tree) is used to efficiently support frequent updates and prefix sum queries on pollution data.\n\n" +
-                          "**Documentation:** Each index of the Fenwick Tree represents a monitoring station. The tree stores partial sums, allowing pollution updates and cumulative queries to be processed efficiently, making it suitable for real-time monitoring dashboards.\n\n" +
-                          "**Efficiency Analysis:** Both update and query operations run in O(log n) time, and the space complexity is O(n), making this approach scalable for large environmental datasets.",
-                code: `#include <iostream>\nusing namespace std;\nint BIT[20], n = 6;\nvoid update(int idx, int val) {\n    while (idx <= n) { BIT[idx] += val; idx += idx & -idx; }\n}\nint query(int idx) {\n    int sum = 0; while (idx > 0) { sum += BIT[idx]; idx -= idx & -idx; } return sum;\n}\nint main() {\n    update(1, 35); update(2, 40); update(3, 30); update(4, 25);\n    cout << "Total pollution till zone 4: " << query(4) << endl;\n    return 0;\n}`
+                title: "Environmental Monitoring",
+                problem: "Tracking pollution levels where values are updated frequently, requiring fast prefix sum calculations.",
+                approach: "**Algorithm:** Fenwick Tree (Binary Indexed Tree)\n**Efficiency:** O(log n) Update/Query\n**Documentation:** Efficiently maintains prefix sums for pollution data using bitwise index manipulation.",
+                code: `#include <iostream>\nusing namespace std;\nint BIT[20], n = 6;\nvoid update(int idx, int val) { while (idx <= n) { BIT[idx] += val; idx += idx & -idx; } }\nint query(int idx) { int sum = 0; while (idx > 0) { sum += BIT[idx]; idx -= idx & -idx; } return sum; }\nint main() { update(1, 35); update(2, 40); update(3, 30); update(4, 25);\n    cout << "Total pollution till zone 4: " << query(4) << endl; return 0; }`
             }
         };
 
-        // Render Cards
         const icons = ["road", "water", "bolt", "recycle", "bus", "truck-medical", "square-p", "leaf"];
-        const grid = document.getElementById('initiative-grid');
+        const grid = document.getElementById('grid-container');
+        
         Object.keys(caseData).forEach((id, i) => {
             grid.innerHTML += `
                 <div onclick="openModal(${id})" class="initiative-card bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-md">
                     <i class="fa-solid fa-${icons[i]} text-cyan-450 text-3xl mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">${id}. ${caseData[id].title}</h3>
-                    <p class="text-sm text-gray-500">View DSA implementation and efficiency analysis.</p>
+                    <p class="text-xs text-gray-500">Optimized with DSA for Zabrosa City.</p>
                 </div>
             `;
         });
@@ -174,7 +156,7 @@
             const data = caseData[id];
             document.getElementById('modalTitle').innerText = data.title;
             document.getElementById('modalProblem').innerText = data.problem;
-            document.getElementById('modalApproach').innerHTML = data.approach.replace(/\n/g, '<br>');
+            document.getElementById('modalApproach').innerText = data.approach;
             const codeEl = document.getElementById('modalCode');
             codeEl.textContent = data.code;
             delete codeEl.dataset.highlighted;
