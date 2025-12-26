@@ -12,7 +12,17 @@
             theme: {
                 extend: {
                     colors: {
-                        cyan: { 450: '#00d4ff' } // Custom Accent Color
+                        cyan: { 450: '#00d4ff' } 
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
                     }
                 }
             }
@@ -20,13 +30,13 @@
     </script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         h1, h2, h3, .brand-font {
             font-family: 'Space Grotesk', sans-serif;
@@ -36,33 +46,61 @@
             margin-left: auto;
             margin-right: auto;
             padding: 2rem 1rem;
+            position: relative;
+            z-index: 10;
         }
-        .text-cyan-450 {
-            color: #00d4ff;
+        
+        /* Modern Aesthetic Touches */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .bg-cyan-450 {
-            background-color: #00d4ff;
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .glow-card:hover {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        
+        /* Background decorative elements */
+        .bg-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            filter: blur(60px);
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+<body class="bg-gray-50 text-gray-800 dark:bg-[#0a0f1a] dark:text-gray-100 flex flex-col min-h-screen relative">
     
-    <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+    <div class="hidden dark:block bg-blob top-[-100px] left-[-100px] animate-pulse-slow"></div>
+    <div class="hidden dark:block bg-blob bottom-[20%] right-[-100px] opacity-50"></div>
+
+    <nav class="bg-white/70 dark:bg-[#0a0f1a]/80 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-200 dark:border-cyan-450/20 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center">
-                <i class="fa-solid fa-city text-cyan-450 text-2xl mr-2"></i>
+            <div class="flex items-center group cursor-pointer">
+                <i class="fa-solid fa-city text-cyan-450 text-2xl mr-2 group-hover:scale-110 transition-transform"></i>
                 <span class="brand-font text-xl font-bold text-gray-900 dark:text-white tracking-tight">Zabrosa City</span>
             </div>
             <div class="flex items-center space-x-6">
-                <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Home</a>
-                <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">About</a>
-                <a href="sourabh.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Sourabh</a>
-                <a href="bilal.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Bilal</a>
-  
-                  <a href="zayed.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Zayed</a>
+                <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition-colors">Home</a>
+                <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition-colors">About</a>
+                <a href="sourabh.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition-colors">Sourabh</a>
+                <a href="bilal.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition-colors">Bilal</a>
+                <a href="zayed.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition-colors">Zayed</a>
                 
-                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none">
-                    <i id="theme-icon" class="fa-solid fa-moon text-gray-600 dark:text-yellow-500 text-xl"></i>
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-cyan-450/10 transition-all focus:outline-none">
+                    <i id="theme-icon" class="fa-solid fa-moon text-gray-600 dark:text-cyan-450 text-xl"></i>
                 </button>
             </div>
         </div>
@@ -70,131 +108,166 @@
     
     <div class="flex-grow main-container">
         
-        <header class="text-center py-16 px-4 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 mb-12">
-            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-                Introduction <span class="text-cyan-450">👋</span>
+        <header class="text-center py-20 px-6 glass rounded-3xl shadow-2xl mb-16 animate-float">
+            <h1 class="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 glow-text">
+                Introduction <span class="text-cyan-450 inline-block hover:rotate-12 transition-transform cursor-default">👋</span>
             </h1>
-            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
-               We are enthusiastic about technology and innovative problem-solving. Here is an overview of our work, with a strong focus on Zabrosa City in the Making.
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+               We are enthusiastic about technology and innovative problem-solving. Here is an overview of our work, with a strong focus on <span class="text-cyan-450 font-semibold italic">Zabrosa City in the Making</span>.
             </p>
-            <div class="space-x-4">
-                <a href="#project" class="bg-cyan-450 hover:bg-cyan-600 text-white font-semibold py-2 px-6 rounded-full shadow-md transition">
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#project" class="bg-cyan-450 hover:bg-cyan-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all">
                     View Project <i class="fa-solid fa-arrow-down ml-2"></i>
                 </a>
-                <a href="about.html" class="text-cyan-450 border border-cyan-450/50 hover:bg-cyan-450 hover:text-white font-semibold py-2 px-6 rounded-full transition">
+                <a href="about.html" class="text-cyan-450 border-2 border-cyan-450/30 hover:bg-cyan-450/10 font-bold py-3 px-8 rounded-full transition-all">
                     Meet Team <i class="fa-solid fa-users ml-2"></i>
                 </a>
             </div>
         </header>
 
-        <section id="project" class="mb-12">
-            <h2 class="text-3xl font-bold text-cyan-450 mb-6 border-l-4 border-cyan-450 pl-4">📋 Project Details</h2>
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                <dl class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 text-lg">
-                    <div class="border-l-2 border-gray-200 dark:border-gray-700 pl-4">
-                        <dt class="font-semibold text-gray-500 dark:text-gray-400">Project Title</dt>
-                        <dd class="font-bold text-gray-900 dark:text-white">Zabrosa City in the Making</dd>
+        
+
+        <section id="project" class="mb-16">
+            <h2 class="text-3xl font-bold text-cyan-450 mb-8 flex items-center">
+                <span class="bg-cyan-450 w-2 h-8 rounded-full mr-4 shadow-[0_0_15px_rgba(0,212,255,0.8)]"></span>
+                📋 Project Details
+            </h2>
+            <div class="glass p-8 rounded-2xl shadow-xl glow-card">
+                <dl class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-lg">
+                    <div class="space-y-1">
+                        <dt class="text-sm uppercase tracking-widest font-bold text-gray-400">Project Title</dt>
+                        <dd class="font-bold text-gray-900 dark:text-white text-xl">Zabrosa City in the Making</dd>
                     </div>
-                    <div class="border-l-2 border-gray-200 dark:border-gray-700 pl-4">
-                        <dt class="font-semibold text-gray-500 dark:text-gray-400">Course Name</dt>
-                        <dd class="font-bold text-gray-900 dark:text-white">Design Algorithm Analysis</dd>
+                    <div class="space-y-1">
+                        <dt class="text-sm uppercase tracking-widest font-bold text-gray-400">Course Name</dt>
+                        <dd class="font-bold text-gray-900 dark:text-white text-xl">Design Algorithm Analysis</dd>
                     </div>
-                    <div class="border-l-2 border-gray-200 dark:border-gray-700 pl-4">
-                        <dt class="font-semibold text-gray-500 dark:text-gray-400">Course Code</dt>
-                        <dd class="font-bold text-gray-900 dark:text-white">CS205</dd>
+                    <div class="space-y-1">
+                        <dt class="text-sm uppercase tracking-widest font-bold text-gray-400">Course Code</dt>
+                        <dd class="font-bold text-gray-900 dark:text-white text-xl">CS205</dd>
                     </div>
                 </dl>
             </div>
         </section>
         
-        <div class="project-summary space-y-8">
-            <div class="questions">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center">
-                        <i class="fa-solid fa-book-open text-cyan-450 mr-2"></i> What is the course about?
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                       Design and the study of algorithms goes beyond being a single field of computer science. It forms the foundation of computer science, and, in all honesty, may be considered applicable to much of science, industry, and technology. This course focuses on recognizing fascinating patterns found in nature, since many natural phenomena can motivate computational algorithms and conversely. It supports the growth of analytical reasoning, which can assist in diverse problem solving approaches and techniques.
-                    </p>
-                </div>
-                
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center">
-                        <i class="fa-solid fa-code-branch text-cyan-450 mr-2"></i> Data Structures and Algorithms Studied
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                        Studying data structures feels like traveling within an intriguing family. From the seamless flow of memory locations in arrays and strings to the connected behavior of web pages reflected in linked lists, every structure narrates a tale. Stacks and queues suggest familiar scenes of biscuit stacks and waiting queues, while trees and tries broaden our insight into hierarchies and fast searches. Skip lists, motivated by coin flips, introduce controlled randomness with accuracy and precision.
-                    </p>
-                </div>
+        <div class="project-summary grid grid-cols-1 gap-8">
+            <div class="glass p-8 rounded-2xl shadow-xl glow-card hover:border-cyan-450/40 transition-all">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                    <i class="fa-solid fa-book-open text-cyan-450 mr-3"></i> What is the course about?
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                    Design and the study of algorithms goes beyond being a single field of computer science. It forms the foundation of computer science, and, in all honesty, may be considered applicable to much of science, industry, and technology. This course focuses on recognizing fascinating patterns found in nature and supports the growth of analytical reasoning.
+                </p>
+            </div>
+            
+            <div class="glass p-8 rounded-2xl shadow-xl glow-card hover:border-cyan-450/40 transition-all">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                    <i class="fa-solid fa-code-branch text-cyan-450 mr-3"></i> Data Structures & Algorithms
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                    Studying data structures feels like traveling within an intriguing family. Every structure narrates a tale—from the seamless flow of memory in arrays to hierarchy in trees. Skip lists, motivated by coin flips, introduce controlled randomness with accuracy and precision.
+                </p>
+            </div>
 
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center">
-                        <i class="fa-solid fa-globe text-cyan-450 mr-2"></i> Connecting to Real-Time Applications
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                        We are simultaneously conscious and unaware of the algorithms surrounding our lives, similar to the ever-present air we inhale. Dijkstra’s Algorithm leads us home using GPS, delivering the fastest path, while sorting algorithms handle enormous datasets across e-commerce platforms. Such algorithms transform difficult problems and shape them into refined solutions, subtly improving our everyday technological interactions and making digital experiences smoother and increasingly intuitive. They function as unseen forces that optimize, safeguard, and customize the technology we depend on each day today daily.
-                    </p>
-                </div>
+            <div class="glass p-8 rounded-2xl shadow-xl glow-card hover:border-cyan-450/40 transition-all">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                    <i class="fa-solid fa-globe text-cyan-450 mr-3"></i> Real-Time Applications
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                    Algorithms transform difficult problems into refined solutions. Dijkstra’s Algorithm leads us home via GPS, while sorting algorithms handle enormous datasets. They function as unseen forces that optimize, safeguard, and customize the technology we depend on daily.
+                </p>
             </div>
         </div>
         
-        <hr class="my-12 border-gray-300 dark:border-gray-700">
+        <hr class="my-20 border-gray-300 dark:border-cyan-450/10">
 
-        <h2 class="text-3xl font-bold text-cyan-450 mb-8 border-l-4 border-cyan-450 pl-4" id="team">👥 Team Members & Faculty</h2>
+        <h2 class="text-3xl font-bold text-cyan-450 mb-10 flex items-center">
+            <span class="bg-cyan-450 w-2 h-8 rounded-full mr-4 shadow-[0_0_15px_rgba(0,212,255,0.8)]"></span>
+            👥 Team Members & Faculty
+        </h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="glass p-6 rounded-2xl shadow-lg border-b-4 border-cyan-450/50 hover:scale-105 transition-all text-center">
+                <div class="w-16 h-16 bg-cyan-450/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-user-astronaut text-cyan-450 text-2xl"></i>
+                </div>
                 <p class="text-lg font-bold text-gray-900 dark:text-white">Zayed Soudagar</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400">SRN: 01fe24bcs279</p>
-                <a href="zayed.html" class="text-cyan-450 text-sm hover:underline mt-2 inline-block">View Portfolio</a>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">SRN: 01fe24bcs279</p>
+                <a href="zayed.html" class="inline-block px-4 py-2 rounded-lg bg-cyan-450/10 text-cyan-450 text-sm font-bold hover:bg-cyan-450 hover:text-white transition-all">View Portfolio</a>
             </div>
             
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+            <div class="glass p-6 rounded-2xl shadow-lg border-b-4 border-cyan-450/50 hover:scale-105 transition-all text-center">
+                <div class="w-16 h-16 bg-cyan-450/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-user-ninja text-cyan-450 text-2xl"></i>
+                </div>
                 <p class="text-lg font-bold text-gray-900 dark:text-white">Bilal Asangi</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400">SRN: 01fe24bcs298</p>
-                <a href="bilal.html" class="text-cyan-450 text-sm hover:underline mt-2 inline-block">View Portfolio</a>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">SRN: 01fe24bcs298</p>
+                <a href="bilal.html" class="inline-block px-4 py-2 rounded-lg bg-cyan-450/10 text-cyan-450 text-sm font-bold hover:bg-cyan-450 hover:text-white transition-all">View Portfolio</a>
             </div>
             
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+            <div class="glass p-6 rounded-2xl shadow-lg border-b-4 border-cyan-450/50 hover:scale-105 transition-all text-center">
+                <div class="w-16 h-16 bg-cyan-450/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-user-tie text-cyan-450 text-2xl"></i>
+                </div>
                 <p class="text-lg font-bold text-gray-900 dark:text-white">Sourabh K</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400">SRN: 01fe24bcs289</p>
-                <a href="sourabh.html" class="text-cyan-450 text-sm hover:underline mt-2 inline-block">View Portfolio</a>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">SRN: 01fe24bcs289</p>
+                <a href="sourabh.html" class="inline-block px-4 py-2 rounded-lg bg-cyan-450/10 text-cyan-450 text-sm font-bold hover:bg-cyan-450 hover:text-white transition-all">View Portfolio</a>
             </div>
-            
-            
         </div>
 
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 mb-12">
-            <dl class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-lg">
-                <div>
-                    <dt class="font-semibold text-gray-500 dark:text-gray-400">Course Instructor</dt>
-                    <dd class="font-bold text-gray-900 dark:text-white">Prakash Hegde</dd>
+        <div class="glass p-8 rounded-2xl shadow-xl mb-16">
+            <dl class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+                <div class="flex items-center space-x-4">
+                    <div class="p-3 bg-cyan-450/20 rounded-xl text-cyan-450">
+                        <i class="fa-solid fa-chalkboard-user text-2xl"></i>
+                    </div>
+                    <div>
+                        <dt class="text-xs uppercase font-bold text-gray-400">Course Instructor</dt>
+                        <dd class="font-bold text-gray-900 dark:text-white">Prakash Hegde</dd>
+                    </div>
                 </div>
-                <div>
-                    <dt class="font-semibold text-gray-500 dark:text-gray-400">University</dt>
-                    <dd class="font-bold text-gray-900 dark:text-white">KLE Technological University</dd>
+                <div class="flex items-center space-x-4">
+                    <div class="p-3 bg-cyan-450/20 rounded-xl text-cyan-450">
+                        <i class="fa-solid fa-university text-2xl"></i>
+                    </div>
+                    <div>
+                        <dt class="text-xs uppercase font-bold text-gray-400">University</dt>
+                        <dd class="font-bold text-gray-900 dark:text-white">KLE Technological University</dd>
+                    </div>
                 </div>
             </dl>
         </div>
         
-        <h2 class="text-2xl font-bold text-cyan-450 mb-4 border-l-4 border-cyan-450 pl-4">🌐 Find Us Online</h2>
-        <ul>
-            <li class="mb-2"><a href="https://github.com/hbilal07/portfolio.github.io.git" target="_blank" class="text-cyan-450 hover:underline font-medium"><i class="fa-brands fa-github mr-2"></i> **Project GitHub Repository**</a></li>
-        </ul>
+        <h2 class="text-2xl font-bold text-cyan-450 mb-6 flex items-center">
+            <i class="fa-brands fa-github mr-3 text-3xl"></i> 🌐 Find Us Online
+        </h2>
+        <div class="mb-12">
+            <a href="https://github.com/hbilal07/portfolio.github.io.git" target="_blank" class="group glass inline-flex items-center px-8 py-4 rounded-xl text-cyan-450 font-bold hover:bg-cyan-450 hover:text-white transition-all shadow-lg">
+                <i class="fa-brands fa-github mr-3 text-xl group-hover:rotate-[360deg] transition-transform duration-500"></i>
+                Project GitHub Repository
+            </a>
+        </div>
         
-        <blockquote class="mt-8 p-4 border-l-4 border-gray-300 dark:border-gray-600 italic text-gray-700 dark:text-gray-400 bg-white dark:bg-gray-800/50 rounded">
-          “Work gives you meaning and purpose, and life is empty without it.” – Stephen Hawking
+        <blockquote class="mt-12 p-8 border-l-8 border-cyan-450 glass rounded-r-2xl italic text-xl text-gray-700 dark:text-gray-300 relative overflow-hidden">
+            <i class="fa-solid fa-quote-left absolute top-4 left-4 text-cyan-450/10 text-6xl"></i>
+            “Work gives you meaning and purpose, and life is empty without it.” 
+            <footer class="text-cyan-450 font-bold mt-4 not-italic">— Stephen Hawking</footer>
         </blockquote>
     </div>
 
-    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white py-8 mt-auto transition-colors">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <span class="brand-font text-lg font-bold">Zabrosa Sustainable City</span>
-                <p class="text-gray-500 dark:text-gray-400 text-sm">Shaping a sustainable tomorrow through the power of algorithms, one step at a time.</p>
+    <footer class="bg-white dark:bg-[#0a0f1a] border-t border-gray-200 dark:border-cyan-450/10 text-gray-800 dark:text-white py-12 mt-20 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <span class="brand-font text-2xl font-bold text-cyan-450">Zabrosa City</span>
+                <p class="text-gray-500 dark:text-gray-400 mt-2 max-w-sm">Shaping a sustainable tomorrow through the power of algorithms, one step at a time.</p>
             </div>
-            <div class="text-center mt-4 text-gray-500 dark:text-gray-600 text-xs">
-                © 2025 Zabrosa City Project. All Rights Reserved.
+            <div class="flex space-x-4">
+                <div class="p-2 bg-gray-100 dark:bg-white/5 rounded-lg hover:text-cyan-450 transition-colors"><i class="fa-brands fa-linkedin text-xl"></i></div>
+                <div class="p-2 bg-gray-100 dark:bg-white/5 rounded-lg hover:text-cyan-450 transition-colors"><i class="fa-brands fa-twitter text-xl"></i></div>
+                <div class="p-2 bg-gray-100 dark:bg-white/5 rounded-lg hover:text-cyan-450 transition-colors"><i class="fa-brands fa-instagram text-xl"></i></div>
+            </div>
+            <div class="text-gray-500 dark:text-gray-600 text-sm">
+                © 2025 Zabrosa City Project. <br> Built with ❤️ and Algorithms.
             </div>
         </div>
     </footer>
@@ -221,7 +294,6 @@
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');
             
-            // Check for saved preference or system preference
             if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
                  html.classList.remove('dark');
                  if (icon) {
