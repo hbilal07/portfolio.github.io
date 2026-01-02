@@ -59,12 +59,18 @@
                     <button onclick="window.history.back()" class="text-slate-300 hover:text-brand-400 transition flex items-center">
                         <i class="fa-solid fa-arrow-left mr-2"></i> Back
                     </button>
+                    <a href="#" class="text-slate-300 hover:text-brand-400 transition hidden md:block">Home</a>
+                    <button class="p-2 rounded-full hover:bg-indigo-900/30 transition">
+                        <i class="fa-solid fa-moon text-brand-400 text-xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
     <header class="relative pt-20 pb-16 px-4 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-indigo-600/10 to-transparent -z-10"></div>
+        
         <div class="max-w-4xl mx-auto text-center relative z-10 fade-in">
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
                 Urban Resource & <br><span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-slate-400">Operations Strategy</span>
@@ -73,6 +79,23 @@
                 Hi, I am <span class="text-brand-400 font-semibold">Rohit Bidari</span>. This document presents the phase of business cases for 
                 <strong>Zabrosa</strong> — optimizing land, climate resilience, and public services.
             </p>
+
+            <div class="glass-panel rounded-2xl p-8 text-left max-w-3xl mx-auto shadow-2xl border-l-4 border-l-brand-400">
+                <div class="flex items-center mb-6">
+                    <i class="fa-solid fa-microchip text-brand-400 text-xl mr-3"></i>
+                    <h2 class="text-xl font-bold text-white uppercase tracking-wider">8 Business Cases</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-300">
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">1.</span> Smart Land-Use Zoning</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">2.</span> Urban Flood Risk Prediction</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">3.</span> EV Charging Station Optimization</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">4.</span> School Admission & Allocation</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">5.</span> Urban Noise Regulation</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">6.</span> Marketplace Stall Allocation</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">7.</span> Heritage Site Visitor Control</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">8.</span> Municipal Workforce Scheduling</div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -159,7 +182,7 @@
                 problem: "Urban marketplaces must allocate limited stalls fairly while maximizing revenue and transparency.",
                 approach: "Selection Sort is used to rank vendor bids in descending order.",
                 documentation: "Vendor bid amounts are stored in an array and sorted using selection sort. The highest bidder is allocated the premium stall, ensuring a transparent and rule-based allocation process.",
-                efficiency: "Time Complexity: O(n²)\nSpace Complexity: O (1)",
+                efficiency: "Time Complexity: O(n²)\nSpace Complexity: O(1)",
                 code: `/* Stall Allocation using Selection Sort */\n#include <stdio.h>\n\nint main() {\n    int bids[] = {1200, 4500, 3000, 2500};\n    int n = 4;\n\n    for(int i = 0; i < n-1; i++) {\n        int max = i;\n        for(int j = i+1; j < n; j++)\n            if(bids[j] > bids[max])\n                max = j;\n\n        int temp = bids[i];\n        bids[i] = bids[max];\n        bids[max] = temp;\n    }\n\n    printf("Premium Stall allocated to bidder with ₹%d\\n", bids[0]);\n    return 0;\n}`
             },
             7: {
