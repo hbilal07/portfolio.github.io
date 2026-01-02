@@ -13,13 +13,13 @@
                     colors: { 
                         brand: { 
                             50: '#f5f7ff',
-                            400: '#818cf8', // Indigo/Violet Highlight
+                            400: '#818cf8', 
                             500: '#6366f1',
                             900: '#1e1b4b',
-                            950: '#0f172a' // Midnight Navy Base
+                            950: '#0f172a' 
                         },
                         accent: {
-                            400: '#94a3b8', // Refined Silver
+                            400: '#94a3b8',
                             500: '#64748b'
                         }
                     } 
@@ -59,18 +59,12 @@
                     <button onclick="window.history.back()" class="text-slate-300 hover:text-brand-400 transition flex items-center">
                         <i class="fa-solid fa-arrow-left mr-2"></i> Back
                     </button>
-                    <a href="#" class="text-slate-300 hover:text-brand-400 transition hidden md:block">Home</a>
-                    <button class="p-2 rounded-full hover:bg-indigo-900/30 transition">
-                        <i class="fa-solid fa-moon text-brand-400 text-xl"></i>
-                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
     <header class="relative pt-20 pb-16 px-4 overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-indigo-600/10 to-transparent -z-10"></div>
-        
         <div class="max-w-4xl mx-auto text-center relative z-10 fade-in">
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
                 Urban Resource & <br><span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-slate-400">Operations Strategy</span>
@@ -79,23 +73,6 @@
                 Hi, I am <span class="text-brand-400 font-semibold">Rohit Bidari</span>. This document presents the phase of business cases for 
                 <strong>Zabrosa</strong> — optimizing land, climate resilience, and public services.
             </p>
-
-            <div class="glass-panel rounded-2xl p-8 text-left max-w-3xl mx-auto shadow-2xl border-l-4 border-l-brand-400">
-                <div class="flex items-center mb-6">
-                    <i class="fa-solid fa-microchip text-brand-400 text-xl mr-3"></i>
-                    <h2 class="text-xl font-bold text-white uppercase tracking-wider">8 Business Cases</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-300">
-                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">1.</span> Smart Land-Use Zoning</div>
-                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">2.</span> Urban Flood Risk Prediction</div>
-                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">3.</span> EV Charging Station Optimization</div>
-                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">4.</span> School Admission & Allocation</div>
-                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">5.</span> Urban Noise Regulation</div>
-                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">6.</span> Marketplace Stall Allocation</div>
-                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">7.</span> Heritage Site Visitor Control</div>
-                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">8.</span> Municipal Workforce Scheduling</div>
-                </div>
-            </div>
         </div>
     </header>
 
@@ -139,67 +116,67 @@
         const caseData = {
             1: {
                 title: "Smart Land-Use Zoning & Permit Approval System",
-                problem: "Urban development requires strict adherence to land-use zoning rules to prevent illegal constructions. Manual verification is time-consuming and error-prone.",
-                approach: "Hashing is used to store zoning information for each land plot, enabling O(1) validation of permit requests.",
-                documentation: "Each plot ID maps to its permitted type (residential, commercial, industrial). System checks the hash table to verify if construction matches regulations.",
-                efficiency: "Average search and insertion time: O(1). Space Complexity: O(n).",
-                code: `#include <stdio.h>\n#define SIZE 10\n\nint zoneTable[SIZE];   // 1 = residential, 2 = commercial, 3 = industrial\n\nint hash(int plot) {\n    return plot % SIZE;\n}\n\nint main() {\n    zoneTable[hash(101)] = 1; // Residential\n    zoneTable[hash(205)] = 2; // Commercial\n    zoneTable[hash(309)] = 3; // Industrial\n\n    int plot=101, request=1;\n    if(zoneTable[hash(plot)] == request)\n        printf("Permit Approved\\n");\n    else\n        printf("Permit Rejected (Zoning Violation)\\n");\n\n    return 0;\n}`
+                problem: "Rapid urban development often leads to unauthorized construction and zoning violations. Manual verification of land-use permits is slow and prone to errors, making regulation enforcement difficult.",
+                approach: "A Binary Search Tree (BST) is used to store land plot records indexed by plot ID, allowing fast lookup and validation of zoning permissions.",
+                documentation: "Each land plot is inserted into the BST with its permitted zoning category. When a permit request is submitted, the system searches the BST for the plot ID and verifies whether the requested land use matches the approved zone. This ensures quick and reliable permit validation.",
+                efficiency: "Search and insertion time: O(log n) (average case)\nSpace Complexity: O(n)",
+                code: `/* Land-Use Zoning using Binary Search Tree */\n#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int plotID;\n    int zone; // 1=Res,2=Com,3=Ind\n    struct Node *left, *right;\n};\n\nstruct Node* insert(struct Node* root, int id, int zone) {\n    if(root == NULL) {\n        struct Node* temp = (struct Node*)malloc(sizeof(struct Node));\n        temp->plotID = id;\n        temp->zone = zone;\n        temp->left = temp->right = NULL;\n        return temp;\n    }\n    if(id < root->plotID)\n        root->left = insert(root->left, id, zone);\n    else\n        root->right = insert(root->right, id, zone);\n    return root;\n}\n\nint search(struct Node* root, int id) {\n    if(root == NULL) return -1;\n    if(root->plotID == id) return root->zone;\n    if(id < root->plotID) return search(root->left, id);\n    return search(root->right, id);\n}\n\nint main() {\n    struct Node* root = NULL;\n    root = insert(root, 101, 1);\n    root = insert(root, 205, 2);\n    root = insert(root, 320, 3);\n\n    int id, req;\n    printf("Enter Plot ID and Requested Zone: ");\n    scanf("%d%d", &id, &req);\n\n    if(search(root, id) == req)\n        printf("Permit Approved\\n");\n    else\n        printf("Permit Rejected\\n");\n\n    return 0;\n}`
             },
             2: {
                 title: "Urban Flood Risk Prediction & Drainage Control",
-                problem: "Authorities need an efficient way to predict flood risk based on rainfall accumulation over time to activate drainage systems.",
-                approach: "Prefix Sum technique analyzes cumulative rainfall data over fixed time periods instantly.",
-                documentation: "A prefix sum array is constructed from rainfall readings. If total rainfall in a window exceeds threshold, alerts trigger.",
-                efficiency: "Time Complexity: O(n). Extra Space Complexity: O(n).",
-                code: `#include <stdio.h>\n\nint main() {\n    int rain[7] = {20, 30, 50, 40, 60, 80, 90};\n    int prefix[7];\n\n    prefix[0] = rain[0];\n    for(int i = 1; i < 7; i++)\n        prefix[i] = prefix[i-1] + rain[i];\n\n    int totalRain = prefix[6];\n    if(totalRain > 300)\n        printf("Flood Risk Detected – Activate Drainage System\\n");\n    else\n        printf("Drainage System Normal\\n");\n\n    return 0;\n}`
+                problem: "Urban flooding occurs due to sudden rainfall accumulation and inefficient drainage systems. Authorities need a mechanism to assess flood risk across different zones in real time.",
+                approach: "A Segment Tree is used to efficiently compute cumulative rainfall over specific regions and time intervals.",
+                documentation: "Rainfall data from multiple sensors is stored in an array. A segment tree is built on this data to support fast range-sum queries. If rainfall in any segment exceeds a predefined threshold, flood alerts are generated and drainage control systems are activated.",
+                efficiency: "Range query and update time: O(log n)\nSpace Complexity: O(n)",
+                code: `/* Flood Risk Monitoring using Segment Tree */\n#include <stdio.h>\n\nint seg[20];\n\nvoid build(int arr[], int node, int start, int end) {\n    if(start == end)\n        seg[node] = arr[start];\n    else {\n        int mid = (start + end) / 2;\n        build(arr, 2*node, start, mid);\n        build(arr, 2*node+1, mid+1, end);\n        seg[node] = seg[2*node] + seg[2*node+1];\n    }\n}\n\nint query(int node, int start, int end, int l, int r) {\n    if(r < start || l > end) return 0;\n    if(l <= start && end <= r) return seg[node];\n    int mid = (start + end) / 2;\n    return query(2*node, start, mid, l, r) +\n           query(2*node+1, mid+1, end, l, r);\n}\n\nint main() {\n    int rain[] = {40, 60, 80, 55, 90};\n    build(rain, 1, 0, 4);\n\n    int total = query(1, 0, 4, 0, 4);\n    printf("Total Rainfall = %d mm\\n", total);\n\n    if(total > 300)\n        printf("⚠ Flood Risk Alert\\n");\n    return 0;\n}`
             },
             3: {
                 title: "City-Wide EV Charging Station Optimization",
-                problem: "EV stations must be connected across the city to minimize infrastructure cost while ensuring full accessibility.",
-                approach: "Prim’s Algorithm constructs a Minimum Spanning Tree (MST) for optimal connection cabling.",
-                documentation: "Locations are vertices, cabling cost is weighted edges. The algorithm finds the cheapest path to connect all stations.",
-                efficiency: "Time Complexity: O(V²) (using adjacency matrix). Space Complexity: O(V²).",
-                code: `#include <stdio.h>\n#define INF 999\n\nint main() {\n    int n = 4, minCost = 0;\n    int cost[4][4] = {\n        {INF, 10, 15, 20},\n        {10, INF, 35, 25},\n        {15, 35, INF, 30},\n        {20, 25, 30, INF}\n    };\n    int visited[4] = {1,0,0,0};\n\n    for(int e = 0; e < n-1; e++) {\n        int min = INF, u, v;\n        for(int i = 0; i < n; i++)\n            if(visited[i])\n                for(int j = 0; j < n; j++)\n                    if(!visited[j] && cost[i][j] < min) {\n                        min = cost[i][j];\n                        v = j;\n                    }\n        visited[v] = 1;\n        minCost += min;\n    }\n    printf("Minimum Charging Network Cost = %d\\n", minCost);\n    return 0;\n}`
+                problem: "Electric vehicle infrastructure must ensure minimum travel distance to charging stations while reducing network setup costs.",
+                approach: "Dijkstra’s Algorithm is applied to compute the shortest paths between city zones and EV charging stations.",
+                documentation: "City zones are represented as graph nodes, and road distances are represented as weighted edges. Dijkstra’s algorithm calculates the shortest distance from a central station to all other stations, ensuring optimal placement and accessibility.",
+                efficiency: "Time Complexity: O(V²) (basic implementation)\nSpace Complexity: O(V)",
+                code: `/* EV Station Routing using Dijkstra */\n#include <stdio.h>\n#define INF 999\n\nint main() {\n    int n = 4;\n    int cost[4][4] = {\n        {0,10,INF,30},\n        {10,0,50,INF},\n        {INF,50,0,20},\n        {30,INF,20,0}\n    };\n\n    int dist[4] = {0, INF, INF, INF};\n    int visited[4] = {0};\n\n    for(int i = 0; i < n; i++) {\n        int u = -1, min = INF;\n        for(int j = 0; j < n; j++)\n            if(!visited[j] && dist[j] < min) {\n                min = dist[j];\n                u = j;\n            }\n\n        visited[u] = 1;\n        for(int v = 0; v < n; v++)\n            if(dist[u] + cost[u][v] < dist[v])\n                dist[v] = dist[u] + cost[u][v];\n    }\n\n    printf("Shortest distance to farthest EV station: %d\\n", dist[3]);\n    return 0;\n}`
             },
             4: {
                 title: "Smart School Admission & Classroom Allocation",
-                problem: "Schools must allocate students to classrooms respecting capacity constraints to avoid overcrowding.",
-                approach: "Greedy Algorithm assigns students to the next available capacity sequentially.",
-                documentation: "Students are filled into rooms greedily. If students remain after all rooms are at capacity, a flag for new infrastructure is raised.",
-                efficiency: "Time Complexity: O(n). Extra Space Complexity: O(1).",
-                code: `#include <stdio.h>\n\nint main() {\n    int students = 120;\n    int classCapacity[] = {40, 35, 30};\n    int rooms = 3;\n\n    for(int i = 0; i < rooms && students > 0; i++) {\n        if(students >= classCapacity[i]) {\n            students -= classCapacity[i];\n            printf("Classroom %d filled\\n", i+1);\n        }\n    }\n    if(students > 0)\n        printf("Extra classrooms needed for %d students\\n", students);\n    return 0;\n}`
+                problem: "Schools need to allocate students to classrooms efficiently while preventing overcrowding and underutilization.",
+                approach: "A Min-Heap is used to assign students to classrooms with the least current occupancy.",
+                documentation: "Each classroom’s current capacity is stored in a min-heap. When a student is admitted, the classroom with the lowest occupancy is selected and updated, ensuring balanced distribution of students.",
+                efficiency: "Heap insertion: O(log n)\nSpace Complexity: O(n)",
+                code: `/* Classroom Allocation using Min Heap */\n#include <stdio.h>\n\nint heap[10], size = 0;\n\nvoid insert(int val) {\n    heap[++size] = val;\n    int i = size;\n    while(i > 1 && heap[i] < heap[i/2]) {\n        int t = heap[i]; heap[i] = heap[i/2]; heap[i/2] = t;\n        i /= 2;\n    }\n}\n\nint extractMin() {\n    int min = heap[1];\n    heap[1] = heap[size--];\n    return min;\n}\n\nint main() {\n    insert(45);\n    insert(30);\n    insert(25);\n\n    printf("Classroom with least capacity allocated: %d students\\n",\n           extractMin());\n    return 0;\n}`
             },
             5: {
                 title: "Urban Noise Regulation & Complaint Resolution",
-                problem: "Continuous monitoring is required to identify sustained noise violations across city zones.",
-                approach: "Sliding Window technique calculates moving average noise levels over fixed time intervals.",
-                documentation: "A window of fixed size slides over sensor data. If the moving average crosses 75dB, an automated violation is logged.",
-                efficiency: "Time Complexity: O(n). Extra Space Complexity: O(1).",
-                code: `#include <stdio.h>\n\nint main() {\n    int noise[] = {55, 60, 72, 80, 85, 65};\n    int window = 3;\n\n    for(int i = 0; i <= 6 - window; i++) {\n        int sum = 0;\n        for(int j = i; j < i + window; j++) sum += noise[j];\n        int avg = sum / window;\n        if(avg > 75) printf("⚠ Noise Violation Alert at interval %d\\n", i);\n    }\n    return 0;\n}`
+                problem: "Noise pollution must be continuously monitored to detect violations and respond to citizen complaints promptly.",
+                approach: "A Fenwick Tree (Binary Indexed Tree) is used to process cumulative noise level data efficiently.",
+                documentation: "Noise readings from sensors are updated in the Fenwick Tree. Prefix sum queries compute average noise levels over time. If values exceed permissible limits, automatic complaints and alerts are generated.",
+                efficiency: "Update and query time: O(log n)\nSpace Complexity: O(n)",
+                code: `/* Noise Monitoring using Fenwick Tree */\n#include <stdio.h>\n\nint BIT[10], n = 5;\n\nvoid update(int i, int val) {\n    while(i <= n) {\n        BIT[i] += val;\n        i += i & -i;\n    }\n}\n\nint query(int i) {\n    int sum = 0;\n    while(i > 0) {\n        sum += BIT[i];\n        i -= i & -i;\n    }\n    return sum;\n}\n\nint main() {\n    update(1, 70);\n    update(2, 85);\n    update(3, 90);\n\n    int avg = query(3) / 3;\n    printf("Average Noise Level = %d dB\\n", avg);\n\n    if(avg > 75)\n        printf("⚠ Noise Violation\\n");\n    return 0;\n}`
             },
             6: {
                 title: "Smart Marketplace Stall Allocation",
-                problem: "Marketplaces require a fair and orderly allocation of stalls to avoid disputes and vendor overcrowding.",
-                approach: "Queue data structure implements a First-Come-First-Served (FCFS) logic for vendors.",
-                documentation: "Vendors register and enter a queue. Available stalls are popped from the front of the queue to ensure perfect fairness.",
-                efficiency: "Enqueue/Dequeue: O(1). Space Complexity: O(n).",
-                code: `#include <stdio.h>\n\nint main() {\n    int queue[10], f = 0, r = 0;\n    queue[r++] = 101; // Vendor 101\n    queue[r++] = 102; // Vendor 102\n    \n    printf("Allocated Stall to Vendor ID: %d\\n", queue[f++]);\n    printf("Next in line: %d\\n", queue[f]);\n    return 0;\n}`
+                problem: "Urban marketplaces must allocate limited stalls fairly while maximizing revenue and transparency.",
+                approach: "Selection Sort is used to rank vendor bids in descending order.",
+                documentation: "Vendor bid amounts are stored in an array and sorted using selection sort. The highest bidder is allocated the premium stall, ensuring a transparent and rule-based allocation process.",
+                efficiency: "Time Complexity: O(n²)\nSpace Complexity: O (1)",
+                code: `/* Stall Allocation using Selection Sort */\n#include <stdio.h>\n\nint main() {\n    int bids[] = {1200, 4500, 3000, 2500};\n    int n = 4;\n\n    for(int i = 0; i < n-1; i++) {\n        int max = i;\n        for(int j = i+1; j < n; j++)\n            if(bids[j] > bids[max])\n                max = j;\n\n        int temp = bids[i];\n        bids[i] = bids[max];\n        bids[max] = temp;\n    }\n\n    printf("Premium Stall allocated to bidder with ₹%d\\n", bids[0]);\n    return 0;\n}`
             },
             7: {
                 title: "Heritage Site Visitor Control System",
-                problem: "Heritage sites must limit entry to prevent structural damage while maintaining orderly visitor flow.",
-                approach: "Queue combined with a global capacity counter regulates visitor entry thresholds.",
-                documentation: "Visitors are queued. Entry is granted only if 'CurrentVisitors < MaxCapacity'. Others remain in queue until someone exits.",
-                efficiency: "Time Complexity: O(n). Space Complexity: O(n).",
-                code: `#include <stdio.h>\n\nint main() {\n    int max = 5, current = 0;\n    int visitors[] = {1,2,3,4,5,6};\n\n    for(int i=0; i<6; i++) {\n        if(current < max) {\n            current++;\n            printf("Allowed Visitor %d\\n", visitors[i]);\n        } else {\n            printf("Entry Denied: Capacity Full for Visitor %d\\n", visitors[i]);\n        }\n    }\n    return 0;\n}`
+                problem: "Heritage sites require controlled visitor entry to prevent overcrowding and structural damage.",
+                approach: "A Queue is used to manage visitor entry using a First-Come-First-Served policy.",
+                documentation: "Visitors are added to the queue upon arrival. Entry is allowed until the maximum capacity is reached. Additional visitors are either queued or denied entry, maintaining safety and order.",
+                efficiency: "Enqueue and dequeue operations: O(1)\nSpace Complexity: O(n)",
+                code: `/* Heritage Visitor Control using Queue */\n#include <stdio.h>\n\nint main() {\n    int queue[10], front = 0, rear = 0;\n    int maxVisitors = 3;\n\n    queue[rear++] = 101;\n    queue[rear++] = 102;\n    queue[rear++] = 103;\n    queue[rear++] = 104;\n\n    while(front < rear) {\n        if(front < maxVisitors)\n            printf("Visitor %d Allowed\\n", queue[front]);\n        else\n            printf("Visitor %d Denied\\n", queue[front]);\n        front++;\n    }\n    return 0;\n}`
             },
             8: {
                 title: "Municipal Workforce Shift Scheduling",
-                problem: "Efficiently scheduling workers across multiple shifts to ensure 24/7 city service availability.",
-                approach: "Greedy Scheduling Algorithm assigns workers to the highest priority shifts first.",
-                documentation: "Shift durations are prioritized and workers are assigned sequentially based on availability until all slots are filled.",
-                efficiency: "Time Complexity: O(n). Extra Space Complexity: O(1).",
-                code: `#include <stdio.h>\n\nint main() {\n    int shifts[] = {8, 6, 4}, workers = 10;\n    for(int i = 0; i < 3 && workers > 0; i++) {\n        workers--;\n        printf("Shift %d assigned to worker.\\n", i+1);\n    }\n    printf("Workers remaining for standby: %d\\n", workers);\n    return 0;\n}`
+                problem: "Municipal services require efficient scheduling of workers across shifts to ensure uninterrupted operations.",
+                approach: "An AVL Tree is used to maintain a balanced structure of worker IDs for fair and efficient shift assignment.",
+                documentation: "Worker records are inserted into the AVL tree. An in-order traversal assigns shifts in a balanced manner, ensuring equitable workload distribution and fast retrieval of worker data.",
+                efficiency: "Insertion and search time: O(log n)\nSpace Complexity: O(n)",
+                code: `/* Workforce Scheduling using AVL Tree (Simplified) */\n#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int workerID;\n    struct Node *left, *right;\n};\n\nstruct Node* newNode(int id) {\n    struct Node* node = (struct Node*)malloc(sizeof(struct Node));\n    node->workerID = id;\n    node->left = node->right = NULL;\n    return node;\n}\n\nstruct Node* insert(struct Node* root, int id) {\n    if(root == NULL) return newNode(id);\n    if(id < root->workerID)\n        root->left = insert(root->left, id);\n    else\n        root->right = insert(root->right, id);\n    return root;\n}\n\nvoid inorder(struct Node* root) {\n    if(root) {\n        inorder(root->left);\n        printf("Worker %d Assigned Shift\\n", root->workerID);\n        inorder(root->right);\n    }\n}\n\nint main() {\n    struct Node* root = NULL;\n    root = insert(root, 201);\n    root = insert(root, 105);\n    root = insert(root, 309);\n\n    inorder(root);\n    return 0;\n}`
             }
         };
 
@@ -227,7 +204,7 @@
                 <span class="highlight-heading">Documentation</span>
                 <p class="text-slate-300 mb-6">${data.documentation}</p>
                 <span class="highlight-heading">Efficiency Analysis</span>
-                <p class="text-slate-300 mb-6">${data.efficiency}</p>
+                <p class="text-slate-300 mb-6 whitespace-pre-line">${data.efficiency}</p>
             `;
 
             const codeEl = document.getElementById('modalCode');
