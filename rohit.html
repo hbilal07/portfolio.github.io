@@ -11,14 +11,16 @@
             theme: { 
                 extend: { 
                     colors: { 
-                        forest: { 
-                            500: '#064e3b',
-                            600: '#065f46',
-                            950: '#022c22' // Deep Emerald/Forest Base
+                        brand: { 
+                            50: '#f5f7ff',
+                            400: '#818cf8', // Indigo/Violet Highlight
+                            500: '#6366f1',
+                            900: '#1e1b4b',
+                            950: '#0f172a' // Midnight Navy Base
                         },
-                        gold: {
-                            400: '#fbbf24', // Warm Gold Accent
-                            500: '#f59e0b'
+                        accent: {
+                            400: '#94a3b8', // Refined Silver
+                            500: '#64748b'
                         }
                     } 
                 } 
@@ -34,32 +36,32 @@
         h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
         .fade-in { animation: fadeIn 0.8s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .initiative-card { transition: all 0.3s ease; cursor: pointer; border: 1px solid rgba(251, 191, 36, 0.1); }
-        .initiative-card:hover { transform: translateY(-5px); border-color: #fbbf24; box-shadow: 0 10px 30px -15px rgba(251, 191, 36, 0.3); }
+        .initiative-card { transition: all 0.3s ease; cursor: pointer; border: 1px solid rgba(129, 140, 248, 0.1); }
+        .initiative-card:hover { transform: translateY(-5px); border-color: #818cf8; box-shadow: 0 10px 30px -15px rgba(99, 102, 241, 0.4); }
         .modal { transition: opacity 0.3s ease-in-out; opacity: 0; pointer-events: none; }
         .modal.active { opacity: 1; pointer-events: auto; }
-        pre { white-space: pre; word-wrap: normal; overflow-x: auto; background: #064e3b; padding: 1.5rem; border-radius: 0.5rem; }
+        pre { white-space: pre; word-wrap: normal; overflow-x: auto; background: #1e1b4b; padding: 1.5rem; border-radius: 0.5rem; }
         code { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; line-height: 1.5; }
-        .highlight-heading { color: #fbbf24; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; }
-        .glass-panel { background: rgba(2, 44, 34, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(251, 191, 36, 0.2); }
+        .highlight-heading { color: #818cf8; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; }
+        .glass-panel { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(148, 163, 184, 0.2); }
     </style>
 </head>
-<body class="bg-forest-950 text-slate-200 flex flex-col min-h-screen">
+<body class="bg-brand-950 text-slate-200 flex flex-col min-h-screen">
 
-    <nav class="bg-forest-950/80 backdrop-blur-md sticky top-0 z-40 border-b border-emerald-900/50 shadow-sm">
+    <nav class="bg-brand-950/80 backdrop-blur-md sticky top-0 z-40 border-b border-indigo-900/50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <i class="fa-solid fa-tree-city text-gold-400 text-2xl mr-2"></i>
+                    <i class="fa-solid fa-tree-city text-brand-400 text-2xl mr-2"></i>
                     <span class="brand-font text-xl font-bold text-white tracking-tight">Zabrosa City</span>
                 </div>
                 <div class="flex items-center space-x-4 md:space-x-8">
-                    <button onclick="window.history.back()" class="text-slate-300 hover:text-gold-400 transition flex items-center">
+                    <button onclick="window.history.back()" class="text-slate-300 hover:text-brand-400 transition flex items-center">
                         <i class="fa-solid fa-arrow-left mr-2"></i> Back
                     </button>
-                    <a href="#" class="text-slate-300 hover:text-gold-400 transition hidden md:block">Home</a>
-                    <button class="p-2 rounded-full hover:bg-emerald-900/30 transition">
-                        <i class="fa-solid fa-sun text-gold-400 text-xl"></i>
+                    <a href="#" class="text-slate-300 hover:text-brand-400 transition hidden md:block">Home</a>
+                    <button class="p-2 rounded-full hover:bg-indigo-900/30 transition">
+                        <i class="fa-solid fa-moon text-brand-400 text-xl"></i>
                     </button>
                 </div>
             </div>
@@ -67,31 +69,31 @@
     </nav>
 
     <header class="relative pt-20 pb-16 px-4 overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-emerald-600/10 to-transparent -z-10"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-indigo-600/10 to-transparent -z-10"></div>
         
         <div class="max-w-4xl mx-auto text-center relative z-10 fade-in">
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-                Urban Resource & <br><span class="bg-clip-text text-transparent bg-gradient-to-r from-gold-400 to-emerald-400">Operations Strategy</span>
+                Urban Resource & <br><span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-slate-400">Operations Strategy</span>
             </h1>
             <p class="text-lg text-slate-400 mb-10 leading-relaxed">
-                Hi, I am <span class="text-gold-400 font-semibold">Rohit Bidari</span>. This document presents the phase of business cases for 
+                Hi, I am <span class="text-brand-400 font-semibold">Rohit Bidari</span>. This document presents the phase of business cases for 
                 <strong>Zabrosa</strong> — optimizing land, climate resilience, and public services.
             </p>
 
-            <div class="glass-panel rounded-2xl p-8 text-left max-w-3xl mx-auto shadow-2xl border-l-4 border-l-gold-400">
+            <div class="glass-panel rounded-2xl p-8 text-left max-w-3xl mx-auto shadow-2xl border-l-4 border-l-brand-400">
                 <div class="flex items-center mb-6">
-                    <i class="fa-solid fa-microchip text-gold-400 text-xl mr-3"></i>
+                    <i class="fa-solid fa-microchip text-brand-400 text-xl mr-3"></i>
                     <h2 class="text-xl font-bold text-white uppercase tracking-wider">8 Operational Cases</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-300">
-                    <div class="flex items-start"><span class="text-gold-400 font-mono mr-2">1.</span> Smart Land-Use Zoning</div>
-                    <div class="flex items-start"><span class="text-gold-400 font-mono mr-2">2.</span> Urban Flood Risk Prediction</div>
-                    <div class="flex items-start"><span class="text-gold-400 font-mono mr-2">3.</span> EV Charging Station Optimization</div>
-                    <div class="flex items-start"><span class="text-gold-400 font-mono mr-2">4.</span> School Admission & Allocation</div>
-                    <div class="flex items-start"><span class="text-gold-400 font-mono mr-2">5.</span> Urban Noise Regulation</div>
-                    <div class="flex items-start"><span class="text-gold-400 font-mono mr-2">6.</span> Marketplace Stall Allocation</div>
-                    <div class="flex items-start"><span class="text-gold-400 font-mono mr-2">7.</span> Heritage Site Visitor Control</div>
-                    <div class="flex items-start"><span class="text-gold-400 font-mono mr-2">8.</span> Municipal Workforce Scheduling</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">1.</span> Smart Land-Use Zoning</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">2.</span> Urban Flood Risk Prediction</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">3.</span> EV Charging Station Optimization</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">4.</span> School Admission & Allocation</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">5.</span> Urban Noise Regulation</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">6.</span> Marketplace Stall Allocation</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">7.</span> Heritage Site Visitor Control</div>
+                    <div class="flex items-start"><span class="text-brand-400 font-mono mr-2">8.</span> Municipal Workforce Scheduling</div>
                 </div>
             </div>
         </div>
@@ -99,18 +101,18 @@
 
     <main id="initiatives" class="flex-grow max-w-7xl mx-auto px-4 py-16 w-full">
         <div class="flex items-center justify-center space-x-4 mb-12">
-            <div class="h-px w-12 bg-emerald-900"></div>
+            <div class="h-px w-12 bg-indigo-900"></div>
             <h2 class="text-3xl font-bold text-white text-center">Detailed Initiatives</h2>
-            <div class="h-px w-12 bg-emerald-900"></div>
+            <div class="h-px w-12 bg-indigo-900"></div>
         </div>
         <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
     </main>
 
     <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-forest-950/95 backdrop-blur-md" onclick="closeModal()"></div>
-        <div class="bg-slate-900 rounded-2xl border border-emerald-900/50 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10">
-            <div class="flex justify-between items-center p-6 border-b border-emerald-900/30">
-                <h3 id="modalTitle" class="text-2xl font-bold text-gold-400"></h3>
+        <div class="absolute inset-0 bg-brand-950/95 backdrop-blur-md" onclick="closeModal()"></div>
+        <div class="bg-slate-900 rounded-2xl border border-indigo-900/50 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10">
+            <div class="flex justify-between items-center p-6 border-b border-indigo-900/30">
+                <h3 id="modalTitle" class="text-2xl font-bold text-brand-400"></h3>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-white transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
             </div>
             <div class="p-6 overflow-y-auto">
@@ -124,7 +126,7 @@
                     </div>
                     <div>
                         <span class="highlight-heading">Implementation</span>
-                        <div class="rounded-lg overflow-hidden border border-emerald-900/50">
+                        <div class="rounded-lg overflow-hidden border border-indigo-900/50">
                             <pre><code id="modalCode" class="language-c"></code></pre>
                         </div>
                     </div>
@@ -206,8 +208,8 @@
 
         Object.keys(caseData).forEach((id, i) => {
             grid.innerHTML += `
-                <div onclick="openModal(${id})" class="initiative-card bg-forest-950/40 p-6 rounded-2xl shadow-lg backdrop-blur-sm">
-                    <i class="fa-solid fa-${icons[i]} text-gold-400 text-3xl mb-4"></i>
+                <div onclick="openModal(${id})" class="initiative-card bg-brand-900/40 p-6 rounded-2xl shadow-lg backdrop-blur-sm">
+                    <i class="fa-solid fa-${icons[i]} text-brand-400 text-3xl mb-4"></i>
                     <h3 class="font-bold text-lg text-white mb-2">${id}. ${caseData[id].title}</h3>
                     <p class="text-xs text-slate-500 uppercase tracking-widest">Zabrosa Smart Systems</p>
                 </div>
