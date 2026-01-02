@@ -1,1 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable City Portfolio | Second Phase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { 
+                extend: { 
+                    colors: { 
+                        emerald_dark: { 
+                            500: '#064e3b',
+                            600: '#065f46',
+                            950: '#022c22' // Deep Forest Base
+                        },
+                        amber_accent: {
+                            400: '#fbbf24', // Golden Amber accent
+                            500: '#f59e0b'
+                        }
+                    } 
+                } 
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+        .fade-in { animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .initiative-card { transition: all 0.3s ease; cursor: pointer; border: 1px solid rgba(251, 191, 36, 0.1); }
+        .initiative-card:hover { transform: translateY(-5px); border-color: #fbbf24; box-shadow: 0 10px 30px -15px rgba(251, 191, 36, 0.3); }
+        .modal { transition: opacity 0.3s ease-in-out; opacity: 0; pointer-events: none; }
+        .modal.active { opacity: 1; pointer-events: auto; }
+        pre { white-space: pre; word-wrap: normal; overflow-x: auto; background: #064e3b; padding: 1.5rem; border-radius: 0.5rem; }
+        code { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; line-height: 1.5; }
+        .highlight-heading { color: #fbbf24; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; }
+        .glass-panel { background: rgba(2, 44, 34, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(251, 191, 36, 0.2); }
+    </style>
+</head>
+<body class="bg-emerald_dark-950 text-slate-200 flex flex-col min-h-screen">
 
+    <nav class="bg-emerald_dark-950/80 backdrop-blur-md sticky top-0 z-40 border-b border-emerald-900/50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-city text-amber_accent-400 text-2xl mr-2"></i>
+                    <span class="brand-font text-xl font-bold text-white tracking-tight">Zabrosa City</span>
+                </div>
+                <div class="flex items-center space-x-4 md:space-x-8">
+                    <button onclick="window.history.back()" class="text-slate-300 hover:text-amber_accent-400 transition flex items-center">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Back
+                    </button>
+                    <a href="#" class="text-slate-300 hover:text-amber_accent-400 transition hidden md:block">Home</a>
+                    <button class="p-2 rounded-full hover:bg-emerald-900/30 transition">
+                        <i class="fa-solid fa-sun text-amber_accent-400 text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-20 pb-16 px-4 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-emerald-600/10 to-transparent -z-10"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10 fade-in">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+                Next-Gen Urban <br><span class="bg-clip-text text-transparent bg-gradient-to-r from-amber_accent-400 to-emerald-400">Resource Initiatives</span>
+            </h1>
+            <p class="text-lg text-slate-400 mb-10 leading-relaxed">
+                Expanding the digital infrastructure of <span class="text-amber_accent-400 font-semibold">Zabrosa</span>. 
+                Focused on land-use, flood resilience, and workforce optimization.
+            </p>
+
+            <div class="glass-panel rounded-2xl p-8 text-left max-w-3xl mx-auto shadow-2xl border-l-4 border-l-amber_accent-400">
+                <div class="flex items-center mb-6">
+                    <i class="fa-solid fa-gears text-amber_accent-400 text-xl mr-3"></i>
+                    <h2 class="text-xl font-bold text-white uppercase tracking-wider">Operational Business Cases</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-300">
+                    <div class="flex items-start"><span class="text-amber_accent-400 font-mono mr-2">1.</span> Smart Land-Use Zoning</div>
+                    <div class="flex items-start"><span class="text-amber_accent-400 font-mono mr-2">2.</span> Urban Flood Risk Prediction</div>
+                    <div class="flex items-start"><span class="text-amber_accent-400 font-mono mr-2">3.</span> EV Charging Station Optimization</div>
+                    <div class="flex items-start"><span class="text-amber_accent-400 font-mono mr-2">4.</span> School Admission & Allocation</div>
+                    <div class="flex items-start"><span class="text-amber_accent-400 font-mono mr-2">5.</span> Urban Noise Regulation</div>
+                    <div class="flex items-start"><span class="text-amber_accent-400 font-mono mr-2">6.</span> Marketplace Stall Allocation</div>
+                    <div class="flex items-start"><span class="text-amber_accent-400 font-mono mr-2">7.</span> Heritage Site Visitor Control</div>
+                    <div class="flex items-start"><span class="text-amber_accent-400 font-mono mr-2">8.</span> Workforce Shift Scheduling</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="initiatives" class="flex-grow max-w-7xl mx-auto px-4 py-16 w-full">
+        <div class="flex items-center justify-center space-x-4 mb-12">
+            <div class="h-px w-12 bg-emerald-900"></div>
+            <h2 class="text-3xl font-bold text-white text-center">Detailed Initiatives</h2>
+            <div class="h-px w-12 bg-emerald-900"></div>
+        </div>
+        <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </main>
+
+    <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-emerald_dark-950/95 backdrop-blur-md" onclick="closeModal()"></div>
+        <div class="bg-slate-900 rounded-2xl border border-amber-900/50 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10">
+            <div class="flex justify-between items-center p-6 border-b border-amber-900/30">
+                <h3 id="modalTitle" class="text-2xl font-bold text-amber_accent-400"></h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <span class="highlight-heading">Problem Statement</span>
+                            <p id="modalProblem" class="text-slate-300"></p>
+                        </div>
+                        <div id="modalDetails"></div>
+                    </div>
+                    <div>
+                        <span class="highlight-heading">C Implementation</span>
+                        <div class="rounded-lg overflow-hidden border border-amber-900/50">
+                            <pre><code id="modalCode" class="language-c"></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const caseData = {
+            1: {
+                title: "Smart Land-Use Zoning & Permit Approval System",
+                problem: "Urban development requires strict adherence to land-use zoning rules to prevent illegal constructions. Manual verification is time-consuming and error-prone.",
+                approach: "Hashing is used to store zoning information for each land plot, enabling O(1) validation of permit requests.",
+                documentation: "Each plot ID maps to its permitted type (residential, commercial, industrial). System checks the hash table to verify if construction matches regulations.",
+                efficiency: "Average search and insertion time: O(1). Space Complexity: O(n).",
+                code: `#include <stdio.h>\n#define SIZE 10\nint zoneTable[SIZE];\n\nint hash(int plot) { return plot % SIZE; }\n\nint main() {\n    zoneTable[hash(101)] = 1; // Residential\n    zoneTable[hash(205)] = 2; // Commercial\n    int plot=101, req=1;\n    if(zoneTable[hash(plot)] == req) printf("Permit Approved\\n");\n    else printf("Permit Rejected\\n");\n    return 0;\n}`
+            },
+            2: {
+                title: "Urban Flood Risk Prediction & Drainage Control",
+                problem: "Authorities need an efficient way to predict flood risk based on rainfall accumulation over time to activate drainage systems.",
+                approach: "Prefix Sum technique analyzes cumulative rainfall data over fixed time periods instantly.",
+                documentation: "A prefix sum array is constructed from rainfall readings. If total rainfall in a window exceeds threshold, alerts trigger.",
+                efficiency: "Time Complexity: O(n). Extra Space Complexity: O(n).",
+                code: `#include <stdio.h>\nint main() {\n    int rain[7] = {20, 30, 50, 40, 60, 80, 90};\n    int prefix[7];\n    prefix[0] = rain[0];\n    for(int i = 1; i < 7; i++) prefix[i] = prefix[i-1] + rain[i];\n    if(prefix[6] > 300) printf("Flood Risk - Drainage ON\\n");\n    return 0;\n}`
+            },
+            3: {
+                title: "City-Wide EV Charging Station Optimization",
+                problem: "EV stations must be connected across the city to minimize infrastructure cost while ensuring full accessibility.",
+                approach: "Prim’s Algorithm constructs a Minimum Spanning Tree (MST) for optimal connection cabling.",
+                documentation: "Locations are vertices, cabling cost is weighted edges. The algorithm finds the cheapest path to connect all stations.",
+                efficiency: "Time Complexity: O(V²) (using adjacency matrix). Space Complexity: O(V²).",
+                code: `#include <stdio.h>\n#define INF 999\nint main() {\n    int n = 4, minCost = 0;\n    int cost[4][4] = {{INF, 10, 15, 20}, {10, INF, 35, 25}, {15, 35, INF, 30}, {20, 25, 30, INF}};\n    int visited[4] = {1,0,0,0};\n    for(int e = 0; e < 3; e++) {\n        int min = INF, u, v;\n        for(int i=0; i<n; i++) if(visited[i])\n        for(int j=0; j<n; j++) if(!visited[j] && cost[i][j] < min) { min=cost[i][j]; v=j; }\n        visited[v] = 1; minCost += min;\n    }\n    printf("Min Cost: %d\\n", minCost);\n    return 0;\n}`
+            },
+            4: {
+                title: "Smart School Admission & Classroom Allocation",
+                problem: "Schools must allocate students to classrooms respecting capacity constraints to avoid overcrowding.",
+                approach: "Greedy Algorithm assigns students to the next available capacity sequentially.",
+                documentation: "Students are filled into rooms greedily. If students remain after all rooms are at capacity, a flag for new infrastructure is raised.",
+                efficiency: "Time Complexity: O(n). Extra Space Complexity: O(1).",
+                code: `#include <stdio.h>\nint main() {\n    int students = 120, rooms = 3;\n    int classCapacity[] = {40, 35, 30};\n    for(int i = 0; i < rooms && students > 0; i++) {\n        if(students >= classCapacity[i]) students -= classCapacity[i];\n    }\n    if(students > 0) printf("%d students unallocated\\n", students);\n    return 0;\n}`
+            },
+            5: {
+                title: "Urban Noise Regulation & Complaint Resolution",
+                problem: "Continuous monitoring is required to identify sustained noise violations across city zones.",
+                approach: "Sliding Window technique calculates moving average noise levels over fixed time intervals.",
+                documentation: "A window of fixed size slides over sensor data. If the moving average crosses 75dB, an automated violation is logged.",
+                efficiency: "Time Complexity: O(n). Extra Space Complexity: O(1).",
+                code: `#include <stdio.h>\nint main() {\n    int noise[] = {55, 60, 72, 80, 85, 65};\n    int window = 3;\n    for(int i = 0; i <= 6 - window; i++) {\n        int sum = 0;\n        for(int j = i; j < i + window; j++) sum += noise[j];\n        if((sum/window) > 75) printf("⚠ Noise Violation Alert\\n");\n    }\n    return 0;\n}`
+            },
+            6: {
+                title: "Smart Marketplace Stall Allocation",
+                problem: "Marketplaces require a fair and orderly allocation of stalls to avoid disputes and vendor overcrowding.",
+                approach: "Queue data structure implements a First-Come-First-Served (FCFS) logic for vendors.",
+                documentation: "Vendors register and enter a queue. Available stalls are popped from the front of the queue to ensure perfect fairness.",
+                efficiency: "Enqueue/Dequeue: O(1). Space Complexity: O(n).",
+                code: `#include <stdio.h>\nint main() {\n    int queue[10], f = 0, r = 0;\n    queue[r++] = 101; // Vendor 101\n    queue[r++] = 102; // Vendor 102\n    printf("Allocated Stall to ID: %d\\n", queue[f++]);\n    return 0;\n}`
+            },
+            7: {
+                title: "Heritage Site Visitor Control System",
+                problem: "Heritage sites must limit entry to prevent structural damage while maintaining orderly visitor flow.",
+                approach: "Queue combined with a global capacity counter regulates visitor entry thresholds.",
+                documentation: "Visitors are queued. Entry is granted only if 'CurrentVisitors < MaxCapacity'. Others remain in queue until someone exits.",
+                efficiency: "Time Complexity: O(n). Space Complexity: O(n).",
+                code: `#include <stdio.h>\nint main() {\n    int max = 5, current = 0;\n    int visitors[] = {1,2,3,4,5,6};\n    for(int i=0; i<6; i++) {\n        if(current < max) { current++; printf("Allowed: %d\\n", visitors[i]); }\n        else printf("Denied: %d\\n", visitors[i]);\n    }\n    return 0;\n}`
+            },
+            8: {
+                title: "Municipal Workforce Shift Scheduling",
+                problem: "Efficiently scheduling workers across multiple shifts to ensure 24/7 city service availability.",
+                approach: "Greedy Scheduling Algorithm assigns workers to the highest priority shifts first.",
+                documentation: "Shift durations are prioritized and workers are assigned sequentially based on availability until all slots are filled.",
+                efficiency: "Time Complexity: O(n). Extra Space Complexity: O(1).",
+                code: `#include <stdio.h>\nint main() {\n    int shifts[] = {8, 6, 4}, workers = 10;\n    for(int i = 0; i < 3 && workers > 0; i++) {\n        workers--;\n        printf("Shift %d filled\\n", i+1);\n    }\n    return 0;\n}`
+            }
+        };
+
+        const icons = ["map-location-dot", "cloud-showers-heavy", "charging-station", "school", "ear-deaf", "shop", "monument", "calendar-check"];
+        const grid = document.getElementById('card-grid');
+
+        Object.keys(caseData).forEach((id, i) => {
+            grid.innerHTML += `
+                <div onclick="openModal(${id})" class="initiative-card bg-emerald_dark-950/40 p-6 rounded-2xl shadow-lg backdrop-blur-sm">
+                    <i class="fa-solid fa-${icons[i]} text-amber_accent-400 text-3xl mb-4"></i>
+                    <h3 class="font-bold text-lg text-white mb-2">${id}. ${caseData[id].title}</h3>
+                    <p class="text-xs text-slate-500 uppercase tracking-widest">Phase 02 Optimization</p>
+                </div>
+            `;
+        });
+
+        function openModal(id) {
+            const data = caseData[id];
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalProblem').innerText = data.problem;
+            
+            document.getElementById('modalDetails').innerHTML = `
+                <span class="highlight-heading">Solution Approach</span>
+                <p class="text-slate-300 mb-6">${data.approach}</p>
+                <span class="highlight-heading">Documentation</span>
+                <p class="text-slate-300 mb-6">${data.documentation}</p>
+                <span class="highlight-heading">Efficiency Analysis</span>
+                <p class="text-slate-300 mb-6">${data.efficiency}</p>
+            `;
+
+            const codeEl = document.getElementById('modalCode');
+            codeEl.textContent = data.code;
+            delete codeEl.dataset.highlighted;
+            hljs.highlightElement(codeEl);
+            document.getElementById('caseModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('caseModal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
